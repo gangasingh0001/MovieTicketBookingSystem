@@ -1,11 +1,13 @@
 package Interface;
 
+import java.rmi.RemoteException;
+
 /**
- * Operation Interface has method declaration for both admin and
+ * This Interface has method declaration for both admin and
  * user operations on Booking Movie Ticket Facility.
  * Declared all the business methods that can be invoked by the user/admin in this interface.
  */
-public interface OperationInterface {
+public interface MovieTicketInterface {
     /**
      * Permission Set - Admin Only.
      * This method add movie for particular movie if exist in hash map
@@ -15,7 +17,7 @@ public interface OperationInterface {
      * @param bookingCapacity
      * @return String If operation successful or not
      */
-    String addMovieSlots(String movieId, String movieName, Integer bookingCapacity);
+    String addMovieSlots(String movieId, String movieName, Integer bookingCapacity) throws RemoteException;
 
     /**
      * Permission Set - Admin Only.
@@ -26,7 +28,7 @@ public interface OperationInterface {
      * @param movieName
      * @return String If operation successful or not
      */
-    String removeMovieSlots(String movieId, String movieName);
+    String removeMovieSlots(String movieId, String movieName) throws RemoteException;
 
     /**
      * Permission Set - Admin Only.
@@ -34,7 +36,7 @@ public interface OperationInterface {
      * @param movieName
      * @return String If operation successful or not
      */
-    String listMovieShowsAvailability(String movieName);
+    String listMovieShowsAvailability(String movieName) throws RemoteException;
 
     /**
      * Permission Set - Admin and User.
@@ -45,7 +47,7 @@ public interface OperationInterface {
      * @param numberOfTickets
      * @return String If operation successful or not
      */
-    String bookMovieTickets(String customerID, String movieId, String movieName, String numberOfTickets);
+    String bookMovieTickets(String customerID, String movieId, String movieName, String numberOfTickets) throws RemoteException;
 
     /**
      * Permission Set - Admin and User.
@@ -53,7 +55,7 @@ public interface OperationInterface {
      * @param customerID
      * @return String If operation successful or not
      */
-    String getBookingSchedule(String customerID);
+    String getBookingSchedule(String customerID) throws RemoteException;
 
     /**
      * Permission Set - Admin and User.
@@ -64,5 +66,5 @@ public interface OperationInterface {
      * @param numberOfTickets
      * @return
      */
-    String cancelMovieTickets(String customerID, String movieID, String movieName, Integer numberOfTickets);
+    String cancelMovieTickets(String customerID, String movieID, String movieName, Integer numberOfTickets) throws RemoteException;
 }
