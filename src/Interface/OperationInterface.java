@@ -2,7 +2,8 @@ package Interface;
 
 /**
  * Operation Interface has method declaration for both admin and
- * user operations on Booking Movie Ticket Facility
+ * user operations on Booking Movie Ticket Facility.
+ * Declared all the business methods that can be invoked by the user/admin in this interface.
  */
 public interface OperationInterface {
     /**
@@ -45,4 +46,23 @@ public interface OperationInterface {
      * @return String If operation successful or not
      */
     String bookMovieTickets(String customerID, String movieId, String movieName, String numberOfTickets);
+
+    /**
+     * Permission Set - Admin and User.
+     * This method will get the booking schedule as per customerID from all the different theaters from all area.
+     * @param customerID
+     * @return String If operation successful or not
+     */
+    String getBookingSchedule(String customerID);
+
+    /**
+     * Permission Set - Admin and User.
+     * This method will allow cancelling of movie ticket with following parameters.
+     * @param customerID
+     * @param movieID
+     * @param movieName
+     * @param numberOfTickets
+     * @return
+     */
+    String cancelMovieTickets(String customerID, String movieID, String movieName, Integer numberOfTickets);
 }
