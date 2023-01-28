@@ -1,5 +1,6 @@
 package Interface;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
@@ -7,7 +8,7 @@ import java.rmi.RemoteException;
  * user operations on Booking Movie Ticket Facility.
  * Declared all the business methods that can be invoked by the user/admin in this interface.
  */
-public interface MovieTicketInterface {
+public interface MovieTicketInterface extends Remote {
     /**
      * Permission Set - Admin Only.
      * This method add movie for particular movie if exist in hash map
@@ -17,7 +18,7 @@ public interface MovieTicketInterface {
      * @param bookingCapacity
      * @return String If operation successful or not
      */
-    String addMovieSlots(String movieId, String movieName, Integer bookingCapacity) throws RemoteException;
+    String addMovieSlots(String movieId, String movieName, int bookingCapacity) throws RemoteException;
 
     /**
      * Permission Set - Admin Only.
@@ -47,7 +48,7 @@ public interface MovieTicketInterface {
      * @param numberOfTickets
      * @return String If operation successful or not
      */
-    String bookMovieTickets(String customerID, String movieId, String movieName, String numberOfTickets) throws RemoteException;
+    String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException;
 
     /**
      * Permission Set - Admin and User.
@@ -66,5 +67,5 @@ public interface MovieTicketInterface {
      * @param numberOfTickets
      * @return
      */
-    String cancelMovieTickets(String customerID, String movieID, String movieName, Integer numberOfTickets) throws RemoteException;
+    String cancelMovieTickets(String customerID, String movieID, String movieName, int numberOfTickets) throws RemoteException;
 }
