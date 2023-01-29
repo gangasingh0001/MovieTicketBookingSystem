@@ -1,4 +1,4 @@
-package Controller;
+package Server.Controller;
 
 import Interface.MovieTicketInterface;
 
