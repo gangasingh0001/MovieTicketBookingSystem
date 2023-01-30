@@ -8,9 +8,8 @@ public class Client {
     public static void main(String[] args) {
         try {
             User user = new User();
-            ServerInfo serverInfo = new ServerInfo();
             Movie movie = new Movie();
-            FrontEnd fe = new FrontEnd(serverInfo,user,movie);
+            FrontEnd fe = new FrontEnd(user,movie);
 
             String response = fe.login();
 
