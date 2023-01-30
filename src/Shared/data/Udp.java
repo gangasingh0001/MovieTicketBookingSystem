@@ -5,6 +5,8 @@ import java.net.*;
 
 public class Udp implements IUdp{
     public String sendUDPMessage(int serverPort, String methodToInvoke, String customerID, String movieName, String movieID, int noOfTickets) {
+        System.out.println("Calling UDP message server");
+        System.out.println(" Customer ID "+ customerID + " UDP calling " + methodToInvoke + methodToInvoke + " movieID: " + movieID + " movieName: " + movieName);
         DatagramSocket aSocket = null;
         String result = "";
         String dataFromClient = methodToInvoke + ";" + customerID + ";" + movieName + ";" + movieID + ";" + noOfTickets;
@@ -23,6 +25,7 @@ public class Udp implements IUdp{
             result = new String(reply.getData());
             String[] parts = result.split(";");
             result = parts[0];
+            System.out.println("Response from UDP request: " + result);
         } catch (SocketException e) {
             System.out.println("Socket: " + e.getMessage());
         } catch (IOException e) {
@@ -32,7 +35,6 @@ public class Udp implements IUdp{
             if (aSocket != null)
                 aSocket.close();
         }
-        System.out.println(" Customer ID "+ customerID + " UDP reply received" + methodToInvoke + " " + " movieID: " + movieID + " movieName: " + movieName + " " + result);
         return result;
     }
 }
