@@ -2,14 +2,17 @@ package Server.Service;
 
 import Constant.ServerConstant;
 import Server.Interface.IMovieTicket;
+import Shared.Database.ICustomerBooking;
+import Shared.Database.IMovies;
 import Shared.data.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Map;
+import java.text.ParseException;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MovieTicket extends UnicastRemoteObject implements IMovieTicket {
+public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
     // MovieName,MovieID,BookingCapacity
     private Map<String, Map<String, MovieState>> movies;
     //CustomerID,MovieID,BookingCapacity
@@ -17,127 +20,94 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket {
     private IServerInfo serverInfo;
     private IUdp udpService;
     private IMovie movieService;
-    public MovieTicket(IServerInfo serverInfo, IUdp udpService, IMovie movieService) throws RemoteException {
+    private ICustomerBooking customerBookingDb;
+    private IMovies moviesDb;
+    public MovieTicket(IServerInfo serverInfo,
+                       IUdp udpService,
+                       IMovie movieService,
+                       ICustomerBooking customerBookingDb,
+                       IMovies moviesDb) throws RemoteException {
         super();
         this.movies = new ConcurrentHashMap<>();
         this.customers = new ConcurrentHashMap<>();
         this.serverInfo = serverInfo;
         this.udpService = udpService;
         this.movieService = movieService;
-        addUsers();
+        this.customerBookingDb = customerBookingDb;
+        this.moviesDb = moviesDb;
     }
 
     public String addMovieSlots(String movieId, String movieName, int bookingCapacity) throws RemoteException {
-        Map<String, MovieState> listOfTheaters = this.movies.get(movieName);
-        MovieState movie = listOfTheaters.get(movieId);
-        if(movie==null) {
-            listOfTheaters.put(movieId,new MovieState(movieName,movieId,bookingCapacity));
-            return "Added new slot";
+        if(this.moviesDb.ifMovieNameExist(movieName)) {
+            if(this.moviesDb.ifMovieIDExist(movieName,movieId)){
+                return this.moviesDb.updateMovieSlot(movieName,movieId,bookingCapacity);
+            }
+            return this.moviesDb.addMovieSlot(movieName,movieId,bookingCapacity);
         }
-        movie.addingMovieSeats(bookingCapacity);
-        return "Updated slot";
+        return "Movie does not exist";
     }
 
-    public String removeMovieSlots(String movieId, String movieName) throws RemoteException {
-
-        for (Map.Entry<String, Map<String,User>> customer : customers.entrySet()) {
-            String cutomerID = customer.getKey().toString();
-            Map<String, User> movieObj = customer.getValue();
-
-            User ifBookingExist = movieObj.get(movieId);
-            Map<String,MovieState> moviesObj = movies.get(movieName);
-
-            if(ifBookingExist!=null) {
-                for (Map.Entry<String, MovieState> movieObjRefInsideMovieMap : moviesObj.entrySet()) {
-                    String movieIdObjRefKey = movieObjRefInsideMovieMap.getKey().toString();
-                    MovieState movieIdObjRefValue = movieObjRefInsideMovieMap.getValue();
-
-                    if(movieIdObjRefKey.substring(0,3).equals(movieId.substring(0,3)) &&
-                            movieIdObjRefKey.substring(5,10).equals(movieId.substring(5,10))){
-                        if(movieIdObjRefKey.substring(3,4).equals("M")) {
-                            if(movieIdObjRefKey.substring(3,4).equals("A") ||
-                                    movieIdObjRefKey.substring(3,4).equals("E")) {
-                                User usr = new User();
-                                usr.addTicketToUserProfile(ifBookingExist.numberOfTicketsBooked());
-                                customers.put(cutomerID, (Map<String, User>) new ConcurrentHashMap<>().put(movieIdObjRefKey,usr));
-                                movieObj.remove(movieId); // Remove from customer
-                                //movieRefObj.remove(movieIdObjRefKey); //Removed from movies map
-                                return "Added and Deleted from cust";
-                            }
-                        }
-                        if(movieIdObjRefKey.substring(3,4).equals("A")) {
-                            if(movieIdObjRefKey.substring(3,4).equals("E")) {
-                                User usr = new User();
-                                usr.addTicketToUserProfile(ifBookingExist.numberOfTicketsBooked());
-                                customers.put(cutomerID, (Map<String, User>) new ConcurrentHashMap<>().put(movieIdObjRefKey,usr));
-                                movieObj.remove(movieId); // Remove from customer
-                                //movieRefObj.remove(movieIdObjRefKey); //Removed from movies map
-                                return "Added and Deleted from cust";
+    public String removeMovieSlots(String movieId, String movieName) throws RemoteException, ParseException {
+        if (this.moviesDb.ifMovieNameExist(movieName)) {
+            if (this.moviesDb.ifMovieIDExist(movieName, movieId)) {
+                //TODO search if customer booked the ticket that is going to be deleted by Admin
+                List<String> bookingCustomerIDs = this.customerBookingDb.getAllCustomerIDs();
+                String bookingCustomerID = null;
+                for (int i = 0; i < bookingCustomerIDs.size(); i++) {
+                    String customerID = bookingCustomerIDs.get(0);
+                    Map<String, MovieState> bookings = (Map<String, MovieState>) this.customerBookingDb.getTicketsBookedByCustomerID(customerID);
+                    if (bookings.get(movieId) != null) {
+                        for (int j = 0; j < bookings.size(); j++) {
+                            if (bookings.get(0).getMovieName().equals(movieName) && bookings.get(movieId).equals(movieId)) {
+                                bookingCustomerID = customerID;
+                                break;
                             }
                         }
                     }
                 }
+                if (bookingCustomerID != null) {
+                    List<String> availableMovieSlots = this.moviesDb.getMovieSlotsAtSpecificArea(movieName, this.serverInfo.getServerName());
+                    if (!availableMovieSlots.isEmpty()) {
+                        List<MovieState> movieInfo = new ArrayList<MovieState>();
+                        for (String availableMovieSlot : availableMovieSlots) {
+                            movieInfo.add(new MovieState(movieName, String.valueOf(availableMovieSlot), 0));
+                        }
+
+                        movieInfo.sort(new Comparator<MovieState>() {
+                            public int compare(MovieState movieA, MovieState movieB) {
+                                return movieA.getMovieDate().compareTo(movieB.getMovieDate());
+                            }
+                        });
+
+                        for (int i = 0; i < movieInfo.size(); i++) {
+                            if (i + 1 < movieInfo.size() && movieInfo.get(0).getMovieID().equals(movieId)) {
+                                int noOfTicket = this.customerBookingDb.getNoOfTicketsBookedByMovieID(bookingCustomerID, movieId, movieName);
+                                this.customerBookingDb.addMovieByCustomerID(bookingCustomerID, movieInfo.get(i + 1).getMovieID(), movieName, noOfTicket);
+                                break;
+                            }
+                        }
+                    }
+                    this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId);
+                }
+                return this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId);
             }
-            moviesObj.remove(movieId);
-//            for (Map.Entry<String, User> movieObjIt : movieObj.entrySet()) {
-//                String movieIDKey = movieObjIt.getKey().toString();
-//                User movieRefObjValue = movieObjIt.getValue();
-//
-//                if(movieIDKey.equals(movieId)){
-//                    if(movieId.substring(3,4).equals("M")) {
-//                        Map<String, MovieState> movieRefObj = movies.get(movieName);
-//                        for (Map.Entry<String, MovieState> movieObjRefInsideMovieMap : movieRefObj.entrySet()) {
-//                            String movieIdObjRefKey = movieObjRefInsideMovieMap.getKey().toString();
-//                            MovieState movieIdObjRefValue = movieObjRefInsideMovieMap.getValue();
-//
-//                            if(movieIdObjRefKey.substring(0,3).equals(movieId.substring(0,3)) &&
-//                                    movieIdObjRefKey.substring(5,10).equals(movieId.substring(5,10)) && movieIdObjRefKey.substring(3,4).equals()){
-//                                if(movieIDKey.substring(3,4).equals("A")||movieIDKey.substring(3,4).equals("E")) {
-//                                    User usr = new User();
-//                                    usr.addTicketToUserProfile(movieRefObjValue.numberOfTicketsBooked());
-//                                    customers.put(cutomerID, (Map<String, User>) new ConcurrentHashMap<>().put(movieIdObjRefKey,usr));
-//                                    movieIdObjRefValue.reduceBookingCapacity(movieRefObjValue.numberOfTicketsBooked());
-//                                    movieObj.remove(movieIDKey); // Remove from customer
-//                                    //movieRefObj.remove(movieIdObjRefKey); //Removed from movies map
-//                                    return "Added and Deleted from cust";
-//                                }
-//                            }
-//                        }
-//                    }
-//                    if(movieId.substring(3,4).equals("A")) {
-//                        Map<String, MovieState> movieRefObj = movies.get(movieName);
-//                        for (Map.Entry<String, MovieState> movieObjRefInsideMovieMap : movieRefObj.entrySet()) {
-//                            String movieIdObjRefKey = movieObjRefInsideMovieMap.getKey().toString();
-//                            MovieState movieIdObjRefValue = movieObjRefInsideMovieMap.getValue();
-//
-//                            if(movieIdObjRefKey.substring(0,3).equals(movieId.substring(0,3)) &&
-//                                    movieIdObjRefKey.substring(5,10).equals(movieId.substring(5,10)) && movieIdObjRefKey.substring(3,4).equals()){
-//                                if(movieIDKey.substring(3,4).equals("E")) {
-//                                    User usr = new User();
-//                                    usr.addTicketToUserProfile(movieRefObjValue.numberOfTicketsBooked());
-//                                    customers.put(cutomerID, (Map<String, User>) new ConcurrentHashMap<>().put(movieIdObjRefKey,usr));
-//                                    movieIdObjRefValue.reduceBookingCapacity(movieRefObjValue.numberOfTicketsBooked());
-//                                    movieObj.remove(movieIDKey);
-//                                    return "Added and Deleted from cust";
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
         }
-        return null;
+        return "Movie does not exist";
     }
 
     public String listMovieShowsAvailability(String movieName) throws RemoteException {
-        String response = this.getMoviesListInTheatre(movieName);
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) response = response + this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_ATWATER_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1);
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) response = response + this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1);
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) response = response + this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_OUTREMONT_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1);
-        return response;
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getMoviesListInTheatre(movieName));
+        System.out.println("Calling Server 1");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_ATWATER_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
+        System.out.println("Calling Server 2");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
+        System.out.println("Calling Server 3");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_OUTREMONT_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
+        return sb.toString();
     }
 
-    public String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException {
+    public String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException, ParseException {
         String movieInTheater = this.movieService.grepServerPrefixByMovieID(movieId);
         if(!movieInTheater.equals(this.serverInfo.getServerName())) return this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(movieInTheater),"bookTicket",customerID,movieName,movieId,numberOfTickets);
         return this.bookTicket(customerID,movieId,movieName,numberOfTickets);
@@ -155,46 +125,44 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket {
         return cancelTicket(customerID, movieID, movieName, numberOfTickets);
     }
 
-    private void addUsers() {
-        this.movies.put("AVTAAR", (Map<String, MovieState>) new ConcurrentHashMap<>().put("ATWM160523",new MovieState("AVTAAR","ATWM160523",10)));
-        this.movies.put("AVENGERS", (Map<String, MovieState>) new ConcurrentHashMap<>().put("VERM091222",new MovieState("AVENGERs","VERM091222",20)));
-        this.movies.put("TITANIC", (Map<String, MovieState>) new ConcurrentHashMap<>().put("OUTE290922",new MovieState("TITANIC","OUTE290922",30)));
-        this.customers.put("ATWA2345", (Map<String, User>) new ConcurrentHashMap<>().put("ATWM160523",new User()));
-        this.customers.put("ATWM8845", (Map<String, User>) new ConcurrentHashMap<>().put("OUTE290922",new User()));
+    public String getMoviesListInTheatre(String movieName) throws RemoteException {
+        Map<String, Integer> movieSlots = this.moviesDb.getMovieSlotsHashMapByMovieName(movieName);
+        if(movieSlots!=null) {
+            StringBuilder builder = new StringBuilder();
+            for (Map.Entry<String,Integer> slot : movieSlots.entrySet()) {
+                builder.append(movieName + ": " +slot.getValue() +" "+ slot.getKey()+", ");
+            }
+            return builder.toString();
+        }
+        return "";
     }
 
-    public String getMoviesListInTheatre(String movieName) {
-        Map<String, MovieState> movieSlots = this.movies.get(movieName);
+    public String bookTicket(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException, ParseException {
         StringBuilder builder = new StringBuilder();
-        builder.append(this.serverInfo.getServerName() + " Server " + movieName + ":\n");
-        for (MovieState movie :
-                movieSlots.values()) {
-            builder.append(movie.toString() + " || ");
+        if(this.moviesDb.ifMovieIDExist(movieName,movieId)) {
+            this.customerBookingDb.addMovieByCustomerID(customerID,movieId,movieName,numberOfTickets);
+            builder.append("Movie Added Successfully");
+            builder.append(this.moviesDb.decrementBookingCapacity(movieName,movieId,numberOfTickets));
+            return builder.toString();
         }
+        builder.append("Booking Failed");
         return builder.toString();
     }
 
-    public String bookTicket(String customerID, String movieId, String movieName, int numberOfTickets) {
-        Map<String, User> userMapRef = customers.get(customerID);
-        User usr = new User();
-        usr.addTicketToUserProfile(numberOfTickets);
-        userMapRef.put(movieId,usr);
-        this.movies.get(movieName).get(movieId).reduceBookingCapacity(numberOfTickets);
-        this.movies.get(movieName).get(movieId).addBookingCustomerID(customerID);
-        return "Success";
-    }
-
-    public String getCustomerBookingList(String customerID) {
-        Map<String,User> customerObj = this.customers.get(customerID);
-        StringBuilder builder = new StringBuilder();
-        for (User user :
-                customerObj.values()) {
-            builder.append(user.toString() + " || ");
+    public String getCustomerBookingList(String customerID) throws RemoteException {
+        Map<String,MovieState> customerObj = this.customerBookingDb.getTicketsBookedByCustomerID(customerID);
+        if(customerObj!=null) {
+            StringBuilder builder = new StringBuilder();
+            for (MovieState bookingSchedule :
+                    customerObj.values()) {
+                builder.append(bookingSchedule.getMovieName().toString() + ": " + bookingSchedule.getMovieID() + " " + bookingSchedule.getRemainingSlots());
+            }
+            return builder.toString();
         }
-        return builder.toString();
+        return "No customer bookings";
     }
 
-    public String cancelTicket(String customerID, String movieID, String movieName, int numberOfTickets) {
-        return this.customers.get(customerID).get(movieID).cancelTicket(numberOfTickets,customerID);
+    public String cancelTicket(String customerID, String movieID, String movieName, int numberOfTickets) throws RemoteException {
+        return this.customerBookingDb.cancelMovieTickets(customerID,movieID,movieName);
     }
 }
