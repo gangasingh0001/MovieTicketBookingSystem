@@ -1,8 +1,14 @@
 package Server;
 
-import Constant.ControllerConstant;
+import Constant.ServiceConstant;
 import Constant.ServerConstant;
-import Controller.MovieTicketController;
+import Server.Service.MovieTicket;
+import Shared.Database.ICustomerBooking;
+import Shared.Database.IMovies;
+import Shared.data.IMovie;
+import Shared.data.IServerInfo;
+import Shared.data.IUdp;
+import Shared.data.IUser;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -13,32 +19,50 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.text.ParseException;
 
 public class Server extends Thread{
-    private MovieTicketController movieTicketController = null;
+    private MovieTicket movieTicketService = null;
     private static String serverID;
     private static String serverName;
     //private static int serverRegistryPort;
     private static int serverPort;
+    private IServerInfo serverInfo;
+    private IUdp udpService;
+    private IMovie movieService;
+    private ICustomerBooking customerBookingDb;
+    private IMovies moviesDb;
 
-    public Server (String serverID) throws Exception{
+    public Server (String serverID,
+                   IServerInfo serverInfo,
+                   IUdp udpService,
+                   IMovie movieService,
+                   ICustomerBooking customerBookingDb,
+                   IMovies moviesDb) throws Exception{
         System.out.println("Server ID " + serverID);
         this.serverID = serverID;
+        this.serverInfo = serverInfo;
+        this.udpService = udpService;
+        this.movieService = movieService;
+        this.customerBookingDb = customerBookingDb;
+        this.moviesDb = moviesDb;
     }
 
     public static void main(String args[]) {}
 
     public void runServer() throws RemoteException {
-        movieTicketController = new MovieTicketController();
+        movieTicketService = new MovieTicket(serverInfo,udpService,movieService,customerBookingDb,moviesDb);
         startRegistry();
         startThread();
     }
 
     private void startRegistry() {
         try {
-            System.out.println("Getting Server Port " + serverPort);
+            System.out.println("Creating registry with port: " + serverPort);
             Registry registry = LocateRegistry.createRegistry(serverPort);
-            registry.rebind(ControllerConstant.MovieTicketController,movieTicketController);
+
+            System.out.println("Rebinding registry to movieTicketService at port: " + serverPort);
+            registry.rebind(ServiceConstant.MovieTicketService,movieTicketService);
         } catch (AccessException e) {
             throw new RuntimeException(e);
         } catch (RemoteException e) {
@@ -47,11 +71,19 @@ public class Server extends Thread{
     }
 
     private void startThread() {
+        System.out.println("launching runnable");
         Runnable task = () -> {
+            System.out.println("Initiating listener for client requests");
             requestlistener();
         };
+
+        System.out.println("Initialising thread");
         Thread thread = new Thread(task);
+
         thread.start();
+        Thread.currentThread().setName(serverName);
+        System.out.println("Running thread name: "+ Thread.currentThread().getName());
+        System.out.println("State of thread: " + Thread.currentThread().getState());
     }
 
     public void getServerInfo() {
@@ -73,24 +105,19 @@ public class Server extends Thread{
         }
     }
 
-    private void requestlistener () {
+    private void requestlistener() {
         DatagramSocket socket = null;
         String response = "";
         try {
             socket = new DatagramSocket(serverPort);
             byte[] buffer = new byte[1000];
             while (true) {
-                System.out.println("Request");
+                System.out.println("Request from Client");
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
-                String requestParams = new String(request.getData(), 0,
-                        request.getLength());
+                String requestParams = new String(request.getData(), 0,request.getLength());
                 String[] requestParamsArray = requestParams.split(";");
-//                String customerID = requestParamsArray[1];
-//                String movieType = requestParamsArray[2];
-//                String movieID = requestParamsArray[3];
-//                String invokedMethod = requestParamsArray[0];
-//                response = methodInvocation(invokedMethod,response);
+                response = methodInvocation(requestParamsArray,response);
                 byte[] sendData = response.getBytes();
                 DatagramPacket reply = new DatagramPacket(sendData, response.length(), request.getAddress(),
                         request.getPort());
@@ -98,7 +125,7 @@ public class Server extends Thread{
             }
         } catch (SocketException socketException) {
             System.out.println("SocketException: " + socketException.getMessage());
-        } catch (IOException ioException) {
+        } catch (IOException | ParseException ioException) {
             System.out.println("IOException: " + ioException.getMessage());
         } finally {
             if (socket != null)
@@ -106,16 +133,21 @@ public class Server extends Thread{
         }
     }
 
-//    private String methodInvocation(@NotNull String invokedMethod, String response) {
-//        if (invokedMethod.equalsIgnoreCase(ControllerConstant.removeMovieSlots)) {
-//            response = movieTicketController.removeMovieSlots();
-//        } else if (invokedMethod.equalsIgnoreCase(ControllerConstant.bookMovieTickets)) {
-//            response = movieTicketController.bookMovieTickets();
-//        } else if (invokedMethod.equalsIgnoreCase(ControllerConstant.cancelMovieTickets)) {
-//            response = movieTicketController.cancelMovieTickets();
-//        } else if (invokedMethod.equalsIgnoreCase(ControllerConstant.addMovieSlots)) {
-//            response = movieTicketController.addMovieSlots();
-//        }
-//        return response;
-//    }
+    private String methodInvocation(String[] requestParamsArray, String response) throws RemoteException, ParseException {
+        String invokedMethod = requestParamsArray[0];
+        String customerID = requestParamsArray[1];
+        String movieName = requestParamsArray[2];
+        String movieID = requestParamsArray[3];
+        int numberOfTickets = Integer.parseInt(requestParamsArray[4]);
+        if (invokedMethod.equalsIgnoreCase(ServiceConstant.getMoviesListInTheatre)) {
+            response = movieTicketService.getMoviesListInTheatre(movieName);
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.bookTicket)) {
+            response = movieTicketService.bookTicket(customerID,movieID,movieName,numberOfTickets);
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getCustomerBookingList)) {
+            response = movieTicketService.getCustomerBookingList(customerID);
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.cancelTicket)) {
+            response = movieTicketService.cancelTicket(customerID,movieID,movieName,numberOfTickets);
+        }
+        return response;
+    }
 }

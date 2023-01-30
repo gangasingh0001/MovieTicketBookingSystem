@@ -1,14 +1,19 @@
-package Interface;
+package Server.Interface;
+
+import Shared.data.MovieState;
+import Shared.data.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.util.Map;
 
 /**
  * This Interface has method declaration for both admin and
  * user operations on Booking Movie Ticket Facility.
  * Declared all the business methods that can be invoked by the user/admin in this interface.
  */
-public interface MovieTicketInterface extends Remote {
+public interface IMovieTicket extends Remote {
     /**
      * Permission Set - Admin Only.
      * This method add movie for particular movie if exist in hash map
@@ -29,7 +34,7 @@ public interface MovieTicketInterface extends Remote {
      * @param movieName
      * @return String If operation successful or not
      */
-    String removeMovieSlots(String movieId, String movieName) throws RemoteException;
+    String removeMovieSlots(String movieId, String movieName) throws RemoteException, ParseException;
 
     /**
      * Permission Set - Admin Only.
@@ -48,7 +53,7 @@ public interface MovieTicketInterface extends Remote {
      * @param numberOfTickets
      * @return String If operation successful or not
      */
-    String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException;
+    String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException, ParseException;
 
     /**
      * Permission Set - Admin and User.
@@ -68,4 +73,12 @@ public interface MovieTicketInterface extends Remote {
      * @return
      */
     String cancelMovieTickets(String customerID, String movieID, String movieName, int numberOfTickets) throws RemoteException;
+
+    public String getMoviesListInTheatre(String movieName) throws RemoteException;
+
+    public String bookTicket(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException, ParseException;
+
+    public String getCustomerBookingList(String customerID) throws RemoteException;
+
+    public String cancelTicket(String customerID, String movieID, String movieName, int numberOfTickets) throws RemoteException;
 }
