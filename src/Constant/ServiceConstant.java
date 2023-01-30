@@ -6,7 +6,7 @@ public class ServiceConstant {
     /**
      * Class name constant
      */
-    public static final String MovieTicketController = "MovieTicketController";
+    public static final String MovieTicketService = "MovieTicketService";
     public static final String addMovieSlots = "addMovieSlots";
     public static final String removeMovieSlots = "removeMovieSlots";
     public static final String listMovieShowsAvailability = "listMovieShowsAvailability";
