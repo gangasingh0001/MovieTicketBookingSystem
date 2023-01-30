@@ -11,9 +11,7 @@ public class Client {
             Movie movie = new Movie();
             FrontEnd fe = new FrontEnd(user,movie);
 
-            String response = fe.login();
-
-            System.out.println("Response "+ response);
+            fe.login();
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();

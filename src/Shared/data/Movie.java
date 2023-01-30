@@ -71,8 +71,9 @@ public class Movie implements IMovie{
 
     public void moviesPrompt(String heading) {
         System.out.println(heading);
+        int i=1;
         for(Movies movie : Movies.getMovies()) {
-            System.out.println(movie);
+            System.out.println(i++ +". "+movie);
         }
     }
 

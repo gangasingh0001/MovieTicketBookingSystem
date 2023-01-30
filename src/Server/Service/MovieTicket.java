@@ -54,11 +54,11 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
                 List<String> bookingCustomerIDs = this.customerBookingDb.getAllCustomerIDs();
                 String bookingCustomerID = null;
                 for (int i = 0; i < bookingCustomerIDs.size(); i++) {
-                    String customerID = bookingCustomerIDs.get(0);
+                    String customerID = bookingCustomerIDs.get(i);
                     Map<String, MovieState> bookings = (Map<String, MovieState>) this.customerBookingDb.getTicketsBookedByCustomerID(customerID);
                     if (bookings.get(movieId) != null) {
                         for (int j = 0; j < bookings.size(); j++) {
-                            if (bookings.get(0).getMovieName().equals(movieName) && bookings.get(movieId).equals(movieId)) {
+                            if (bookings.get(j).getMovieName().equals(movieName) && bookings.get(movieId).equals(movieId)) {
                                 bookingCustomerID = customerID;
                                 break;
                             }
@@ -129,6 +129,7 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
         Map<String, Integer> movieSlots = this.moviesDb.getMovieSlotsHashMapByMovieName(movieName);
         if(movieSlots!=null) {
             StringBuilder builder = new StringBuilder();
+            builder.append(this.serverInfo.getServerName()).append(" ");
             for (Map.Entry<String,Integer> slot : movieSlots.entrySet()) {
                 builder.append(movieName + ": " +slot.getValue() +" "+ slot.getKey()+", ");
             }

@@ -22,7 +22,7 @@ public class ServerInstance {
             customerBookingDb = new CustomerBooking();
             moviesDb = new Movies();
             moviesDb.addMovie("AVATAR","ATWE190822",50);
-            customerBookingDb.addMovieByCustomerID("ATWA1212","ATWE190822","AVATAR",0);
+            customerBookingDb.addMovieByCustomerID("ATWA1212","ATWE190822","AVATAR",23);
             serverInfo.setServerName(ServerConstant.SERVER_ATWATER_PREFIX);
             Server Atwater = new Server(ServerConstant.SERVER_ATWATER_PREFIX,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
             Atwater.getServerInfo();
