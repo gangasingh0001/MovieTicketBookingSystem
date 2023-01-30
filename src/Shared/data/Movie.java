@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Movie implements IMovie{
     public enum Movies {
-        Avtar,
+        Avatar,
         Avengers,
         Titanic,
         None;
@@ -14,7 +14,7 @@ public class Movie implements IMovie{
         public static Movies fromInt(int movieID) {
             switch (movieID) {
                 case 1:
-                    return Avtar;
+                    return Avatar;
 
                 case 2:
                     return Avengers;
@@ -29,7 +29,7 @@ public class Movie implements IMovie{
 
         public static Movies[] getMovies() {
             return new Movies[]{
-                    Movies.Avtar,
+                    Movies.Avatar,
                     Movies.Avengers,
                     Movies.Titanic
             };

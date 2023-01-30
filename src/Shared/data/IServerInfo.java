@@ -8,5 +8,6 @@ public interface IServerInfo {
     public String getServerName();
     public int getServerPort();
     public int getServerPortNumber(String serverPrefix);
-    public String getServerNameFromPrefix(String serverPrefix);
+//    public String getServerNameByCustomerID(String serverPrefix);
+//    public String getServerPrefixNameByCustomerID(String customerID);
 }

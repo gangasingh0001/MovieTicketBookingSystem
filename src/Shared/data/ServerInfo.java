@@ -48,16 +48,4 @@ public class ServerInfo implements IServerInfo{
         }
         return -1;
     }
-
-    public String getServerNameFromPrefix(String serverPrefix) {
-        if(serverPrefix.equalsIgnoreCase(ServerConstant.SERVER_ATWATER_PREFIX)) {
-            return ServerConstant.SERVER_ATWATER;
-        } else if (serverPrefix.equalsIgnoreCase(ServerConstant.SERVER_VERDUN_PREFIX)) {
-            return ServerConstant.SERVER_VERDUN;
-        } else if (serverPrefix.equalsIgnoreCase(ServerConstant.SERVER_OUTREMONT_PREFIX)) {
-            return ServerConstant.SERVER_OUTREMONT;
-        }
-        return null;
-    }
-
 }

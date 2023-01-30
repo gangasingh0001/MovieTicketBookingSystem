@@ -1,5 +1,9 @@
 package Shared.data;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class MovieState {
@@ -7,18 +11,22 @@ public class MovieState {
     private String movieName;
     private int bookingCapacity;
     private String movieSlot;
-    private String movieDate;
+    private Date movieDate;
     private String movieTheatrePrefix;
     private List<String> customerIDs;
     public MovieState(String movieName,
                       String movieID,
-                      int bookingCapacity) {
+                      int bookingCapacity) throws ParseException {
         this.movieID = movieID;
         this.movieName = movieName;
         this.bookingCapacity = bookingCapacity;
         this.movieSlot = movieID.substring(3,4).toUpperCase();
-        this.movieDate = movieID.substring(4,10).toUpperCase();
         this.movieTheatrePrefix = movieID.substring(0,3).toUpperCase();
+        this.setMovieDateUTC(movieID.substring(4,10).toUpperCase());
+    }
+
+    public void setMovieDateUTC(String date) throws ParseException {
+        this.movieDate = new SimpleDateFormat("ddMMyy").parse(date);
     }
 
     public String getMovieID() {
@@ -37,7 +45,7 @@ public class MovieState {
         return movieSlot;
     }
 
-    public String getMovieDate() {
+    public Date getMovieDate() {
         return movieDate;
     }
 
@@ -45,8 +53,8 @@ public class MovieState {
         return movieTheatrePrefix;
     }
 
-    public String addingMovieSeats(int noOfSeats) {
-        this.bookingCapacity+=noOfSeats;
+    public String setBookingCapacity(int noOfSeats) {
+        this.bookingCapacity=noOfSeats;
         return "True";
     }
 
