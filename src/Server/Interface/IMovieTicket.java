@@ -5,6 +5,7 @@ import Shared.data.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.Map;
 
 /**
@@ -33,7 +34,7 @@ public interface IMovieTicket extends Remote {
      * @param movieName
      * @return String If operation successful or not
      */
-    String removeMovieSlots(String movieId, String movieName) throws RemoteException;
+    String removeMovieSlots(String movieId, String movieName) throws RemoteException, ParseException;
 
     /**
      * Permission Set - Admin Only.
@@ -52,7 +53,7 @@ public interface IMovieTicket extends Remote {
      * @param numberOfTickets
      * @return String If operation successful or not
      */
-    String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException;
+    String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException, ParseException;
 
     /**
      * Permission Set - Admin and User.
@@ -73,11 +74,11 @@ public interface IMovieTicket extends Remote {
      */
     String cancelMovieTickets(String customerID, String movieID, String movieName, int numberOfTickets) throws RemoteException;
 
-    public String getMoviesListInTheatre(String movieName);
+    public String getMoviesListInTheatre(String movieName) throws RemoteException;
 
-    public String bookTicket(String customerID, String movieId, String movieName, int numberOfTickets);
+    public String bookTicket(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException, ParseException;
 
-    public String getCustomerBookingList(String customerID);
+    public String getCustomerBookingList(String customerID) throws RemoteException;
 
-    public String cancelTicket(String customerID, String movieID, String movieName, int numberOfTickets);
+    public String cancelTicket(String customerID, String movieID, String movieName, int numberOfTickets) throws RemoteException;
 }
