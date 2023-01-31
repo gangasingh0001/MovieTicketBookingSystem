@@ -22,7 +22,16 @@ public class ServerInstance {
             customerBookingDb = new CustomerBooking();
             moviesDb = new Movies();
             moviesDb.addMovie("AVATAR","ATWE190822",50);
-            customerBookingDb.addMovieByCustomerID("ATWA1212","ATWE190822","AVATAR",23);
+            moviesDb.addMovieSlot("AVATAR","ATWA190822",40);
+            moviesDb.addMovieSlot("AVATAR","ATWM190822",30);
+            moviesDb.addMovieSlot("AVATAR","ATWA200822",20);
+            moviesDb.addMovieSlot("AVATAR","ATWM210822",10);
+            moviesDb.addMovieSlot("AVATAR","ATWE210822",5);
+            moviesDb.addMovie("AVENGERS","ATWE190822",100);
+            customerBookingDb.addMovieByCustomerID("ATWA1212","ATWA190822","AVATAR",4);
+            customerBookingDb.addMovieByCustomerID("ATWA1212","ATWM190822","AVATAR",3);
+            customerBookingDb.addMovieByCustomerID("ATWA1212","ATWE190822","AVATAR",6);
+            customerBookingDb.addMovieByCustomerID("ATWA1212","ATWE210822","AVATAR",2);
             serverInfo.setServerName(ServerConstant.SERVER_ATWATER_PREFIX);
             Server Atwater = new Server(ServerConstant.SERVER_ATWATER_PREFIX,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
             Atwater.getServerInfo();

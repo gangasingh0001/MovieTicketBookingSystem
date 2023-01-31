@@ -2,10 +2,7 @@ package Shared.data;
 
 import Constant.ServerConstant;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Util {
     public static String getServerPrefixNameByCustomerID(String customerID) {
@@ -64,6 +61,16 @@ public class Util {
             keyList.add(value);
         }
         return keyList;
+    }
+
+    public static boolean isDateEqual(Date firstDate,Date secondDate){
+        Calendar firstCalendar = Calendar.getInstance();
+        Calendar secondCalendar = Calendar.getInstance();
+        firstCalendar.setTime(firstDate);
+        secondCalendar.setTime(secondDate);
+        return firstCalendar.get(Calendar.DAY_OF_YEAR) == secondCalendar.get(Calendar.DAY_OF_YEAR) &&
+                firstCalendar.get(Calendar.YEAR) == secondCalendar.get(Calendar.YEAR) &&
+                firstCalendar.get(Calendar.MONTH) == secondCalendar.get(Calendar.MONTH);
     }
 
 //    public static List<Object> getListOfKeyPairByHashMap(Map<String,Object> map) {
