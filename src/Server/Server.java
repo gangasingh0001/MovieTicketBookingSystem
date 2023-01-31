@@ -8,14 +8,12 @@ import Shared.Database.IMovies;
 import Shared.data.IMovie;
 import Shared.data.IServerInfo;
 import Shared.data.IUdp;
-import Shared.data.IUser;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.rmi.AccessException;
-import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

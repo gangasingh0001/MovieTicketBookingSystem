@@ -5,7 +5,6 @@ import Constant.ServiceConstant;
 import Constant.ServerConstant;
 import Server.Interface.IMovieTicket;
 import Shared.data.IMovie;
-import Shared.data.IServerInfo;
 import Shared.data.IUser;
 import Shared.data.Util;
 
@@ -43,8 +42,6 @@ public class FrontEnd {
 
         this.userService.setUserID(userID.toUpperCase());
 
-//        System.out.println("User registered to SERVER: " + this.serverInfoService.getServerNameByCustomerID(userID) + " and PORT: " + this.serverInfoService.getServerPortNumber(this.serverInfoService.getServerPrefixNameByCustomerID(userID)));
-//        this.serverInfoService.setServerPort(this.serverInfoService.getServerPortNumber(this.serverInfoService.getServerPrefixNameByCustomerID(userID)));
         System.out.println("CustomerID: "+ this.userService.getUserID());
         System.out.println("Server Name: "+ Util.getServerFullNameByCustomerID(this.userService.getUserID()));
         System.out.println("Server PORT: "+ Util.getServerPortByCustomerID(this.userService.getUserID()));

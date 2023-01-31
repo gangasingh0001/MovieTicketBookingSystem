@@ -1,7 +1,6 @@
 package Client;
 
 import Shared.data.Movie;
-import Shared.data.ServerInfo;
 import Shared.data.User;
 
 public class Client {

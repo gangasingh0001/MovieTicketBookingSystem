@@ -73,11 +73,37 @@ public class Util {
                 firstCalendar.get(Calendar.MONTH) == secondCalendar.get(Calendar.MONTH);
     }
 
-//    public static List<Object> getListOfKeyPairByHashMap(Map<String,Object> map) {
-//        List<Object> keyPair = new ArrayList<Object>();
-//        for (Map.Entry<String,Object> entry : map.entrySet()) {
-//            keyPair.add(entry.getValue()., entry.getKey());
-//        }
-//        return keyPair;
-//    }
+    public static List<MovieState> sortMovieBySlots(List<MovieState> movieObj) {
+        Collections.sort(movieObj, new Comparator<MovieState>() {
+            @Override
+            public int compare(MovieState o1, MovieState o2) {
+                Integer movieSlotFirst = 0;
+                switch (o1.getMovieID().substring(3, 4).toUpperCase()) {
+                    case "M":
+                        movieSlotFirst = 1;
+                        break;
+                    case "A":
+                        movieSlotFirst = 2;
+                        break;
+                    case "E":
+                        movieSlotFirst = 3;
+                        break;
+                }
+                Integer movieSlotSecond = 0;
+                switch (o2.getMovieID().substring(3, 4).toUpperCase()) {
+                    case "M":
+                        movieSlotSecond = 1;
+                        break;
+                    case "A":
+                        movieSlotSecond = 2;
+                        break;
+                    case "E":
+                        movieSlotSecond = 3;
+                        break;
+                }
+                return movieSlotFirst.compareTo(movieSlotSecond);
+            }
+        });
+        return movieObj;
+    }
 }

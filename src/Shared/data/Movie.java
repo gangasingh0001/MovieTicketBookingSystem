@@ -2,8 +2,6 @@ package Shared.data;
 
 import Constant.ServerConstant;
 
-import java.util.Date;
-
 public class Movie implements IMovie{
     public enum Movies {
         Avatar,

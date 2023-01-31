@@ -1,7 +1,5 @@
 package Shared.data;
 
-import java.util.HashMap;
-
 public class User implements IUser{
     private String userID = null;
     private String userName = null;

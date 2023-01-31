@@ -10,7 +10,6 @@ public class Udp implements IUdp{
         DatagramSocket aSocket = null;
         String result = "";
         String dataFromClient = methodToInvoke + ";" + customerID + ";" + movieName + ";" + movieID + ";" + noOfTickets;
-        // Logger.serverLog(serverID, customerID, " UDP request sent " + method + " ", " eventID: " + eventId + " eventType: " + eventType + " ", " ... ");
         try {
             aSocket = new DatagramSocket();
             byte[] message = dataFromClient.getBytes();

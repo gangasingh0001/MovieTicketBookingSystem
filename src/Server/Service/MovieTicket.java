@@ -13,10 +13,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
-    // MovieName,MovieID,BookingCapacity
-    private Map<String, Map<String, MovieState>> movies;
-    //CustomerID,MovieID,BookingCapacity
-    private Map<String, Map<String, User>> customers;
     private IServerInfo serverInfo;
     private IUdp udpService;
     private IMovie movieService;
@@ -28,8 +24,6 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
                        ICustomerBooking customerBookingDb,
                        IMovies moviesDb) throws RemoteException {
         super();
-        this.movies = new ConcurrentHashMap<>();
-        this.customers = new ConcurrentHashMap<>();
         this.serverInfo = serverInfo;
         this.udpService = udpService;
         this.movieService = movieService;
@@ -78,98 +72,16 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
                             }
                         });
 
+                        movieInfo = Util.sortMovieBySlots(movieInfo);
+
                         String nextAvailableBookingID = "";
                         int currentNumberOfTicketBookedByCustomer = this.customerBookingDb.getNoOfTicketsBookedByMovieID(bookingCustomerID, movieId, movieName);
-                        for (int i = 0; i < movieInfo.size(); i++) {
-                            if (movieInfo.size()>=2 && movieInfo.get(i).getMovieID().equals(movieId)) {
-                                //if(i-1 >= 0 && movieInfo.get(i - 1).getMovieDate().before())
-                                if(i-1<0) {
-                                    if(Util.isDateEqual(movieInfo.get(i).getMovieDate(),movieInfo.get(i+1).getMovieDate())) {
-                                        String currentSlot = movieInfo.get(i).getMovieSlot();
-                                        String nextSlot = movieInfo.get(i+1).getMovieSlot();
-                                        if(currentSlot.equals(Movie.Slots.Morning.toString())) {
-                                            nextAvailableBookingID = movieInfo.get(i + 1).getMovieID();
-                                        } else if(currentSlot.equals(Movie.Slots.Afternoon.toString())) {
-                                            if(nextSlot.equals(Movie.Slots.Morning.toString())) {
-                                                i++;
-                                                continue;
-                                            }
-                                            nextAvailableBookingID = movieInfo.get(i + 1).getMovieID();
-                                            break;
-                                        }else {
-                                            i++;
-                                            continue;
-                                        }
-                                    }else {
-                                        nextAvailableBookingID = movieInfo.get(i + 1).getMovieID();
-                                        break;
-                                    }
-                                }else if(i+1>movieInfo.size()) {
-                                    if(Util.isDateEqual(movieInfo.get(i).getMovieDate(),movieInfo.get(i-1).getMovieDate())) {
-                                        String currentSlot = movieInfo.get(i).getMovieSlot();
-                                        String prevSlot = movieInfo.get(i-1).getMovieSlot();
-                                        if(currentSlot.equals(Movie.Slots.Morning.toString())) {
-                                            if(prevSlot.equals(Movie.Slots.Afternoon.toString())) {
-                                                nextAvailableBookingID = movieInfo.get(i - 1).getMovieID();
-                                                break;
-                                            }
-                                        } else if(currentSlot.equals(Movie.Slots.Afternoon.toString())) {
-                                            if(prevSlot.equals(Movie.Slots.Morning.toString())) {
-                                                if(i-2>0 && Util.isDateEqual(movieInfo.get(i-1).getMovieDate(),movieInfo.get(i-2).getMovieDate())) {
-                                                    nextAvailableBookingID = movieInfo.get(i - 2).getMovieID();
-                                                    break;
-                                                }
-                                                break;
-                                            } else {
-                                                nextAvailableBookingID = movieInfo.get(i - 1).getMovieID();
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    break;
-                                } else {
-                                    if(Util.isDateEqual(movieInfo.get(i).getMovieDate(),movieInfo.get(i-1).getMovieDate())) {
-                                        String currentSlot = movieInfo.get(i).getMovieSlot();
-                                        String prevSlot = movieInfo.get(i-1).getMovieSlot();
-                                        if(currentSlot.equals(Movie.Slots.Morning.toString())) {
-                                            if(prevSlot.equals(Movie.Slots.Afternoon.toString())) {
-                                                nextAvailableBookingID = movieInfo.get(i - 1).getMovieID();
-                                                break;
-                                            }
-                                        } else if(currentSlot.equals(Movie.Slots.Afternoon.toString())) {
-                                            if(prevSlot.equals(Movie.Slots.Morning.toString())) {
-                                                if(i-2>0 && Util.isDateEqual(movieInfo.get(i-1).getMovieDate(),movieInfo.get(i-2).getMovieDate())) {
-                                                    nextAvailableBookingID = movieInfo.get(i - 2).getMovieID();
-                                                    break;
-                                                }
-                                                break;
-                                            } else {
-                                                nextAvailableBookingID = movieInfo.get(i - 1).getMovieID();
-                                                break;
-                                            }
-                                        }
-                                    }else {
-                                        if(i+1<movieInfo.size()) {
-                                            nextAvailableBookingID = movieInfo.get(i + 1).getMovieID();
-                                            break;
-                                        }
-                                        break;
-                                    }
-                                }
+                        for (int j = 0; j < movieInfo.size(); j++) {
+                            if(movieInfo.get(j).getMovieID().equals(movieId)) {
+                                if(j+1<movieInfo.size()) nextAvailableBookingID = movieInfo.get(j+1).getMovieID();
                             }
                         }
-//                        for (int i = 0; i < movieInfo.size(); i++) {
-//                            if (movieInfo.size()>=2 && movieInfo.get(i).getMovieID().equals(movieId)) {
-//                                //if(i-1 >= 0 && movieInfo.get(i - 1).getMovieDate().before())
-//                                int reverseIteration = i;
-//                                int forwardIteration = i;
-//                                while(reverseIteration>0) {
-//                                    String currentSlot = movieInfo.get(reverseIteration).getMovieSlot();
-//                                    String prevSlot = movieInfo.get(i-1).getMovieSlot();
-//                                    if()
-//                                }
-//                            }
-//                        }
+
                         if(!nextAvailableBookingID.isEmpty()) this.customerBookingDb.addMovieByCustomerID(bookingCustomerID, nextAvailableBookingID, movieName, currentNumberOfTicketBookedByCustomer);
                     }
                     this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId);
@@ -241,7 +153,7 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
             StringBuilder builder = new StringBuilder();
             for (MovieState bookingSchedule :
                     customerObj.values()) {
-                builder.append(bookingSchedule.getMovieName().toString() + ": " + bookingSchedule.getMovieID() + " " + bookingSchedule.getRemainingSlots());
+                builder.append(bookingSchedule.getMovieName().toString() + ": " + bookingSchedule.getMovieID() + " " + bookingSchedule.getRemainingSlots() + ", \n");
             }
             return builder.toString();
         }
