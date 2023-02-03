@@ -47,7 +47,7 @@ public class ServerInstance {
             moviesDb = new Movies();
             moviesDb.addMovie("AVATAR","VERM240822",30);
             moviesDb.addMovie("AVENGERS","VERM190822",40);
-            customerBookingDb.addMovieByCustomerID("ATWA1212","VERM240822","AVATAR",23);
+            //customerBookingDb.addMovieByCustomerID("ATWA1212","VERM240822","AVATAR",23);
             customerBookingDb.addMovieByCustomerID("ATWA1212","VERM190822","AVENGERS",45);
             serverInfo.setServerName(ServerConstant.SERVER_VERDUN_PREFIX);
             Server Verdun = new Server(ServerConstant.SERVER_VERDUN_PREFIX,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
