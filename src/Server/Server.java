@@ -8,14 +8,12 @@ import Shared.Database.IMovies;
 import Shared.data.IMovie;
 import Shared.data.IServerInfo;
 import Shared.data.IUdp;
-import Shared.data.IUser;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.rmi.AccessException;
-import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -106,18 +104,16 @@ public class Server extends Thread{
     }
 
     private void requestlistener() {
-        DatagramSocket socket = null;
         String response = "";
-        try {
-            socket = new DatagramSocket(serverPort);
+        try (DatagramSocket socket = new DatagramSocket(serverPort)) {
             byte[] buffer = new byte[1000];
             while (true) {
                 System.out.println("Request from Client");
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
-                String requestParams = new String(request.getData(), 0,request.getLength());
+                String requestParams = new String(request.getData(), 0, request.getLength());
                 String[] requestParamsArray = requestParams.split(";");
-                response = methodInvocation(requestParamsArray,response);
+                response = methodInvocation(requestParamsArray, response);
                 byte[] sendData = response.getBytes();
                 DatagramPacket reply = new DatagramPacket(sendData, response.length(), request.getAddress(),
                         request.getPort());
@@ -127,9 +123,6 @@ public class Server extends Thread{
             System.out.println("SocketException: " + socketException.getMessage());
         } catch (IOException | ParseException ioException) {
             System.out.println("IOException: " + ioException.getMessage());
-        } finally {
-            if (socket != null)
-                socket.close();
         }
     }
 
@@ -138,15 +131,20 @@ public class Server extends Thread{
         String customerID = requestParamsArray[1];
         String movieName = requestParamsArray[2];
         String movieID = requestParamsArray[3];
+        System.out.println("Method Invocation");
+
+        boolean isRegisteredToServer = Boolean.parseBoolean(requestParamsArray[4]);
         int numberOfTickets = Integer.parseInt(requestParamsArray[4]);
         if (invokedMethod.equalsIgnoreCase(ServiceConstant.getMoviesListInTheatre)) {
             response = movieTicketService.getMoviesListInTheatre(movieName);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.bookTicket)) {
-            response = movieTicketService.bookTicket(customerID,movieID,movieName,numberOfTickets);
+            response = movieTicketService.bookTicket(customerID,movieID,movieName,numberOfTickets,isRegisteredToServer);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getCustomerBookingList)) {
             response = movieTicketService.getCustomerBookingList(customerID);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.cancelTicket)) {
             response = movieTicketService.cancelTicket(customerID,movieID,movieName,numberOfTickets);
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.findNextAvailableSlot)) {
+            response = movieTicketService.findNextAvailableSlot(customerID,movieID,movieName);
         }
         return response;
     }

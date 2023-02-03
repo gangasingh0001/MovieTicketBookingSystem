@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Movies implements IMovies {
     //MovieName,MovieID,booking Capacity
-    private Map<String, Map<String, Integer>> movies;
+    private final Map<String, Map<String, Integer>> movies;
 
     public Movies() {
         this.movies = new ConcurrentHashMap<>();
@@ -31,24 +31,9 @@ public class Movies implements IMovies {
         if(slotsMap!=null){
             if(slotsMap.get(movieID)!=null) {
                 this.movies.get(movieName).put(movieID,bookingCapacity);
-                //this.movies.put(movieName,slotsMap);
-//                this.movies.entrySet().forEach(entry -> {
-//                    System.out.println(entry.getKey() + " : ");
-//                    this.movies.get(entry).entrySet().forEach(entry2 -> {
-//                            System.out.println(entry2.getKey() + " " + entry2.getValue());
-//                    });
-//                });
                 return "Movie slot updated successfully";
             }
-            Map<String, Integer> newSlot = new ConcurrentHashMap<>();
             this.movies.get(movieName).put(movieID,bookingCapacity);
-//            this.movies.entrySet().forEach(entry -> {
-//                System.out.println(entry.getKey() + " : ");
-//                this.movies.get(entry).entrySet().forEach(entry2 -> {
-//                    System.out.println(entry2.getKey() + " " + entry2.getValue());
-//                });
-//            });
-            //this.movies.put(movieName,slotsMap);
             return "Movie slot created successfully";
         }
         return "Movie not found";
@@ -78,7 +63,6 @@ public class Movies implements IMovies {
         Map<String, Integer> slotsMap = this.movies.get(movieName);
         if(slotsMap!=null){
             return slotsMap;
-            //return (Map<String, Integer>) Util.getKeyListByHashMap(this.movies.get(movieName));
         }
         return null;
     }
@@ -117,7 +101,7 @@ public class Movies implements IMovies {
             if(slotsMap.get(movieID)!=null) {
                 int bookingCapacity = slotsMap.get(movieID);
                 slotsMap.put(movieID,bookingCapacity+ noOfMoreSeats);
-                return "Movie booking capacity updated successfully to "+ bookingCapacity +" seats";
+                return "Movie booking capacity updated successfully to "+ bookingCapacity + noOfMoreSeats +" seats";
             }
             return "Movie slot not found";
         }

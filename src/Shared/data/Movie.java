@@ -2,8 +2,6 @@ package Shared.data;
 
 import Constant.ServerConstant;
 
-import java.util.Date;
-
 public class Movie implements IMovie{
     public enum Movies {
         Avatar,
@@ -67,12 +65,52 @@ public class Movie implements IMovie{
         }
     }
 
+    public enum Theaters {
+        Atwater,
+        Verdun,
+        Outremont,
+        None;
+
+        public static Theaters fromInt(int theaterID) {
+            switch (theaterID) {
+                case 1:
+                    return Atwater;
+
+                case 2:
+                    return Verdun;
+
+                case 3:
+                    return Outremont;
+
+                default:
+                    return None;
+            }
+        }
+
+        public static Theaters[] getTheaters() {
+            return new Theaters[]{
+                    Theaters.Atwater,
+                    Theaters.Verdun,
+                    Theaters.Outremont
+            };
+        }
+    }
+
     private String movieID = null;
 
     public void moviesPrompt(String heading) {
         System.out.println(heading);
+        int i=1;
         for(Movies movie : Movies.getMovies()) {
-            System.out.println(movie);
+            System.out.println(i++ +". "+movie);
+        }
+    }
+
+    public void theaterPrompt(String heading) {
+        System.out.println(heading);
+        int i=1;
+        for(Theaters theater : Theaters.getTheaters()) {
+            System.out.println(i++ +". "+theater);
         }
     }
 
@@ -107,6 +145,10 @@ public class Movie implements IMovie{
 
     public String getMovieName(int movieIndex) {
         return String.valueOf(Movies.fromInt(movieIndex));
+    }
+
+    public String getTheaterName(int theaterIndex) {
+        return String.valueOf(Theaters.fromInt(theaterIndex));
     }
 
     public String grepServerPrefixByMovieID(String movieID) {

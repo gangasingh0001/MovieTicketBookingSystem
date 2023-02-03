@@ -5,12 +5,11 @@ import java.net.*;
 
 public class Udp implements IUdp{
     public String sendUDPMessage(int serverPort, String methodToInvoke, String customerID, String movieName, String movieID, int noOfTickets) {
-        System.out.println("Calling UDP message server");
-        System.out.println(" Customer ID "+ customerID + " UDP calling " + methodToInvoke + methodToInvoke + " movieID: " + movieID + " movieName: " + movieName);
+        System.out.println("Calling UDP server: "+serverPort);
+        //System.out.println(" Customer ID "+ customerID + " UDP calling " + methodToInvoke + methodToInvoke + " movieID: " + movieID + " movieName: " + movieName);
         DatagramSocket aSocket = null;
         String result = "";
-        String dataFromClient = methodToInvoke + ";" + customerID + ";" + movieName + ";" + movieID + ";" + noOfTickets;
-        // Logger.serverLog(serverID, customerID, " UDP request sent " + method + " ", " eventID: " + eventId + " eventType: " + eventType + " ", " ... ");
+        String dataFromClient = methodToInvoke + ";" + customerID + ";" + movieName + ";" + movieID + ";" + noOfTickets + ";"+false;
         try {
             aSocket = new DatagramSocket();
             byte[] message = dataFromClient.getBytes();
