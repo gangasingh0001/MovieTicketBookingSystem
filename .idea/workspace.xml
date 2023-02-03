@@ -6,15 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="1745ca5b-c36b-4f89-8a8b-068dab06ee3d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/FrontEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/FrontEnd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Constant/ServiceConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/ServiceConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Interface/IMovieTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Interface/IMovieTicket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/ServerInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ServerInstance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/Database/ICustomerBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/ICustomerBooking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shared/Database/Movies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/Movies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/RmiRegistry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/RmiRegistryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/data/IMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/IMovie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shared/data/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/Movie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shared/data/MovieState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/MovieState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shared/data/Udp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/Udp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shared/data/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shared/data/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +136,10 @@
       <workItem from="1674925730974" duration="82151000" />
       <workItem from="1675055885241" duration="34000" />
       <workItem from="1675056019221" duration="10461000" />
-      <workItem from="1675101510534" duration="15694000" />
+      <workItem from="1675101510534" duration="20126000" />
+      <workItem from="1675206869483" duration="2000" />
+      <workItem from="1675220330335" duration="649000" />
+      <workItem from="1675370644710" duration="19179000" />
     </task>
     <servers />
   </component>

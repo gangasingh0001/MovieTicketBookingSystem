@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Movies implements IMovies {
     //MovieName,MovieID,booking Capacity
-    private Map<String, Map<String, Integer>> movies;
+    private final Map<String, Map<String, Integer>> movies;
 
     public Movies() {
         this.movies = new ConcurrentHashMap<>();
@@ -101,7 +101,7 @@ public class Movies implements IMovies {
             if(slotsMap.get(movieID)!=null) {
                 int bookingCapacity = slotsMap.get(movieID);
                 slotsMap.put(movieID,bookingCapacity+ noOfMoreSeats);
-                return "Movie booking capacity updated successfully to "+ bookingCapacity +" seats";
+                return "Movie booking capacity updated successfully to "+ bookingCapacity + noOfMoreSeats +" seats";
             }
             return "Movie slot not found";
         }

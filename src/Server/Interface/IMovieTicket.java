@@ -76,7 +76,7 @@ public interface IMovieTicket extends Remote {
 
     public String getMoviesListInTheatre(String movieName) throws RemoteException;
 
-    public String bookTicket(String customerID, String movieId, String movieName, int numberOfTickets) throws RemoteException, ParseException;
+    public String bookTicket(String customerID, String movieId, String movieName, int numberOfTickets,boolean isUserRegisteredToServer) throws RemoteException, ParseException;
 
     public String getCustomerBookingList(String customerID) throws RemoteException;
 

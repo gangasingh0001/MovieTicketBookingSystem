@@ -2,23 +2,23 @@ package Shared.data;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MovieState {
     private String movieID;
-    private String movieName;
-    private int bookingCapacity;
+    private Map<String,Integer> movieNamesAndTickets;
     private String movieSlot;
     private Date movieDate;
     private String movieTheatrePrefix;
-    private List<String> customerIDs;
     public MovieState(String movieName,
                       String movieID,
-                      int bookingCapacity) throws ParseException {
+                      int noOfTicketsBooked) throws ParseException {
         this.movieID = movieID;
-        this.movieName = movieName;
-        this.bookingCapacity = bookingCapacity;
+        this.addMovieToSlot(movieName,noOfTicketsBooked);
         this.movieSlot = movieID.substring(3,4).toUpperCase();
         this.movieTheatrePrefix = movieID.substring(0,3).toUpperCase();
         this.setMovieDateUTC(movieID.substring(4,10).toUpperCase());
@@ -32,12 +32,21 @@ public class MovieState {
         return movieID;
     }
 
-    public String getMovieName() {
-        return movieName;
+    public Map<String,Integer> getMovieTicketInfo() {
+        return this.movieNamesAndTickets;
     }
 
-    public int getRemainingSlots() {
-        return bookingCapacity;
+    public void addMovieToExistingSlot(String movieName, Integer noOfTicketsBooked) {
+        this.movieNamesAndTickets.put(movieName,noOfTicketsBooked);
+    }
+
+    public void addMovieToSlot(String movieName, Integer noOfTicketsBooked) {
+        if(this.movieNamesAndTickets==null) {
+            this.movieNamesAndTickets = new ConcurrentHashMap<>();
+            this.movieNamesAndTickets.put(movieName,noOfTicketsBooked);
+        }else {
+            this.movieNamesAndTickets.put(movieName,noOfTicketsBooked);
+        }
     }
 
     public String getMovieSlot() {
@@ -52,25 +61,4 @@ public class MovieState {
         return movieTheatrePrefix;
     }
 
-    public String setBookingCapacity(int noOfSeats) {
-        this.bookingCapacity=noOfSeats;
-        return "True";
-    }
-
-    public String reduceBookingCapacity(int noOfSeats) {
-        this.bookingCapacity-=noOfSeats;
-        return "True";
-    }
-
-    public void addBookingCustomerID(String custID) {
-        this.customerIDs.add(custID);
-    }
-
-    public void removeCustomerIDFromBookingList(String custID) {
-        this.customerIDs.remove(custID);
-    }
-
-    public List<String> bookingCustomersList() {
-        return this.customerIDs.stream().toList();
-    }
 }

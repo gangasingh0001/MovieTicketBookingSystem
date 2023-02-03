@@ -98,6 +98,10 @@ public class FrontEnd {
         return scanner.nextInt();
     }
 
+    private int getTheaterInput() {
+        return scanner.nextInt();
+    }
+
     private int getBookingCapacityInput() {
         return scanner.nextInt();
     }
@@ -137,9 +141,13 @@ public class FrontEnd {
                     return movieTicketServiceObj.listMovieShowsAvailability(this.movieService.getMovieName(selectedMovie).toUpperCase());
                 }
                 case 4 -> {
+                    this.movieService.theaterPrompt("Select Theater");
+                    int selectedTheater = getTheaterInput();
+                    scanner.nextLine();
                     this.movieService.moviesPrompt("Select Movie");
                     int selectedMovie = getMovieInput();
-                    this.movieService.bookingCapacityPrompt("Enter booking capacity");
+                    scanner.nextLine();
+                    this.movieService.bookingCapacityPrompt("Enter no of tickets you want to book");
                     int bookingCapacity = getBookingCapacityInput();
                     System.out.println("Please enter the MovieID (e.g ATWM190120)");
                     scanner.nextLine();
@@ -165,6 +173,8 @@ public class FrontEnd {
         } else {
             switch (menuSelection) {
                 case 1 -> {
+                    this.movieService.theaterPrompt("Select Theater");
+                    int selectedTheater = getTheaterInput();
                     this.movieService.moviesPrompt("Select Movie");
                     int selectedMovie = getMovieInput();
                     this.movieService.bookingCapacityPrompt("Enter booking capacity");
