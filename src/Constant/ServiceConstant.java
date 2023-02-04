@@ -18,4 +18,5 @@ public class ServiceConstant {
     public static final String getCustomerBookingList = "getCustomerBookingList";
     public static final String cancelTicket = "cancelTicket";
     public static final String findNextAvailableSlot = "findNextAvailableSlot";
+    public static final String getNoOfBookingsInWeek = "getNoOfBookingsInWeek";
 }

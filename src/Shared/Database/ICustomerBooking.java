@@ -15,12 +15,7 @@ public interface ICustomerBooking {
 
     public String cancelMovieByMovieID(String customerID, String movieID, String movieName);
     public String cancelMovieTickets(String customerID, String movieID, String movieName);
-
-    public String incrementBookedSeatsByMovieID(String customerID, String movieID, int noOfMoreSeats);
-
-    public String decrementBookedSeatsByMovieID(String customerID, String movieID, int noOfSeatsReleased);
     public List<String> getAllCustomerIDs();
     public int noOfMoviesBookedInAWeek(String customerID, String movieID);
-    public Object[] getMoviesBookedByMovieID(String customerID, String movieID, String movieName);
     public boolean ifMovieBookingExist(String customerID, String movieID, String movieName);
 }

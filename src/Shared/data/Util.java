@@ -166,4 +166,16 @@ public class Util {
         cal.setTime(date);
         return cal.get(Calendar.MONTH);
     }
+
+    public static String createLogMsg(String customerID, String movieId, String movieName, int numberOfTickets, String serverResponse) {
+       StringBuilder sb = new StringBuilder();
+        if(customerID!=null&&!customerID.isEmpty() && movieId!=null&&!movieId.isEmpty() && movieName!=null&&!movieName.isEmpty() && numberOfTickets!=-1 && serverResponse!=null&&!serverResponse.isEmpty())
+            sb.append("RequestParameters: \n");
+        if(customerID!=null&&!customerID.isEmpty()) sb.append("CustomerID: " + customerID+ " |");
+        if(movieId!=null&&!movieId.isEmpty()) sb.append(" MovieID: " + movieId+ " |");
+        if(movieName!=null&&!movieName.isEmpty()) sb.append(" MovieName: " + movieName + " |");
+        if(numberOfTickets!=-1) sb.append(" Number Of Tickets: " + numberOfTickets + " |");
+        if(serverResponse!=null&&!serverResponse.isEmpty()) sb.append(" ServerResponse: " + serverResponse);
+        return  sb.toString();
+    }
 }

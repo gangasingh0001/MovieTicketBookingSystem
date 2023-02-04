@@ -53,16 +53,6 @@ public class CustomerBooking implements ICustomerBooking{
         return -1;
     }
 
-    public Object[] getMoviesBookedByMovieID(String customerID, String movieID, String movieName) {
-        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-        if(bookingMap!=null){
-            if(bookingMap.get(movieID)!=null)
-                return bookingMap.get(movieID).getMovieTicketInfo().entrySet().toArray();
-            return null;
-        }
-        return null;
-    }
-
     public boolean ifMovieBookingExist(String customerID, String movieID, String movieName) {
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
@@ -96,36 +86,6 @@ public class CustomerBooking implements ICustomerBooking{
             }
             return "No booking found against movieID: "+ movieID;
         }
-        return "Customer not found";
-    }
-
-    public String incrementBookedSeatsByMovieID(String customerID, String movieID, int noOfMoreSeats) {
-//        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-//        if(bookingMap!=null){
-//            if(bookingMap.get(movieID)!=null) {
-//                int bookedSeats = bookingMap.get(movieID).getRemainingSlots();
-//                MovieState bookingInfo = bookingMap.get(movieID);
-//                bookingInfo.setBookingCapacity(bookedSeats + noOfMoreSeats);
-//                bookingMap.put(movieID,bookingInfo);
-//                return "Movie booking seats updated successfully to "+ bookedSeats +" seats";
-//            }
-//            return "Movie not found";
-//        }
-        return "Customer not found";
-    }
-
-    public String decrementBookedSeatsByMovieID(String customerID, String movieID, int noOfSeatsReleased) {
-//        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-//        if(bookingMap!=null){
-//            if(bookingMap.get(movieID)!=null) {
-//                int bookedSeats = bookingMap.get(movieID).getRemainingSlots();
-//                MovieState bookingInfo = bookingMap.get(movieID);
-//                bookingInfo.setBookingCapacity(bookedSeats - noOfSeatsReleased);
-//                bookingMap.put(movieID,bookingInfo);
-//                return "Movie booking capacity updated successfully to "+ bookedSeats +" seats";
-//            }
-//            return "Movie not found";
-//        }
         return "Customer not found";
     }
 

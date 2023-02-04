@@ -24,7 +24,7 @@ public class Udp implements IUdp{
             result = new String(reply.getData());
             String[] parts = result.split(";");
             result = parts[0];
-            System.out.println("Response from UDP request: " + result);
+            System.out.println("Response from UDP request: " + result.trim());
         } catch (SocketException e) {
             System.out.println("Socket: " + e.getMessage());
         } catch (IOException e) {
@@ -34,6 +34,6 @@ public class Udp implements IUdp{
             if (aSocket != null)
                 aSocket.close();
         }
-        return result;
+        return result.trim();
     }
 }

@@ -114,7 +114,7 @@ public class Movies implements IMovies {
             if(slotsMap.get(movieID)!=null) {
                 int bookingCapacity = slotsMap.get(movieID);
                 slotsMap.put(movieID,bookingCapacity - noOfSeatsOccupied);
-                return "Movie booking capacity updated successfully to "+ bookingCapacity +" seats";
+                return "Movie booking capacity updated successfully to "+ (bookingCapacity - noOfSeatsOccupied) +" seats";
             }
             return "Movie slot not found";
         }
