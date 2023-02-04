@@ -1,7 +1,13 @@
 package Client;
 
+import Constant.ServerConstant;
+import Log.ILogging;
+import Log.Logging;
 import Shared.data.Movie;
 import Shared.data.User;
+import Shared.data.Util;
+
+import java.util.logging.Logger;
 
 public class Client {
     public static void main(String[] args) {

@@ -2,6 +2,8 @@ package Server;
 
 import Constant.ServiceConstant;
 import Constant.ServerConstant;
+import Log.ILogging;
+import Log.Logging;
 import Server.Service.MovieTicket;
 import Shared.Database.ICustomerBooking;
 import Shared.Database.IMovies;
@@ -13,11 +15,12 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import java.rmi.AccessException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Server extends Thread{
     private MovieTicket movieTicketService = null;
@@ -30,8 +33,10 @@ public class Server extends Thread{
     private IMovie movieService;
     private ICustomerBooking customerBookingDb;
     private IMovies moviesDb;
+    private Logger logger;
 
-    public Server (String serverID,
+    public Server (Logger logger,
+                    String serverID,
                    IServerInfo serverInfo,
                    IUdp udpService,
                    IMovie movieService,
@@ -44,62 +49,56 @@ public class Server extends Thread{
         this.movieService = movieService;
         this.customerBookingDb = customerBookingDb;
         this.moviesDb = moviesDb;
+        this.logger = logger;
     }
 
-    public static void main(String args[]) {}
+    public static void main(String[] args) {}
 
     public void runServer() throws RemoteException {
-        movieTicketService = new MovieTicket(serverInfo,udpService,movieService,customerBookingDb,moviesDb);
+        movieTicketService = new MovieTicket(logger,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
         startRegistry();
         startThread();
     }
 
     private void startRegistry() {
         try {
-            System.out.println("Creating registry with port: " + serverPort);
+            logger.severe("Creating registry with port: " + serverPort);
             Registry registry = LocateRegistry.createRegistry(serverPort);
 
-            System.out.println("Rebinding registry to movieTicketService at port: " + serverPort);
             registry.rebind(ServiceConstant.MovieTicketService,movieTicketService);
-        } catch (AccessException e) {
-            throw new RuntimeException(e);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void startThread() {
-        System.out.println("launching runnable");
-        Runnable task = () -> {
-            System.out.println("Initiating listener for client requests");
-            requestlistener();
-        };
+        Runnable task = this::requestlistener;
 
-        System.out.println("Initialising thread");
         Thread thread = new Thread(task);
-
         thread.start();
         Thread.currentThread().setName(serverName);
-        System.out.println("Running thread name: "+ Thread.currentThread().getName());
-        System.out.println("State of thread: " + Thread.currentThread().getState());
+
+        logger.severe("Thread name: "+ Thread.currentThread().getName());
+        logger.severe("State of thread: " + Thread.currentThread().getState());
     }
 
     public void getServerInfo() {
-        switch(serverID) {
-            case ServerConstant.SERVER_ATWATER_PREFIX:
+        switch (serverID) {
+            case ServerConstant.SERVER_ATWATER_PREFIX -> {
                 serverName = ServerConstant.SERVER_ATWATER;
                 serverPort = ServerConstant.SERVER_ATWATER_PORT;
-                break;
-            case ServerConstant.SERVER_VERDUN_PREFIX:
+            }
+            case ServerConstant.SERVER_VERDUN_PREFIX -> {
                 serverName = ServerConstant.SERVER_VERDUN;
                 serverPort = ServerConstant.SERVER_VERDUN_PORT;
-                break;
-            case ServerConstant.SERVER_OUTREMONT_PREFIX:
+            }
+            case ServerConstant.SERVER_OUTREMONT_PREFIX -> {
                 serverName = ServerConstant.SERVER_OUTREMONT;
                 serverPort = ServerConstant.SERVER_OUTREMONT_PORT;
-                break;
-            default:
-                // TODO: Implement Exception Handling if serverID is null.
+            }
+            default -> {
+            }
+            // TODO: Implement Exception Handling if serverID is null.
         }
     }
 
@@ -131,7 +130,6 @@ public class Server extends Thread{
         String customerID = requestParamsArray[1];
         String movieName = requestParamsArray[2];
         String movieID = requestParamsArray[3];
-        System.out.println("Method Invocation");
 
         boolean isRegisteredToServer = Boolean.parseBoolean(requestParamsArray[4]);
         int numberOfTickets = Integer.parseInt(requestParamsArray[4]);
@@ -145,6 +143,8 @@ public class Server extends Thread{
             response = movieTicketService.cancelTicket(customerID,movieID,movieName,numberOfTickets);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.findNextAvailableSlot)) {
             response = movieTicketService.findNextAvailableSlot(customerID,movieID,movieName);
+        }   else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getNoOfBookingsInWeek)) {
+            response = movieTicketService.getNoOfBookingsInWeek(customerID,movieID);
         }
         return response;
     }

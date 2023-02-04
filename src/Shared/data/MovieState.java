@@ -37,6 +37,11 @@ public class MovieState {
     }
 
     public void addMovieToExistingSlot(String movieName, Integer noOfTicketsBooked) {
+        if(this.movieNamesAndTickets.get(movieName)!=null) {
+            int existingBookedTickets = this.movieNamesAndTickets.get(movieName);
+            this.movieNamesAndTickets.put(movieName,noOfTicketsBooked+existingBookedTickets);
+            return;
+        }
         this.movieNamesAndTickets.put(movieName,noOfTicketsBooked);
     }
 
