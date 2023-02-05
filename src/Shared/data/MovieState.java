@@ -37,7 +37,7 @@ public class MovieState {
     }
 
     public void addMovieToExistingSlot(String movieName, Integer noOfTicketsBooked) {
-        if(this.movieNamesAndTickets.get(movieName)!=null) {
+        if(this.movieNamesAndTickets.containsKey(movieName)) {
             int existingBookedTickets = this.movieNamesAndTickets.get(movieName);
             this.movieNamesAndTickets.put(movieName,noOfTicketsBooked+existingBookedTickets);
             return;

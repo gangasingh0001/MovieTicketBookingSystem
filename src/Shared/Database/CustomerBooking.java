@@ -67,21 +67,8 @@ public class CustomerBooking implements ICustomerBooking{
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
             if(bookingMap.get(movieID)!=null) {
-                bookingMap.get(movieID).getMovieTicketInfo().remove(movieName);
-                return "Movie booking deleted successfully";
-            }
-            return "No booking found against movieID: "+ movieID;
-        }
-        return "Customer not found";
-    }
-
-    public String cancelMovieTickets(String customerID, String movieID, String movieName) {
-        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-        if(bookingMap!=null){
-            if(bookingMap.get(movieID)!=null) {
-                MovieState movieRef = bookingMap.get(movieID);
-                movieRef.getMovieTicketInfo().remove(movieName);
-                this.customerBooking.get(customerID).put(movieID,movieRef);
+                this.customerBooking.get(customerID).get(movieID).getMovieTicketInfo().remove(movieName);
+                if(this.customerBooking.get(customerID).get(movieID).getMovieTicketInfo().size()==0) this.customerBooking.get(customerID).remove(movieID);
                 return "Movie booking deleted successfully";
             }
             return "No booking found against movieID: "+ movieID;
