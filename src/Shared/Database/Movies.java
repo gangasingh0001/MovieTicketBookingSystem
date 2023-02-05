@@ -46,7 +46,7 @@ public class Movies implements IMovies {
     public boolean ifMovieIDExist(String movieName, String movieID) {
         Map<String, Integer> slotsMap = this.movies.get(movieName);
         if(slotsMap!=null){
-            if (slotsMap.containsKey(movieID)) return true;
+            return slotsMap.containsKey(movieID);
         }
         return false;
     }
@@ -60,11 +60,7 @@ public class Movies implements IMovies {
     }
 
     public Map<String,Integer> getMovieSlotsHashMapByMovieName(String movieName) {
-        Map<String, Integer> slotsMap = this.movies.get(movieName);
-        if(slotsMap!=null){
-            return slotsMap;
-        }
-        return null;
+        return this.movies.get(movieName);
     }
 
     public List<String> getMovieSlotsAtSpecificAreaAndSpecificDate(String movieName, String areaOrServerPrefix, String date) {

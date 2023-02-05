@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class CustomerBooking implements ICustomerBooking{
     //CustomerID,MovieID,BookingCapacity
-    private Map<String, Map<String, MovieState>> customerBooking;
+    private final Map<String, Map<String, MovieState>> customerBooking;
 
     public CustomerBooking() {
         this.customerBooking = new ConcurrentHashMap<>();
@@ -77,12 +77,7 @@ public class CustomerBooking implements ICustomerBooking{
     }
 
     public List<String> getAllCustomerIDs() {
-        List<String> keyList = new ArrayList<String>();
-        for (String key :
-                this.customerBooking.keySet()) {
-            keyList.add(key);
-        }
-        return keyList;
+        return new ArrayList<String>(this.customerBooking.keySet());
     }
 
     public int noOfMoviesBookedInAWeek(String customerID, String movieID) {
@@ -91,12 +86,10 @@ public class CustomerBooking implements ICustomerBooking{
         int noOfMoviesBooked = 0;
         ConcurrentHashMap<String, MovieState> map = (ConcurrentHashMap<String, MovieState>) this.getTicketsBookedByCustomerID(customerID);
         for (Map.Entry<String, MovieState> entry : map.entrySet()) {
-            String key = entry.getKey().toString();
+            String key = entry.getKey();
             MovieState movieInfo = entry.getValue();
-            if(Util.getWeekOfMonth(Util.getSlotDateByMovieID(key))==weekOfBooking &&
-                    Util.getMonth(Util.getSlotDateByMovieID(key))==monthOfBooking) {
+            if(Util.getWeekOfMonth(Util.getSlotDateByMovieID(key))==weekOfBooking && Util.getMonth(Util.getSlotDateByMovieID(key))==monthOfBooking)
                 noOfMoviesBooked = noOfMoviesBooked + movieInfo.getMovieTicketInfo().size();
-            }
         }
         return noOfMoviesBooked;
     }

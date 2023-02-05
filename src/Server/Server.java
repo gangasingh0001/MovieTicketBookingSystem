@@ -1,9 +1,7 @@
 package Server;
 
-import Constant.ServiceConstant;
 import Constant.ServerConstant;
-import Log.ILogging;
-import Log.Logging;
+import Constant.ServiceConstant;
 import Server.Service.MovieTicket;
 import Shared.Database.ICustomerBooking;
 import Shared.Database.IMovies;
@@ -19,7 +17,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.text.ParseException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Server extends Thread{
@@ -28,12 +25,12 @@ public class Server extends Thread{
     private static String serverName;
     //private static int serverRegistryPort;
     private static int serverPort;
-    private IServerInfo serverInfo;
-    private IUdp udpService;
-    private IMovie movieService;
-    private ICustomerBooking customerBookingDb;
-    private IMovies moviesDb;
-    private Logger logger;
+    private final IServerInfo serverInfo;
+    private final IUdp udpService;
+    private final IMovie movieService;
+    private final ICustomerBooking customerBookingDb;
+    private final IMovies moviesDb;
+    private final Logger logger;
 
     public Server (Logger logger,
                     String serverID,
@@ -43,7 +40,7 @@ public class Server extends Thread{
                    ICustomerBooking customerBookingDb,
                    IMovies moviesDb) throws Exception{
         System.out.println("Server ID " + serverID);
-        this.serverID = serverID;
+        Server.serverID = serverID;
         this.serverInfo = serverInfo;
         this.udpService = udpService;
         this.movieService = movieService;

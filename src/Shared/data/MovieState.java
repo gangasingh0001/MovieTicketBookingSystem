@@ -2,18 +2,16 @@ package Shared.data;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MovieState {
-    private String movieID;
+    private final String movieID;
     private Map<String,Integer> movieNamesAndTickets;
-    private String movieSlot;
+    private final String movieSlot;
     private Date movieDate;
-    private String movieTheatrePrefix;
+    private final String movieTheatrePrefix;
     public MovieState(String movieName,
                       String movieID,
                       int noOfTicketsBooked) throws ParseException {
