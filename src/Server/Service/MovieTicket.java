@@ -292,7 +292,7 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
 
     public String cancelTicket(String customerID, String movieID, String movieName, int numberOfTickets) throws RemoteException {
         StringBuilder sb = new StringBuilder();
-        response = this.customerBookingDb.cancelMovieTickets(customerID,movieID,movieName);
+        response = this.customerBookingDb.cancelMovieByMovieID(customerID,movieID,movieName);
         if(response.equals("Movie booking deleted successfully")){
             int currentNumberOfTicketBookedByCustomer = this.customerBookingDb.getNoOfTicketsBookedByMovieID(customerID, movieID, movieName);
             this.moviesDb.incrementBookingCapacity(movieName,movieID,currentNumberOfTicketBookedByCustomer);

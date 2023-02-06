@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class CustomerBooking implements ICustomerBooking{
     //CustomerID,MovieID,BookingCapacity
-    private Map<String, Map<String, MovieState>> customerBooking;
+    private final Map<String, Map<String, MovieState>> customerBooking;
 
     public CustomerBooking() {
         this.customerBooking = new ConcurrentHashMap<>();
@@ -67,21 +67,8 @@ public class CustomerBooking implements ICustomerBooking{
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
             if(bookingMap.get(movieID)!=null) {
-                bookingMap.get(movieID).getMovieTicketInfo().remove(movieName);
-                return "Movie booking deleted successfully";
-            }
-            return "No booking found against movieID: "+ movieID;
-        }
-        return "Customer not found";
-    }
-
-    public String cancelMovieTickets(String customerID, String movieID, String movieName) {
-        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-        if(bookingMap!=null){
-            if(bookingMap.get(movieID)!=null) {
-                MovieState movieRef = bookingMap.get(movieID);
-                movieRef.getMovieTicketInfo().remove(movieName);
-                this.customerBooking.get(customerID).put(movieID,movieRef);
+                this.customerBooking.get(customerID).get(movieID).getMovieTicketInfo().remove(movieName);
+                if(this.customerBooking.get(customerID).get(movieID).getMovieTicketInfo().size()==0) this.customerBooking.get(customerID).remove(movieID);
                 return "Movie booking deleted successfully";
             }
             return "No booking found against movieID: "+ movieID;
@@ -90,12 +77,7 @@ public class CustomerBooking implements ICustomerBooking{
     }
 
     public List<String> getAllCustomerIDs() {
-        List<String> keyList = new ArrayList<String>();
-        for (String key :
-                this.customerBooking.keySet()) {
-            keyList.add(key);
-        }
-        return keyList;
+        return new ArrayList<String>(this.customerBooking.keySet());
     }
 
     public int noOfMoviesBookedInAWeek(String customerID, String movieID) {
@@ -104,12 +86,10 @@ public class CustomerBooking implements ICustomerBooking{
         int noOfMoviesBooked = 0;
         ConcurrentHashMap<String, MovieState> map = (ConcurrentHashMap<String, MovieState>) this.getTicketsBookedByCustomerID(customerID);
         for (Map.Entry<String, MovieState> entry : map.entrySet()) {
-            String key = entry.getKey().toString();
+            String key = entry.getKey();
             MovieState movieInfo = entry.getValue();
-            if(Util.getWeekOfMonth(Util.getSlotDateByMovieID(key))==weekOfBooking &&
-                    Util.getMonth(Util.getSlotDateByMovieID(key))==monthOfBooking) {
+            if(Util.getWeekOfMonth(Util.getSlotDateByMovieID(key))==weekOfBooking && Util.getMonth(Util.getSlotDateByMovieID(key))==monthOfBooking)
                 noOfMoviesBooked = noOfMoviesBooked + movieInfo.getMovieTicketInfo().size();
-            }
         }
         return noOfMoviesBooked;
     }

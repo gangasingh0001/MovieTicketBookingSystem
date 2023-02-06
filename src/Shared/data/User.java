@@ -2,7 +2,7 @@ package Shared.data;
 
 public class User implements IUser{
     private String userID = null;
-    private String userName = null;
+    private final String userName = null;
     private boolean isAdmin = false;
     private String userRegisteredToServer = null;
 

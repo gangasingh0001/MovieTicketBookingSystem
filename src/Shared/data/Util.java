@@ -90,18 +90,13 @@ public class Util {
         StringBuilder builder = new StringBuilder();
         for (Integer value :
                 map.values()) {
-            builder.append(value.toString() + " || ");
+            builder.append(value.toString()).append(" || ");
         }
         return builder.toString();
     }
 
     public static List<String> getKeyListByHashMap(Map<String,Integer> map) {
-        List<String> keyList = new ArrayList<String>();
-        for (String key :
-                map.keySet()) {
-            keyList.add(key);
-        }
-        return keyList;
+        return new ArrayList<String>(map.keySet());
     }
 
     public static List<Integer> getValueListByHashMap(Map<String,Integer> map) {
@@ -119,39 +114,32 @@ public class Util {
     }
 
     public static List<MovieState> sortMovieBySlots(List<MovieState> movieObj) {
-        movieObj.sort(new Comparator<MovieState>() {
-            @Override
-            public int compare(MovieState o1, MovieState o2) {
-                Integer movieSlotFirst = switch (o1.getMovieID().substring(3, 4).toUpperCase()) {
-                    case "M" -> 1;
-                    case "A" -> 2;
-                    case "E" -> 3;
-                    default -> 0;
-                };
-                int movieSlotSecond = switch (o2.getMovieID().substring(3, 4).toUpperCase()) {
-                    case "M" -> 1;
-                    case "A" -> 2;
-                    case "E" -> 3;
-                    default -> 0;
-                };
-                int dateCompare = o1.getMovieDate().compareTo(o2.getMovieDate());
-                int slotCompare = movieSlotFirst.compareTo(movieSlotSecond);
-                if (dateCompare == 0) {
-                    return ((slotCompare == 0) ? dateCompare : slotCompare);
-                } else {
-                    return dateCompare;
-                }
+        movieObj.sort((o1, o2) -> {
+            Integer movieSlotFirst = switch (o1.getMovieID().substring(3, 4).toUpperCase()) {
+                case "M" -> 1;
+                case "A" -> 2;
+                case "E" -> 3;
+                default -> 0;
+            };
+            int movieSlotSecond = switch (o2.getMovieID().substring(3, 4).toUpperCase()) {
+                case "M" -> 1;
+                case "A" -> 2;
+                case "E" -> 3;
+                default -> 0;
+            };
+            int dateCompare = o1.getMovieDate().compareTo(o2.getMovieDate());
+            int slotCompare = movieSlotFirst.compareTo(movieSlotSecond);
+            if (dateCompare == 0) {
+                return ((slotCompare == 0) ? dateCompare : slotCompare);
+            } else {
+                return dateCompare;
             }
         });
         return movieObj;
     }
 
     public static List<MovieState> sortMovieByDates(List<MovieState> movieInfo) {
-        movieInfo.sort(new Comparator<MovieState>() {
-            public int compare(MovieState movieA, MovieState movieB) {
-                return movieA.getMovieDate().compareTo(movieB.getMovieDate());
-            }
-        });
+        movieInfo.sort(Comparator.comparing(MovieState::getMovieDate));
         return movieInfo;
     }
 
@@ -171,11 +159,11 @@ public class Util {
        StringBuilder sb = new StringBuilder();
         if(customerID!=null&&!customerID.isEmpty() && movieId!=null&&!movieId.isEmpty() && movieName!=null&&!movieName.isEmpty() && numberOfTickets!=-1 && serverResponse!=null&&!serverResponse.isEmpty())
             sb.append("RequestParameters: \n");
-        if(customerID!=null&&!customerID.isEmpty()) sb.append("CustomerID: " + customerID+ " |");
-        if(movieId!=null&&!movieId.isEmpty()) sb.append(" MovieID: " + movieId+ " |");
-        if(movieName!=null&&!movieName.isEmpty()) sb.append(" MovieName: " + movieName + " |");
-        if(numberOfTickets!=-1) sb.append(" Number Of Tickets: " + numberOfTickets + " |");
-        if(serverResponse!=null&&!serverResponse.isEmpty()) sb.append(" ServerResponse: " + serverResponse);
+        if(customerID!=null&&!customerID.isEmpty()) sb.append("CustomerID: ").append(customerID).append(" |");
+        if(movieId!=null&&!movieId.isEmpty()) sb.append(" MovieID: ").append(movieId).append(" |");
+        if(movieName!=null&&!movieName.isEmpty()) sb.append(" MovieName: ").append(movieName).append(" |");
+        if(numberOfTickets!=-1) sb.append(" Number Of Tickets: ").append(numberOfTickets).append(" |");
+        if(serverResponse!=null&&!serverResponse.isEmpty()) sb.append(" ServerResponse: ").append(serverResponse);
         return  sb.toString();
     }
 }

@@ -1,10 +1,7 @@
 package Shared.Database;
 
-import Shared.data.Util;
-
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public interface IMovies {
     public String addMovie(String movieName, String movieID, int numberOfTicketsBooked);

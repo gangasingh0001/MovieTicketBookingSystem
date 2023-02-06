@@ -35,8 +35,6 @@ public class ServerInfo implements IServerInfo{
 
     /**
      * This method will return port number associated to server name
-     * @param serverPrefix
-     * @return
      */
     public int getServerPortNumber(String serverPrefix) {
         if(serverPrefix.equalsIgnoreCase(ServerConstant.SERVER_ATWATER_PREFIX)) {

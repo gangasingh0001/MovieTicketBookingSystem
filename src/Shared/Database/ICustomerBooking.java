@@ -14,7 +14,6 @@ public interface ICustomerBooking {
     public int getNoOfTicketsBookedByMovieID(String customerID, String movieID,String movieName);
 
     public String cancelMovieByMovieID(String customerID, String movieID, String movieName);
-    public String cancelMovieTickets(String customerID, String movieID, String movieName);
     public List<String> getAllCustomerIDs();
     public int noOfMoviesBookedInAWeek(String customerID, String movieID);
     public boolean ifMovieBookingExist(String customerID, String movieID, String movieName);

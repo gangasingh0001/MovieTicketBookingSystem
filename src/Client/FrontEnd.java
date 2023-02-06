@@ -106,20 +106,12 @@ public class FrontEnd {
         return scanner.nextInt();
     }
 
-    private int getSlotInput() {
-        return scanner.nextInt();
-    }
-
     private int getMovieInput() {
         return scanner.nextInt();
     }
 
     private int getTheaterInput() {
         return scanner.nextInt();
-    }
-
-    private String getCustomerID() {
-        return scanner.nextLine();
     }
 
     private int getBookingCapacityInput() {
@@ -224,7 +216,7 @@ public class FrontEnd {
                     System.out.println("Please enter the MovieID (e.g ATWM190120)");
                     scanner.nextLine();
                     String movieID = getMovieIDInput();
-                    res = movieTicketServiceObj.cancelMovieTickets(customerID,movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),0);;
+                    res = movieTicketServiceObj.cancelMovieTickets(customerID,movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),0);
                     logger.severe(Util.createLogMsg(customerID,movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), -1, res));
                     return res;
                 }
