@@ -37,6 +37,7 @@ public class FrontEnd {
     String response = null;
     Scanner scanner = null;
     boolean logout = false;
+    private String[] args;
     public FrontEnd(
             IUser userService,
             IMovie movieService,
@@ -45,7 +46,7 @@ public class FrontEnd {
         this.movieService = movieService;
         scanner = new Scanner(System.in);
         logger = Logger.getLogger(Client.class.getName());
-        getServant(args);
+        this.args = args;
     }
 
     public void attachLogging(String userID) {
@@ -65,6 +66,8 @@ public class FrontEnd {
 
         this.userService.setUserID(userID.toUpperCase());
 
+        getServant(this.args);
+
         logger.severe("CustomerID: "+ this.userService.getUserID());
         logger.severe("Server Name: "+ Util.getServerFullNameByCustomerID(this.userService.getUserID()));
         logger.severe("Server PORT: "+ Util.getServerPortByCustomerID(this.userService.getUserID()));
@@ -79,7 +82,7 @@ public class FrontEnd {
             ORB orb = ORB.init(args, null);
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-            movieTicketServantObj = IMovieTicketHelper.narrow(ncRef.resolve_str("ECHO-SERVER"));
+            movieTicketServantObj = IMovieTicketHelper.narrow(ncRef.resolve_str(this.userService.getUserRegisteredServerPrefix()));
         } catch (InvalidName invalidName) {
             invalidName.printStackTrace();
         } catch (CannotProceed cannotProceed) {
