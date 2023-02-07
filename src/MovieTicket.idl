@@ -67,5 +67,7 @@ module MovieTicketApp {
         string getCustomerBookingList(in string customerID);
 
         string cancelTicket(in string customerID,in string movieID,in string movieName,in long numberOfTickets);
+
+        string exchangeTicket(in string customerID,in string movieID, in string movieName, in string newMovieID, in string newMovieName);
     };
 };
