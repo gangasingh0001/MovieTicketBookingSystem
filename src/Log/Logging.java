@@ -20,7 +20,7 @@ public class Logging implements ILogging{
         final String dir = System.getProperty("user.dir");
         if(client) {
             createDirectoryIfNotExist(dir,"Client");
-            this.file = new File(dir+"/src/Log/Client/"+fileName+".log");
+            this.file = new File(dir+"/Log/Client/"+fileName+".log");
             if(!this.file.exists()) {
                 try {
                     this.file.createNewFile();
@@ -31,7 +31,7 @@ public class Logging implements ILogging{
             return file;
         } else if(server) {
             createDirectoryIfNotExist(dir,"Server");
-            this.file = new File(dir+"/src/Log/Server/"+fileName+".log");
+            this.file = new File(dir+"/Log/Server/"+fileName+".log");
             if(!this.file.exists()) {
                 try {
                     file.createNewFile();
@@ -46,7 +46,7 @@ public class Logging implements ILogging{
 
     private void createDirectoryIfNotExist(String dir, String directoryName) {
         try {
-            Files.createDirectories(Paths.get(dir+"/src/Log/"+directoryName));
+            Files.createDirectories(Paths.get(dir+"/Log/"+directoryName));
         }catch (IOException ex) {
             ex.getStackTrace();
         }
@@ -55,7 +55,6 @@ public class Logging implements ILogging{
     private FileHandler setFileHandler() {
         try {
             this.fileHandler = new FileHandler(this.file.getAbsolutePath(),1024*10000,1,true);
-            System.out.println("Getting file path in set file handler"+this.file.getAbsolutePath());
             this.fileHandler.setFormatter(new CustomFormatter());
             return this.fileHandler;
         }catch (IOException ex) {
