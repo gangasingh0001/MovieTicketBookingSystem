@@ -14,7 +14,7 @@ public class Client {
         try {
             User user = new User();
             Movie movie = new Movie();
-            FrontEnd fe = new FrontEnd(user,movie);
+            FrontEnd fe = new FrontEnd(user,movie,args);
 
             fe.login();
         } catch (Exception e) {

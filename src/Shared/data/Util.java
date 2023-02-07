@@ -1,6 +1,7 @@
 package Shared.data;
 
 import Constant.ServerConstant;
+import com.sun.org.apache.bcel.internal.generic.ARETURN;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,72 +10,104 @@ import java.util.*;
 public class Util {
     public static String getServerPrefixNameByCustomerID(String customerID) {
         String serverPrefix = customerID.substring(0,3).toUpperCase();
-        return switch (serverPrefix) {
-            case ServerConstant.SERVER_ATWATER_PREFIX -> ServerConstant.SERVER_ATWATER_PREFIX;
-            case ServerConstant.SERVER_VERDUN_PREFIX -> ServerConstant.SERVER_VERDUN_PREFIX;
-            case ServerConstant.SERVER_OUTREMONT_PREFIX -> ServerConstant.SERVER_OUTREMONT_PREFIX;
-            default -> null;
-        };
+        switch (serverPrefix) {
+            case ServerConstant.SERVER_ATWATER_PREFIX : {
+                return ServerConstant.SERVER_ATWATER_PREFIX;
+            }
+            case ServerConstant.SERVER_VERDUN_PREFIX : {
+                return ServerConstant.SERVER_VERDUN_PREFIX;
+            }
+            case ServerConstant.SERVER_OUTREMONT_PREFIX : {
+                return ServerConstant.SERVER_OUTREMONT_PREFIX;
+            }
+            default : {
+                return null;
+            }
+        }
     }
 
     public static String getServerFullNameByCustomerID(String customerID) {
         String serverPrefix = customerID.substring(0,3).toUpperCase();
         System.out.println("Server prefix name: "+ serverPrefix);
-        return switch (serverPrefix) {
-            case ServerConstant.SERVER_ATWATER_PREFIX -> ServerConstant.SERVER_ATWATER;
-            case ServerConstant.SERVER_VERDUN_PREFIX -> ServerConstant.SERVER_VERDUN;
-            case ServerConstant.SERVER_OUTREMONT_PREFIX -> ServerConstant.SERVER_OUTREMONT;
-            default -> null;
-        };
+        switch (serverPrefix) {
+            case ServerConstant.SERVER_ATWATER_PREFIX : {
+                return ServerConstant.SERVER_ATWATER;
+            }
+            case ServerConstant.SERVER_VERDUN_PREFIX : {
+                return ServerConstant.SERVER_VERDUN;
+            }
+            case ServerConstant.SERVER_OUTREMONT_PREFIX : {
+                return ServerConstant.SERVER_OUTREMONT;
+            }
+            default : {
+                return null;
+            }
+        }
     }
 
     public static int getServerPortByCustomerID(String customerID) {
         String serverPrefix = customerID.substring(0,3).toUpperCase();
-        return switch (serverPrefix) {
-            case ServerConstant.SERVER_ATWATER_PREFIX -> ServerConstant.SERVER_ATWATER_PORT;
-            case ServerConstant.SERVER_VERDUN_PREFIX -> ServerConstant.SERVER_VERDUN_PORT;
-            case ServerConstant.SERVER_OUTREMONT_PREFIX -> ServerConstant.SERVER_OUTREMONT_PORT;
-            default -> -1;
-        };
-    }
-
-    public static String getServerNameByMovieID(String movieID) {
-        String serverPrefix = movieID.substring(0,3).toUpperCase();
-        return switch (serverPrefix) {
-            case ServerConstant.SERVER_ATWATER_PREFIX -> ServerConstant.SERVER_ATWATER;
-            case ServerConstant.SERVER_VERDUN_PREFIX -> ServerConstant.SERVER_VERDUN;
-            case ServerConstant.SERVER_OUTREMONT_PREFIX -> ServerConstant.SERVER_OUTREMONT;
-            default -> null;
-        };
+        switch (serverPrefix) {
+            case ServerConstant.SERVER_ATWATER_PREFIX : {
+                return ServerConstant.SERVER_ATWATER_PORT;
+            }
+            case ServerConstant.SERVER_VERDUN_PREFIX : {
+                return ServerConstant.SERVER_VERDUN_PORT;
+            }
+            case ServerConstant.SERVER_OUTREMONT_PREFIX : {
+                return ServerConstant.SERVER_OUTREMONT_PORT;
+            }
+            default : {
+                return -1;
+            }
+        }
     }
 
     public static String getServerPrefixByMovieID(String movieID) {
         String serverPrefix = movieID.substring(0,3).toUpperCase();
-        return switch (serverPrefix) {
-            case ServerConstant.SERVER_ATWATER_PREFIX -> ServerConstant.SERVER_ATWATER_PREFIX;
-            case ServerConstant.SERVER_VERDUN_PREFIX -> ServerConstant.SERVER_VERDUN_PREFIX;
-            case ServerConstant.SERVER_OUTREMONT_PREFIX -> ServerConstant.SERVER_OUTREMONT_PREFIX;
-            default -> null;
-        };
+        switch (serverPrefix) {
+            case ServerConstant.SERVER_ATWATER_PREFIX : {
+                return ServerConstant.SERVER_ATWATER_PREFIX;
+            }
+            case ServerConstant.SERVER_VERDUN_PREFIX : {
+                return ServerConstant.SERVER_VERDUN_PREFIX;
+            }
+            case ServerConstant.SERVER_OUTREMONT_PREFIX : {
+                return ServerConstant.SERVER_OUTREMONT_PREFIX;
+            }
+            default : {
+                return null;
+            }
+        }
     }
 
     public static String getServerNameByServerPrefix(String serverPrefix) {
-        return switch (serverPrefix) {
-            case ServerConstant.SERVER_ATWATER_PREFIX -> ServerConstant.SERVER_ATWATER;
-            case ServerConstant.SERVER_VERDUN_PREFIX -> ServerConstant.SERVER_VERDUN;
-            case ServerConstant.SERVER_OUTREMONT_PREFIX -> ServerConstant.SERVER_OUTREMONT;
-            default -> null;
-        };
+        switch (serverPrefix) {
+            case ServerConstant.SERVER_ATWATER_PREFIX : {
+                return ServerConstant.SERVER_ATWATER;
+            }
+            case ServerConstant.SERVER_VERDUN_PREFIX : {
+                return ServerConstant.SERVER_VERDUN;
+            }
+            case ServerConstant.SERVER_OUTREMONT_PREFIX : {
+                return ServerConstant.SERVER_OUTREMONT;
+            }
+            default : {
+                return null;
+            }
+        }
     }
 
     public static String getSlotByMovieID(String movieID) {
         String slot = movieID.substring(3,4).toUpperCase();
-        return switch (slot) {
-            case "A" -> Movie.Slots.Afternoon.toString();
-            case "M" -> Movie.Slots.Morning.toString();
-            case "E" -> Movie.Slots.Evening.toString();
-            default -> null;
-        };
+        switch (slot) {
+            case "A" : return Movie.Slots.Afternoon.toString();
+            case "M" : return Movie.Slots.Morning.toString();
+            case "E" : return Movie.Slots.Evening.toString();
+            default : {
+                return null;
+            }
+        }
     }
 
     public static Date getSlotDateByMovieID(String movieID) {
@@ -114,25 +147,33 @@ public class Util {
     }
 
     public static List<MovieState> sortMovieBySlots(List<MovieState> movieObj) {
-        movieObj.sort((o1, o2) -> {
-            Integer movieSlotFirst = switch (o1.getMovieID().substring(3, 4).toUpperCase()) {
-                case "M" -> 1;
-                case "A" -> 2;
-                case "E" -> 3;
-                default -> 0;
-            };
-            int movieSlotSecond = switch (o2.getMovieID().substring(3, 4).toUpperCase()) {
-                case "M" -> 1;
-                case "A" -> 2;
-                case "E" -> 3;
-                default -> 0;
-            };
-            int dateCompare = o1.getMovieDate().compareTo(o2.getMovieDate());
-            int slotCompare = movieSlotFirst.compareTo(movieSlotSecond);
-            if (dateCompare == 0) {
-                return ((slotCompare == 0) ? dateCompare : slotCompare);
-            } else {
-                return dateCompare;
+        Collections.sort(movieObj,new Comparator<MovieState>() {
+            @Override
+            public int compare(MovieState o1, MovieState o2) {
+                Integer movieSlotFirst;
+                 switch (o1.getMovieID().substring(3, 4).toUpperCase()) {
+                    case "M" : {
+                        movieSlotFirst = 1;
+                        break;
+                    }
+                    case "A" : movieSlotFirst = 2; break;
+                    case "E" : movieSlotFirst = 3; break;
+                    default : movieSlotFirst = 0; break;
+                }
+                Integer movieSlotSecond;
+                 switch (o2.getMovieID().substring(3, 4).toUpperCase()) {
+                    case "M" : movieSlotSecond = 1; break;
+                    case "A" : movieSlotSecond = 2; break;
+                    case "E" : movieSlotSecond = 3; break;
+                    default : movieSlotSecond = 0; break;
+                }
+                int dateCompare = o1.getMovieDate().compareTo(o2.getMovieDate());
+                int slotCompare = movieSlotFirst.compareTo(movieSlotSecond);
+                if (dateCompare == 0) {
+                    return ((slotCompare == 0) ? dateCompare : slotCompare);
+                } else {
+                    return dateCompare;
+                }
             }
         });
         return movieObj;

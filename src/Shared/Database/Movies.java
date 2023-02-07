@@ -5,6 +5,7 @@ import Shared.data.Util;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class Movies implements IMovies {
     //MovieName,MovieID,booking Capacity
@@ -66,7 +67,7 @@ public class Movies implements IMovies {
     public List<String> getMovieSlotsAtSpecificAreaAndSpecificDate(String movieName, String areaOrServerPrefix, String date) {
         Map<String, Integer> slotsMap = this.movies.get(movieName);
         if(slotsMap!=null){
-            return Util.getKeyListByHashMap(this.movies.get(movieName)).stream().filter(x->x.contains(areaOrServerPrefix) && x.contains(date)).toList();
+            return Util.getKeyListByHashMap(this.movies.get(movieName)).stream().filter(x->x.contains(areaOrServerPrefix) && x.contains(date)).collect(Collectors.toList());
         }
         return null;
     }
@@ -74,7 +75,7 @@ public class Movies implements IMovies {
     public List<String> getMovieSlotsAtSpecificArea(String movieName, String areaOrServerPrefix) {
         Map<String, Integer> slotsMap = this.movies.get(movieName);
         if(slotsMap!=null){
-            return Util.getKeyListByHashMap(this.movies.get(movieName)).stream().filter(x->x.contains(areaOrServerPrefix)).toList();
+            return Util.getKeyListByHashMap(this.movies.get(movieName)).stream().filter(x->x.contains(areaOrServerPrefix)).collect(Collectors.toList());
         }
         return null;
     }

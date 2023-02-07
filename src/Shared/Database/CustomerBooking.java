@@ -17,22 +17,29 @@ public class CustomerBooking implements ICustomerBooking{
         this.customerBooking = new ConcurrentHashMap<>();
     }
 
-    public boolean addMovieByCustomerID(String customerID, String movieID, String movieName, int numberOfTicketsBooked) throws ParseException {
-        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-        if(bookingMap!=null){
-            if(bookingMap.get(movieID)!=null) {
-                bookingMap.get(movieID).addMovieToExistingSlot(movieName,numberOfTicketsBooked);
-            } else {
-                MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
-                this.customerBooking.get(customerID).put(movieID,movieObj);
+    public boolean addMovieByCustomerID(String customerID, String movieID, String movieName, int numberOfTicketsBooked) {
+        try {
+            Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
+            if(bookingMap!=null){
+                if(bookingMap.get(movieID)!=null) {
+                    bookingMap.get(movieID).addMovieToExistingSlot(movieName,numberOfTicketsBooked);
+                } else {
+                    MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
+                    this.customerBooking.get(customerID).put(movieID,movieObj);
+                }
+                return true;
             }
+            Map<String,MovieState> movieInfo = new ConcurrentHashMap<>();
+            MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
+            movieInfo.put(movieID,movieObj);
+            this.customerBooking.put(customerID,movieInfo);
             return true;
+        } catch (ParseException ex) {
+            ex.getStackTrace();
+        } catch (Exception ex) {
+            ex.getStackTrace();
         }
-        Map<String,MovieState> movieInfo = new ConcurrentHashMap<>();
-        MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
-        movieInfo.put(movieID,movieObj);
-        this.customerBooking.put(customerID,movieInfo);
-        return true;
+        return false;
     }
 
     public Map<String,MovieState> getTicketsBookedByCustomerID(String customerID) {
