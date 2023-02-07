@@ -27,15 +27,11 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.text.ParseException;
 import java.util.logging.Logger;
 
 public class Server extends Thread{
     private MovieTicket movieTicketServant = null;
-    private static String serverID;
+    private String serverID;
     private static String serverName;
     //private static int serverRegistryPort;
     private static int serverPort;
@@ -45,7 +41,7 @@ public class Server extends Thread{
     private final ICustomerBooking customerBookingDb;
     private final IMovies moviesDb;
     private final Logger logger;
-
+    private String[] args;
     public Server (Logger logger,
                     String serverID,
                    IServerInfo serverInfo,
@@ -55,23 +51,21 @@ public class Server extends Thread{
                    IMovies moviesDb,
                    String[] args) throws Exception{
         System.out.println("Server ID " + serverID);
-        Server.serverID = serverID;
+        this.serverID = serverID;
         this.serverInfo = serverInfo;
         this.udpService = udpService;
         this.movieService = movieService;
         this.customerBookingDb = customerBookingDb;
         this.moviesDb = moviesDb;
         this.logger = logger;
+        this.args = args;
         getServerInfo();
-        createORB(args);
+        // create servant
+        movieTicketServant = new MovieTicket(logger,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
+        this.startListenerAndORBCore();
     }
 
-    public void runServer() throws RemoteException {
-        //startRegistry();
-        startThread();
-    }
-
-    private void createORB(String[] args) {
+    private void createORB(String[] args, String serverName, MovieTicket movieTicketServant) {
         try {
             // create and initialize the ORB
             ORB orb = ORB.init(args, null);
@@ -80,9 +74,6 @@ public class Server extends Thread{
             POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
             rootpoa.the_POAManager().activate();
 
-            // create servant
-            movieTicketServant = new MovieTicket(logger,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
-
             // get object reference from the servant
             org.omg.CORBA.Object ref = rootpoa.servant_to_reference(movieTicketServant);
             IMovieTicket href = IMovieTicketHelper.narrow(ref);
@@ -90,12 +81,15 @@ public class Server extends Thread{
             org.omg.CORBA.Object objRef =  orb.resolve_initial_references("NameService");
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
 
-            NameComponent path[] = ncRef.to_name(serverID);
+            NameComponent path[] = ncRef.to_name(serverName.substring(0,3));
+            logger.severe("Path "+ path);
             ncRef.rebind(path, href);
 
+            logger.severe(" orb running at server "+ serverName);
             // wait for invocations from clients
-            while (true)
+            while (true) {
                 orb.run();
+            }
         } catch (WrongPolicy ex) {
             ex.getStackTrace();
         } catch (ServantNotActive ex) {
@@ -113,15 +107,24 @@ public class Server extends Thread{
         }
     }
 
-    private void startThread() {
-        Runnable task = this::requestlistener;
+    private void startListenerAndORBCore() {
+        Runnable listenerTask = () -> {
+            requestlistener(movieTicketServant, serverPort, serverName);
+        };
+        Runnable orbTask = () -> {
+            createORB(args, serverName, movieTicketServant);
+        };
+        Thread listenerThread = new Thread(listenerTask);
+        Thread ORBThread = new Thread(orbTask);
+        listenerThread.setPriority(1);
+        listenerThread.start();
+        ORBThread.setPriority(2);
+        ORBThread.start();
+        listenerThread.currentThread().setName(serverName);
+        ORBThread.currentThread().setName(serverName);
 
-        Thread thread = new Thread(task);
-        thread.start();
-        Thread.currentThread().setName(serverName);
-
-        logger.severe("Thread name: "+ Thread.currentThread().getName());
-        logger.severe("State of thread: " + Thread.currentThread().getState());
+        logger.severe("Thread name: "+ listenerThread.currentThread().getName());
+        logger.severe("State of thread: " + listenerThread.currentThread().getState());
     }
 
     public void getServerInfo() {
@@ -148,30 +151,31 @@ public class Server extends Thread{
         }
     }
 
-    private void requestlistener() {
+    private void requestlistener(MovieTicket movieTicketServant, int serverPort, String serverName) {
         String response = "";
+        logger.severe("Listener Datagram port : "+serverPort);
         try (DatagramSocket socket = new DatagramSocket(serverPort)) {
             byte[] buffer = new byte[1000];
             while (true) {
-                System.out.println("Request from Client");
+                logger.severe("Request Listener initiated for server "+serverName);
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
                 String requestParams = new String(request.getData(), 0, request.getLength());
                 String[] requestParamsArray = requestParams.split(";");
-                response = methodInvocation(requestParamsArray, response);
+                response = methodInvocation(movieTicketServant, requestParamsArray, response);
                 byte[] sendData = response.getBytes();
                 DatagramPacket reply = new DatagramPacket(sendData, response.length(), request.getAddress(),
                         request.getPort());
                 socket.send(reply);
             }
         } catch (SocketException socketException) {
-            System.out.println("SocketException: " + socketException.getMessage());
-        } catch (IOException | ParseException ioException) {
-            System.out.println("IOException: " + ioException.getMessage());
+            System.out.println("Listener SocketException: " + socketException.getMessage());
+        } catch (IOException ioException) {
+            System.out.println("Listener IOException: " + ioException.getMessage());
         }
     }
 
-    private String methodInvocation(String[] requestParamsArray, String response) throws RemoteException, ParseException {
+     private String methodInvocation(MovieTicket movieTicketServant, String[] requestParamsArray, String response) {
         String invokedMethod = requestParamsArray[0];
         String customerID = requestParamsArray[1];
         String movieName = requestParamsArray[2];
