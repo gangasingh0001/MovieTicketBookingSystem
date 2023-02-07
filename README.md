@@ -1,5 +1,4 @@
 # MovieTicketBookingSystem
-#Assignment 1 (Java RMI)
 
 #Assignment 2 (CORBA)
 1. Generate Stubs and Skeleton. (Go to src/)
