@@ -63,7 +63,7 @@ public class ServerInstance {
                 moviesDb.addMovieSlot("AVENGERS", "VERE160223", 30);
                 customerBookingDb.addMovieByCustomerID("ATWA1212","VERA170223","AVATAR",23);
                 customerBookingDb.addMovieByCustomerID("ATWA1212", "VERE160223", "AVENGERS", 12);
-                customerBookingDb.addMovieByCustomerID("ATWA1212", "VERM100223", "AVATAR", 25);
+                //customerBookingDb.addMovieByCustomerID("ATWA1212", "VERM100223", "AVATAR", 25);
                 serverInfo.setServerName(ServerConstant.SERVER_VERDUN_PREFIX);
                 logging = new Logging(Util.getServerNameByServerPrefix(serverInfo.getServerName()), false, true);
                 logger = logging.attachFileHandlerToLogger(logger);
