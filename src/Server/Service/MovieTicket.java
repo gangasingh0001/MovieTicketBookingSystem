@@ -4,6 +4,8 @@ import Constant.ServerConstant;
 import MovieTicketApp.IMovieTicketPOA;
 import Shared.Database.ICustomerBooking;
 import Shared.Database.IMovies;
+import Shared.Entity.IResponse;
+import Shared.Entity.Response;
 import Shared.data.*;
 
 import java.text.ParseException;
@@ -20,7 +22,8 @@ public class MovieTicket extends IMovieTicketPOA {
     private final ICustomerBooking customerBookingDb;
     private final IMovies moviesDb;
     private Logger logger;
-    private String response;
+    private String response; // TODO: Remove this with responseObj
+    private IResponse responseObj; //TODO: Make response as class with status and msg parameters
     public MovieTicket(Logger logger,
                        IServerInfo serverInfo,
                        IUdp udpService,
@@ -34,6 +37,7 @@ public class MovieTicket extends IMovieTicketPOA {
         this.customerBookingDb = customerBookingDb;
         this.moviesDb = moviesDb;
         this.logger = logger;
+        this.responseObj = new Response();
     }
 
     public String addMovieSlots(String movieId, String movieName, int bookingCapacity)  {
@@ -325,6 +329,55 @@ public class MovieTicket extends IMovieTicketPOA {
         sb.append(response);
         logger.severe(Util.createLogMsg(customerID, movieID, movieName, numberOfTickets, sb.toString()));
         return sb.toString();
+    }
+
+    @Override
+    public String exchangeTicket(String customerID, String movieID, String movieName, String newMovieID, String newMovieName) {
+        if(this.customerBookingDb.ifMovieBookingExist(customerID,movieID,movieName)) {
+            response = this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(Util.getServerPrefixByMovieID(newMovieID)), "checkSlotAndBook", customerID, newMovieName, newMovieID, this.customerBookingDb.getNoOfTicketsBookedByMovieID(customerID,movieID,movieName));
+            if(response.equals("Movie exchanged successfully")) {
+                this.moviesDb.incrementBookingCapacity(movieName,movieID,this.customerBookingDb.getNoOfTicketsBookedByMovieID(customerID,movieID,movieName));
+                this.customerBookingDb.cancelMovieByMovieID(customerID,movieID,movieName);
+            }else {
+                return response;
+            }
+        } else {
+            response = "MovieID does not exist";
+        }
+        logger.severe(Util.createLogMsg(customerID, newMovieID, newMovieName, this.customerBookingDb.getNoOfTicketsBookedByMovieID(customerID,movieID,movieName), response));
+        return response;
+    }
+
+    public String checkSlotAndBook(String customerID, String newMovieID, String newMovieName, int noOfTickets) {
+        if(this.moviesDb.ifMovieIDExist(newMovieName,newMovieID)) {
+            if(noOfTickets<=this.moviesDb.getSlotBookingCapacity(newMovieName,newMovieID)) {
+                try {
+                    if(this.customerBookingDb.ifMovieBookingExist(customerID,newMovieID,newMovieName)) {
+                        //TODO: Update number of tickets if movie booking already exists.
+                        response = "Cannot swap with the existing movie booking";
+                        logger.severe(Util.createLogMsg(customerID, newMovieID, newMovieName, noOfTickets, response));
+                        return response;
+                    } else if(this.customerBookingDb.addMovieByCustomerID(customerID,newMovieID,newMovieName,noOfTickets)) {
+                        this.moviesDb.decrementBookingCapacity(newMovieName,newMovieID,noOfTickets);
+                        response = "Movie exchanged successfully";
+                    } else {
+                        response = "Movie exchange unsuccessful";
+                    }
+                    logger.severe(Util.createLogMsg(customerID, newMovieID, newMovieName, noOfTickets, response));
+                    return response;
+                } catch (ParseException ex) {
+                    return ex.getStackTrace().toString();
+                }
+            } else {
+                response = "No of tickets exceeding limit";
+                logger.severe(Util.createLogMsg(customerID, newMovieID, newMovieName, noOfTickets, response));
+                return response;
+            }
+        } else {
+            response = "No slot available for movie";
+            logger.severe(Util.createLogMsg(customerID, newMovieID, newMovieName, noOfTickets, response));
+            return response;
+        }
     }
 
     public String findNextAvailableSlot(String customerID,String movieID, String movieName) {
