@@ -2,12 +2,26 @@ package Server;
 
 import Constant.ServerConstant;
 import Constant.ServiceConstant;
+import MovieTicketApp.IMovieTicket;
+import MovieTicketApp.IMovieTicketHelper;
 import Server.Service.MovieTicket;
 import Shared.Database.ICustomerBooking;
 import Shared.Database.IMovies;
 import Shared.data.IMovie;
 import Shared.data.IServerInfo;
 import Shared.data.IUdp;
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
+import org.omg.PortableServer.POAManagerPackage.AdapterInactive;
+import org.omg.PortableServer.POAPackage.ServantNotActive;
+import org.omg.PortableServer.POAPackage.WrongPolicy;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -20,7 +34,7 @@ import java.text.ParseException;
 import java.util.logging.Logger;
 
 public class Server extends Thread{
-    private MovieTicket movieTicketService = null;
+    private MovieTicket movieTicketServant = null;
     private static String serverID;
     private static String serverName;
     //private static int serverRegistryPort;
@@ -38,7 +52,8 @@ public class Server extends Thread{
                    IUdp udpService,
                    IMovie movieService,
                    ICustomerBooking customerBookingDb,
-                   IMovies moviesDb) throws Exception{
+                   IMovies moviesDb,
+                   String[] args) throws Exception{
         System.out.println("Server ID " + serverID);
         Server.serverID = serverID;
         this.serverInfo = serverInfo;
@@ -47,24 +62,54 @@ public class Server extends Thread{
         this.customerBookingDb = customerBookingDb;
         this.moviesDb = moviesDb;
         this.logger = logger;
+        getServerInfo();
+        createORB(args);
     }
 
-    public static void main(String[] args) {}
-
     public void runServer() throws RemoteException {
-        movieTicketService = new MovieTicket(logger,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
-        startRegistry();
+        //startRegistry();
         startThread();
     }
 
-    private void startRegistry() {
+    private void createORB(String[] args) {
         try {
-            logger.severe("Creating registry with port: " + serverPort);
-            Registry registry = LocateRegistry.createRegistry(serverPort);
+            // create and initialize the ORB
+            ORB orb = ORB.init(args, null);
 
-            registry.rebind(ServiceConstant.MovieTicketService,movieTicketService);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            // get reference to rootpoa & activate the POAManager
+            POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
+            rootpoa.the_POAManager().activate();
+
+            // create servant
+            movieTicketServant = new MovieTicket(logger,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
+
+            // get object reference from the servant
+            org.omg.CORBA.Object ref = rootpoa.servant_to_reference(movieTicketServant);
+            IMovieTicket href = IMovieTicketHelper.narrow(ref);
+
+            org.omg.CORBA.Object objRef =  orb.resolve_initial_references("NameService");
+            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+
+            NameComponent path[] = ncRef.to_name(serverID);
+            ncRef.rebind(path, href);
+
+            // wait for invocations from clients
+            while (true)
+                orb.run();
+        } catch (WrongPolicy ex) {
+            ex.getStackTrace();
+        } catch (ServantNotActive ex) {
+            ex.getStackTrace();
+        } catch (InvalidName ex) {
+            ex.getStackTrace();
+        } catch (org.omg.CosNaming.NamingContextPackage.InvalidName ex) {
+            ex.getStackTrace();
+        } catch (CannotProceed ex) {
+            ex.getStackTrace();
+        } catch (NotFound ex) {
+            ex.getStackTrace();
+        } catch (AdapterInactive ex) {
+            ex.getStackTrace();
         }
     }
 
@@ -81,19 +126,23 @@ public class Server extends Thread{
 
     public void getServerInfo() {
         switch (serverID) {
-            case ServerConstant.SERVER_ATWATER_PREFIX -> {
+            case ServerConstant.SERVER_ATWATER_PREFIX : {
                 serverName = ServerConstant.SERVER_ATWATER;
                 serverPort = ServerConstant.SERVER_ATWATER_PORT;
+                break;
             }
-            case ServerConstant.SERVER_VERDUN_PREFIX -> {
+            case ServerConstant.SERVER_VERDUN_PREFIX : {
                 serverName = ServerConstant.SERVER_VERDUN;
                 serverPort = ServerConstant.SERVER_VERDUN_PORT;
+                break;
             }
-            case ServerConstant.SERVER_OUTREMONT_PREFIX -> {
+            case ServerConstant.SERVER_OUTREMONT_PREFIX : {
                 serverName = ServerConstant.SERVER_OUTREMONT;
                 serverPort = ServerConstant.SERVER_OUTREMONT_PORT;
+                break;
             }
-            default -> {
+            default : {
+                break;
             }
             // TODO: Implement Exception Handling if serverID is null.
         }
@@ -131,17 +180,17 @@ public class Server extends Thread{
         boolean isRegisteredToServer = Boolean.parseBoolean(requestParamsArray[4]);
         int numberOfTickets = Integer.parseInt(requestParamsArray[4]);
         if (invokedMethod.equalsIgnoreCase(ServiceConstant.getMoviesListInTheatre)) {
-            response = movieTicketService.getMoviesListInTheatre(movieName);
+            response = movieTicketServant.getMoviesListInTheatre(movieName);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.bookTicket)) {
-            response = movieTicketService.bookTicket(customerID,movieID,movieName,numberOfTickets,isRegisteredToServer);
+            response = movieTicketServant.bookTicket(customerID,movieID,movieName,numberOfTickets,isRegisteredToServer);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getCustomerBookingList)) {
-            response = movieTicketService.getCustomerBookingList(customerID);
+            response = movieTicketServant.getCustomerBookingList(customerID);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.cancelTicket)) {
-            response = movieTicketService.cancelTicket(customerID,movieID,movieName,numberOfTickets);
+            response = movieTicketServant.cancelTicket(customerID,movieID,movieName,numberOfTickets);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.findNextAvailableSlot)) {
-            response = movieTicketService.findNextAvailableSlot(customerID,movieID,movieName);
+            response = movieTicketServant.findNextAvailableSlot(customerID,movieID,movieName);
         }   else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getNoOfBookingsInWeek)) {
-            response = movieTicketService.getNoOfBookingsInWeek(customerID,movieID);
+            response = movieTicketServant.getNoOfBookingsInWeek(customerID,movieID);
         }
         return response;
     }

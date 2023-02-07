@@ -35,5 +35,5 @@ bin/
 .idea/
 
 ### Log files
-/src/Log/Client
-/src/Log/Server
+/src/Log/Client/
+/src/Log/Server/

@@ -10,12 +10,12 @@ public class Movie implements IMovie{
         None;
 
         public static Movies fromInt(int movieID) {
-            return switch (movieID) {
-                case 1 -> Avatar;
-                case 2 -> Avengers;
-                case 3 -> Titanic;
-                default -> None;
-            };
+            switch (movieID) {
+                case 1 : return Avatar;
+                case 2 : return Avengers;
+                case 3 : return Titanic;
+                default : return None;
+            }
         }
 
         public static Movies[] getMovies() {
@@ -34,12 +34,12 @@ public class Movie implements IMovie{
         None;
 
         public static Slots fromInt(int slotID) {
-            return switch (slotID) {
-                case 1 -> Morning;
-                case 2 -> Afternoon;
-                case 3 -> Evening;
-                default -> None;
-            };
+             switch (slotID) {
+                case 1 : return Morning;
+                case 2 : return Afternoon;
+                case 3 : return Evening;
+                default : return None;
+            }
         }
 
         public static Slots[] getSlots() {
@@ -58,12 +58,12 @@ public class Movie implements IMovie{
         None;
 
         public static Theaters fromInt(int theaterID) {
-            return switch (theaterID) {
-                case 1 -> Atwater;
-                case 2 -> Verdun;
-                case 3 -> Outremont;
-                default -> None;
-            };
+             switch (theaterID) {
+                case 1 : return Atwater;
+                case 2 : return Verdun;
+                case 3 : return Outremont;
+                default : return None;
+            }
         }
 
         public static Theaters[] getTheaters() {
