@@ -1,5 +1,7 @@
 package Shared.Database;
 
+import Shared.Entity.IResponse;
+import Shared.Entity.Response;
 import Shared.data.MovieState;
 
 import java.util.*;
@@ -12,16 +14,18 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CustomerBooking implements ICustomerBooking{
     //CustomerID,MovieID,BookingCapacity
     private final Map<String, Map<String, MovieState>> customerBooking;
+    private IResponse response;
 
     public CustomerBooking() {
         this.customerBooking = new ConcurrentHashMap<>();
+        this.response = new Response();
     }
 
     public boolean addMovieByCustomerID(String customerID, String movieID, String movieName, int numberOfTicketsBooked) {
         try {
             Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
             if(bookingMap!=null){
-                if(bookingMap.get(movieID)!=null) {
+                if(bookingMap.containsKey(movieID)) {
                     bookingMap.get(movieID).addMovieToExistingSlot(movieName,numberOfTicketsBooked);
                 } else {
                     MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
@@ -53,7 +57,7 @@ public class CustomerBooking implements ICustomerBooking{
     public int getNoOfTicketsBookedByMovieID(String customerID, String movieID, String movieName) {
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
-            if(bookingMap.get(movieID)!=null)
+            if(bookingMap.containsKey(movieID))
                 return bookingMap.get(movieID).getMovieTicketInfo().get(movieName);
             return -1;
         }
@@ -64,7 +68,17 @@ public class CustomerBooking implements ICustomerBooking{
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
             if(bookingMap.get(movieID)!=null)
-                return bookingMap.get(movieID).getMovieTicketInfo().get(movieName) != null;
+                return bookingMap.get(movieID).getMovieTicketInfo().containsKey(movieName);
+            return false;
+        }
+        return false;
+    }
+
+    public boolean ifMovieIDExist(String customerID, String movieID) {
+        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
+        if(bookingMap!=null){
+            if(bookingMap.containsKey(movieID))
+                return true;
             return false;
         }
         return false;
