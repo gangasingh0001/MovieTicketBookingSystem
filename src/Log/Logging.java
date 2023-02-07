@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Logging implements ILogging{
@@ -55,6 +56,7 @@ public class Logging implements ILogging{
     private FileHandler setFileHandler() {
         try {
             this.fileHandler = new FileHandler(this.file.getAbsolutePath(),1024*10000,1,true);
+            this.fileHandler.setLevel(Level.ALL);
             this.fileHandler.setFormatter(new CustomFormatter());
             return this.fileHandler;
         }catch (IOException ex) {
@@ -69,6 +71,8 @@ public class Logging implements ILogging{
 
     public Logger attachFileHandlerToLogger(Logger logger) {
         logger.addHandler(getFileHandlerObj());
+        logger.setLevel(Level.ALL);
+        logger.setUseParentHandlers(false);
         return logger;
     }
 
