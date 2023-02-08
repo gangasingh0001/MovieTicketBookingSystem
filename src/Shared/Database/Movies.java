@@ -30,7 +30,7 @@ public class Movies implements IMovies {
         Map<String, Integer> slotsMap = this.movies.get(movieName);
         if(slotsMap!=null){
             if(slotsMap.get(movieID)!=null) {
-                this.movies.get(movieName).put(movieID,bookingCapacity);
+                this.movies.get(movieName).put(movieID,this.movies.get(movieName).get(movieID)+bookingCapacity);
                 return "Movie slot updated successfully";
             }
             this.movies.get(movieName).put(movieID,bookingCapacity);
