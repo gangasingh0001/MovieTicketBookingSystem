@@ -16,10 +16,7 @@ import org.omg.CosNaming.NamingContextExtHelper;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -31,7 +28,6 @@ public class FrontEnd {
     Logger logger;
     private IMovie movieService = null;
     private IUser userService = null;
-    Registry registry = null;
     IMovieTicket movieTicketServantObj = null;
     int menuSelection = -1;
     String response = null;
@@ -50,17 +46,69 @@ public class FrontEnd {
     }
 
     public void attachLogging(String userID) {
-        logging = new Logging(userID,true,false);
+        logging = new Logging(userID, true, false);
         logger = logging.attachFileHandlerToLogger(logger);
     }
 
-    public void login() throws NotBoundException, RemoteException, ParseException {
+    public void test() {
+        Runnable client1 = () -> {
+            System.out.println("Listing movie shows for ATWM5678");
+            attachLogging("ATWM1234");
+            this.userService.setUserID("ATWM1234");
+            getServantRef(this.args);
+            response = movieTicketServantObj.listMovieShowsAvailability("AVATAR");
+            System.out.println(response);
+            logger.severe(response);
+            System.out.println("********** END Task 1 ***********");
+        };
+        Runnable client2 = () -> {
+            System.out.println("Listing movie shows for ATWM5678");
+            attachLogging("ATWM5678");
+            this.userService.setUserID("ATWM5678");
+            getServantRef(this.args);
+            response = movieTicketServantObj.listMovieShowsAvailability("AVATAR");
+            System.out.println(response);
+            logger.severe(response);
+            System.out.println("********** END Task 2 ***********");
+        };
+        Runnable client3 = () -> {
+            attachLogging("ATWM1234");
+            this.userService.setUserID("ATWM1234");
+            getServantRef(this.args);
+            String response = movieTicketServantObj.addMovieSlots("ATWE070223", "AVATAR", 10);
+            System.out.println(response);
+            System.out.println("********** END Task 3 ***********");
+        };
+        Runnable client4 = () -> {
+            attachLogging("ATWM5678");
+            this.userService.setUserID("ATWM5678");
+            getServantRef(this.args);
+            String response = movieTicketServantObj.addMovieSlots("ATWE070223", "AVATAR", 10);
+            System.out.println(response);
+            System.out.println("********** END Task 4 ***********");
+        };
+        Thread thread1 = new Thread(client1);
+        Thread thread2 = new Thread(client2);
+        Thread thread3 = new Thread(client3);
+        Thread thread4 = new Thread(client4);
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+    }
+
+    public void login() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter your UserID:");
         String userID = scanner.nextLine().trim().toUpperCase();
 
-        System.out.println("Login Successful" + userID);
+        while (!this.movieService.validateUserID(userID)) {
+            System.out.println("Invalid User ID Please enter again:");
+            userID = scanner.nextLine().trim().toUpperCase();
+        }
+
+        System.out.println("Login Successful " + userID);
 
         attachLogging(userID);
 
@@ -94,7 +142,7 @@ public class FrontEnd {
         };
     }
 
-    public void menu() throws RemoteException, ParseException {
+    public void menu() {
         //Admin specific operations
         if(this.userService.isAdmin()) {
             System.out.println("1. " + ServerConstant.ADD_MOVIE_SLOTS);
@@ -141,7 +189,7 @@ public class FrontEnd {
         return scanner.nextLine();
     }
 
-    private String referToSelectedMenuObj() throws RemoteException, ParseException {
+    private String referToSelectedMenuObj() {
         if(this.userService.isAdmin()) {
             switch (menuSelection) {
                 case 1 : {
@@ -198,9 +246,12 @@ public class FrontEnd {
                 case 4 : {
                     String res;
                     scanner.nextLine();
-                    System.out.println("Enter your UserID:");
+                    System.out.println("Enter Customer ID:");
                     String customerID = scanner.nextLine().trim().toUpperCase();
-                    scanner.nextLine();
+                    while (!this.movieService.validateUserID(customerID)) {
+                        System.out.println("Invalid User ID Please enter again:");
+                        customerID = scanner.nextLine().trim().toUpperCase();
+                    }
                     this.movieService.theaterPrompt("Select Theater");
                     int selectedTheater = getTheaterInput();
                     scanner.nextLine();
@@ -219,8 +270,12 @@ public class FrontEnd {
                 case 5 : {
                     String res;
                     scanner.nextLine();
-                    System.out.println("Enter your UserID:");
+                    System.out.println("Enter Customer ID:");
                     String customerID = scanner.nextLine().trim().toUpperCase();
+                    while (!this.movieService.validateUserID(customerID)) {
+                        System.out.println("Invalid User ID Please enter again:");
+                        customerID = scanner.nextLine().trim().toUpperCase();
+                    }
                     res = movieTicketServantObj.getBookingSchedule(customerID);
                     logger.severe(Util.createLogMsg(customerID,null, null, -1, res));
                     return res;
@@ -230,6 +285,10 @@ public class FrontEnd {
                     scanner.nextLine();
                     System.out.println("Enter your UserID:");
                     String customerID = scanner.nextLine().trim().toUpperCase();
+                    while (!this.movieService.validateUserID(customerID)) {
+                        System.out.println("Invalid User ID Please enter again:");
+                        customerID = scanner.nextLine().trim().toUpperCase();
+                    }
                     this.movieService.moviesPrompt("Select movie to cancel booking");
                     int selectedMovie = getMovieInput();
                     System.out.println("Please enter the MovieID (e.g ATWM190120)");
@@ -242,8 +301,13 @@ public class FrontEnd {
                 case 7 : {
                     String res;
                     scanner.nextLine();
-                    System.out.println("Enter your UserID:");
+                    System.out.println("Enter Customer ID:");
                     String customerID = scanner.nextLine().trim().toUpperCase();
+
+                    while (!this.movieService.validateUserID(customerID)) {
+                        System.out.println("Invalid User ID Please enter again:");
+                        customerID = scanner.nextLine().trim().toUpperCase();
+                    }
 
                     this.movieService.moviesPrompt("Select a Movie to exchange ticket");
                     int oldSelectedMovie = getMovieInput();

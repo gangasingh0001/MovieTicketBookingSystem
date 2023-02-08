@@ -28,7 +28,6 @@ public class Util {
 
     public static String getServerFullNameByCustomerID(String customerID) {
         String serverPrefix = customerID.substring(0,3).toUpperCase();
-        System.out.println("Server prefix name: "+ serverPrefix);
         switch (serverPrefix) {
             case ServerConstant.SERVER_ATWATER_PREFIX : {
                 return ServerConstant.SERVER_ATWATER;

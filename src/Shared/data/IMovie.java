@@ -8,5 +8,6 @@ public interface IMovie {
     public String validateMovieID(String movieID);
     public String getMovieName(int movieIndex);
     public String getTheaterName(int theaterIndex);
+    public boolean validateUserID(String userID);
     public String grepServerPrefixByMovieID(String movieID);
 }

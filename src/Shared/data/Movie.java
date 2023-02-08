@@ -122,6 +122,22 @@ public class Movie implements IMovie{
         return null;
     }
 
+    public boolean validateUserID(String userID) {
+        String serverPrefix = userID.substring(0, 3);
+        String slot = userID.substring(3,4);
+        String number = userID.substring(4,8);
+        if (userID.length() == 8) {
+            if (serverPrefix.equals(ServerConstant.SERVER_OUTREMONT_PREFIX) ||
+                    serverPrefix.equals(ServerConstant.SERVER_ATWATER_PREFIX) ||
+                    serverPrefix.equals(ServerConstant.SERVER_VERDUN_PREFIX)) {
+                if (slot.equals("M") || slot.equals("A")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public String getMovieName(int movieIndex) {
         return String.valueOf(Movies.fromInt(movieIndex));
     }

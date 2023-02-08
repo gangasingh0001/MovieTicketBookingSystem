@@ -50,7 +50,6 @@ public class Server extends Thread{
                    ICustomerBooking customerBookingDb,
                    IMovies moviesDb,
                    String[] args) throws Exception{
-        System.out.println("Server ID " + serverID);
         this.serverID = serverID;
         this.serverInfo = serverInfo;
         this.udpService = udpService;
@@ -86,6 +85,7 @@ public class Server extends Thread{
             ncRef.rebind(path, href);
 
             logger.severe(" orb running at server "+ serverName);
+            System.out.println("Server is up and Running: "+serverName);
             // wait for invocations from clients
             while (true) {
                 orb.run();
