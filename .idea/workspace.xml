@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1745ca5b-c36b-4f89-8a8b-068dab06ee3d" name="Changes" comment="Stub and skeleton files genered by idlj">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/FrontEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/FrontEnd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
