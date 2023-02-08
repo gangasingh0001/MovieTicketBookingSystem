@@ -33,6 +33,7 @@ bin/
 
 ### IntelliJ
 .idea/
+../idea
 
 ### Log files
 /src/Log/Client
