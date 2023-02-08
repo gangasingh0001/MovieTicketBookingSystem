@@ -25,7 +25,7 @@ public class CustomerBooking implements ICustomerBooking{
         try {
             Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
             if(bookingMap!=null){
-                if(bookingMap.containsKey(movieID)) {
+                if(bookingMap.get(movieID)!=null) {
                     bookingMap.get(movieID).addMovieToExistingSlot(movieName,numberOfTicketsBooked);
                 } else {
                     MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
@@ -57,7 +57,7 @@ public class CustomerBooking implements ICustomerBooking{
     public int getNoOfTicketsBookedByMovieID(String customerID, String movieID, String movieName) {
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
-            if(bookingMap.containsKey(movieID))
+            if(bookingMap.get(movieID)!=null)
                 return bookingMap.get(movieID).getMovieTicketInfo().get(movieName);
             return -1;
         }

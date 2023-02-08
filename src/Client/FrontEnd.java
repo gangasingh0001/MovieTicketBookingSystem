@@ -66,7 +66,7 @@ public class FrontEnd {
 
         this.userService.setUserID(userID.toUpperCase());
 
-        getServant(this.args);
+        getServantRef(this.args);
 
         logger.severe("CustomerID: "+ this.userService.getUserID());
         logger.severe("Server Name: "+ Util.getServerFullNameByCustomerID(this.userService.getUserID()));
@@ -76,7 +76,7 @@ public class FrontEnd {
             menu();
     }
 
-    public void getServant(String[] args) {
+    public void getServantRef(String[] args) {
         try {
             // create and initialize the ORB
             ORB orb = ORB.init(args, null);
