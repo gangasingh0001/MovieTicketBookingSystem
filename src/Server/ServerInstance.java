@@ -35,8 +35,8 @@ public class ServerInstance {
             moviesDb.addMovieSlot("AVATAR", "ATWA080223", 20);
             moviesDb.addMovieSlot("AVATAR", "ATWE150223", 50);
             moviesDb.addMovie("AVENGERS", "ATWE190822", 100);
-            customerBookingDb.addMovieByCustomerID("ATWA1212", "ATWA070223", "AVATAR", 3);
-            customerBookingDb.addMovieByCustomerID("ATWA1212", "ATWM080223", "AVATAR", 4);
+            customerBookingDb.addMovieByCustomerID("ATWM1212", "ATWA070223", "AVATAR", 3);
+            customerBookingDb.addMovieByCustomerID("ATWM1234", "ATWM080223", "AVATAR", 4);
             //customerBookingDb.addMovieByCustomerID("ATWA1212", "ATWE210822", "AVATAR", 2);customerBookingDb.addMovieByCustomerID("ATWA1212","ATWE210822","AVATAR",2);
             serverInfo.setServerName(ServerConstant.SERVER_ATWATER_PREFIX);
             logging = new Logging(Util.getServerNameByServerPrefix(serverInfo.getServerName()),false,true);
@@ -60,9 +60,9 @@ public class ServerInstance {
             moviesDb.addMovieSlot("AVATAR", "VERE160223", 30);
             moviesDb.addMovie("AVENGERS", "VERM110223", 40);
             moviesDb.addMovieSlot("AVENGERS", "VERE160223", 30);
-            customerBookingDb.addMovieByCustomerID("ATWA1212","VERA170223","AVATAR",23);
-            customerBookingDb.addMovieByCustomerID("ATWA1212", "VERE160223", "AVENGERS", 12);
-            customerBookingDb.addMovieByCustomerID("ATWA1212","VERM240822","AVATAR",25);
+            customerBookingDb.addMovieByCustomerID("VERM1212","VERA170223","AVATAR",23);
+            customerBookingDb.addMovieByCustomerID("ATWM1234", "VERE160223", "AVENGERS", 12);
+            customerBookingDb.addMovieByCustomerID("VERM9876","VERM240822","AVATAR",25);
             serverInfo.setServerName(ServerConstant.SERVER_VERDUN_PREFIX);
             logging = new Logging(Util.getServerNameByServerPrefix(serverInfo.getServerName()),false,true);
             logger = logging.attachFileHandlerToLogger(logger);
@@ -81,7 +81,7 @@ public class ServerInstance {
             customerBookingDb = new CustomerBooking();
             moviesDb = new Movies();
             moviesDb.addMovie("TITANIC","OUTM190223",30);
-            customerBookingDb.addMovieByCustomerID("ATWA1212","OUTM190223","TITANIC",4);
+            customerBookingDb.addMovieByCustomerID("ATWM1212","OUTM190223","TITANIC",4);
             serverInfo.setServerName(ServerConstant.SERVER_OUTREMONT_PREFIX);
             logging = new Logging(Util.getServerNameByServerPrefix(serverInfo.getServerName()),false,true);
             logger = logging.attachFileHandlerToLogger(logger);
