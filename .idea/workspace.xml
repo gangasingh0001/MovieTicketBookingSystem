@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1745ca5b-c36b-4f89-8a8b-068dab06ee3d" name="Changes" comment="">
+    <list default="true" id="1745ca5b-c36b-4f89-8a8b-068dab06ee3d" name="Changes" comment="Stub and skeleton files genered by idlj">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/FrontEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/FrontEnd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constant/ClientConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/ClientConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constant/ServiceConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constant/ServiceConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTicket.idl" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieTicket.idl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketPOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieTicketApp/IMovieTicketPOA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTicketApp/_IMovieTicketStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieTicketApp/_IMovieTicketStub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shared/Database/ICustomerBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/ICustomerBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/movieticketapp.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/movieticketapp.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,8 +144,46 @@
       <workItem from="1675718468394" duration="3140000" />
       <workItem from="1675722825347" duration="1385000" />
       <workItem from="1675730236557" duration="7756000" />
-      <workItem from="1675742170274" duration="20105000" />
+      <workItem from="1675742170274" duration="20917000" />
+      <workItem from="1675808451684" duration="396000" />
+      <workItem from="1675815409633" duration="78000" />
     </task>
+    <task id="LOCAL-00001" summary="Added exchangeTicket method">
+      <created>1675807087418</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675807087419</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added exchangeTicket method">
+      <created>1675807099036</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675807099036</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added constants">
+      <created>1675807129992</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675807129992</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added Exhange method interface on client side">
+      <created>1675807148239</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675807148239</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Stub and skeleton files genered by idlj">
+      <created>1675807189950</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675807189950</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,6 +211,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added exchangeTicket method" />
+    <MESSAGE value="Added constants" />
+    <MESSAGE value="Added Exhange method interface on client side" />
+    <MESSAGE value="Stub and skeleton files genered by idlj" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stub and skeleton files genered by idlj" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
