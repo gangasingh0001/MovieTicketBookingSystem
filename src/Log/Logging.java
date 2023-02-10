@@ -3,6 +3,7 @@ package Log;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Logging implements ILogging{
@@ -57,6 +58,8 @@ public class Logging implements ILogging{
 
     public Logger attachFileHandlerToLogger(Logger logger) {
         logger.addHandler(getFileHandlerObj());
+        logger.setLevel(Level.ALL);
+        logger.setUseParentHandlers(false);
         return logger;
     }
 

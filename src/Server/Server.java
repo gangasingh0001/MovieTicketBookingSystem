@@ -8,6 +8,7 @@ import Shared.Database.IMovies;
 import Shared.data.IMovie;
 import Shared.data.IServerInfo;
 import Shared.data.IUdp;
+import Shared.data.Util;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -39,7 +40,6 @@ public class Server extends Thread{
                    IMovie movieService,
                    ICustomerBooking customerBookingDb,
                    IMovies moviesDb) throws Exception{
-        System.out.println("Server ID " + serverID);
         Server.serverID = serverID;
         this.serverInfo = serverInfo;
         this.udpService = udpService;
@@ -74,6 +74,7 @@ public class Server extends Thread{
         thread.start();
         Thread.currentThread().setName(serverName);
 
+        System.out.println("Server is up and Running: " + Util.getServerNameByServerPrefix(serverID));
         logger.severe("Thread name: "+ Thread.currentThread().getName());
         logger.severe("State of thread: " + Thread.currentThread().getState());
     }
@@ -103,7 +104,6 @@ public class Server extends Thread{
         try (DatagramSocket socket = new DatagramSocket(serverPort)) {
             byte[] buffer = new byte[1000];
             while (true) {
-                System.out.println("Request from Client");
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
                 String requestParams = new String(request.getData(), 0, request.getLength());
