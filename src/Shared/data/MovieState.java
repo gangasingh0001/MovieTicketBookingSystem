@@ -14,7 +14,7 @@ public class MovieState {
     private final String movieTheatrePrefix;
     public MovieState(String movieName,
                       String movieID,
-                      int noOfTicketsBooked) throws ParseException {
+                      int noOfTicketsBooked) {
         this.movieID = movieID;
         this.addMovieToSlot(movieName,noOfTicketsBooked);
         this.movieSlot = movieID.substring(3,4).toUpperCase();
@@ -22,8 +22,12 @@ public class MovieState {
         this.setMovieDateUTC(movieID.substring(4,10).toUpperCase());
     }
 
-    public void setMovieDateUTC(String date) throws ParseException {
-        this.movieDate = new SimpleDateFormat("ddMMyy").parse(date);
+    public void setMovieDateUTC(String date) {
+        try {
+            this.movieDate = new SimpleDateFormat("ddMMyy").parse(date);
+        } catch (ParseException ex) {
+            ex.getStackTrace();
+        }
     }
 
     public String getMovieID() {

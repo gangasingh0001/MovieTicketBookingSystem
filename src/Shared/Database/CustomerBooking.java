@@ -22,28 +22,25 @@ public class CustomerBooking implements ICustomerBooking{
     }
 
     public boolean addMovieByCustomerID(String customerID, String movieID, String movieName, int numberOfTicketsBooked) {
-        try {
-            Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-            if(bookingMap!=null){
-                if(bookingMap.get(movieID)!=null) {
-                    bookingMap.get(movieID).addMovieToExistingSlot(movieName,numberOfTicketsBooked);
+        Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
+        if(bookingMap!=null){
+            if(bookingMap.get(movieID)!=null) {
+                if(bookingMap.get(movieID).getMovieTicketInfo().containsKey(movieName)) {
+                    this.customerBooking.get(customerID).get(movieID).getMovieTicketInfo().put(movieName,bookingMap.get(movieID).getMovieTicketInfo().get(movieName)+numberOfTicketsBooked);
                 } else {
-                    MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
-                    this.customerBooking.get(customerID).put(movieID,movieObj);
+                    bookingMap.get(movieID).addMovieToExistingSlot(movieName, numberOfTicketsBooked);
                 }
-                return true;
+            } else {
+                MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
+                this.customerBooking.get(customerID).put(movieID,movieObj);
             }
-            Map<String,MovieState> movieInfo = new ConcurrentHashMap<>();
-            MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
-            movieInfo.put(movieID,movieObj);
-            this.customerBooking.put(customerID,movieInfo);
             return true;
-        } catch (ParseException ex) {
-            ex.getStackTrace();
-        } catch (Exception ex) {
-            ex.getStackTrace();
         }
-        return false;
+        Map<String,MovieState> movieInfo = new ConcurrentHashMap<>();
+        MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
+        movieInfo.put(movieID,movieObj);
+        this.customerBooking.put(customerID,movieInfo);
+        return true;
     }
 
     public Map<String,MovieState> getTicketsBookedByCustomerID(String customerID) {
@@ -106,11 +103,13 @@ public class CustomerBooking implements ICustomerBooking{
         int monthOfBooking = Util.getMonth(Util.getSlotDateByMovieID(movieID));
         int noOfMoviesBooked = 0;
         ConcurrentHashMap<String, MovieState> map = (ConcurrentHashMap<String, MovieState>) this.getTicketsBookedByCustomerID(customerID);
-        for (Map.Entry<String, MovieState> entry : map.entrySet()) {
-            String key = entry.getKey();
-            MovieState movieInfo = entry.getValue();
-            if(Util.getWeekOfMonth(Util.getSlotDateByMovieID(key))==weekOfBooking && Util.getMonth(Util.getSlotDateByMovieID(key))==monthOfBooking)
-                noOfMoviesBooked = noOfMoviesBooked + movieInfo.getMovieTicketInfo().size();
+        if(map!=null && !map.isEmpty()) {
+            for (Map.Entry<String, MovieState> entry : map.entrySet()) {
+                String key = entry.getKey();
+                MovieState movieInfo = entry.getValue();
+                if (Util.getWeekOfMonth(Util.getSlotDateByMovieID(key)) == weekOfBooking && Util.getMonth(Util.getSlotDateByMovieID(key)) == monthOfBooking)
+                    noOfMoviesBooked = noOfMoviesBooked + movieInfo.getMovieTicketInfo().size();
+            }
         }
         return noOfMoviesBooked;
     }
