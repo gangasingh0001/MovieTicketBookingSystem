@@ -58,7 +58,8 @@ public class MovieTicket extends IMovieTicketPOA {
 
     public String removeMovieSlots(String movieId, String movieName) {
         if (!Util.getServerPrefixByMovieID(movieId).equals(this.serverInfo.getServerName())) {
-            this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(Util.getServerPrefixByMovieID(movieId)), "removeMovieSlots", null, movieName, movieId, -1);
+            logger.severe(Util.createLogMsg(null, movieId, movieName, -1, "Unauthorised: Cannot delete slots on other theaters"));
+            return "Unauthorised: Cannot delete slots on other theaters";
         } else {
             if (this.moviesDb.ifMovieNameExist(movieName)) {
                 if (this.moviesDb.ifMovieIDExist(movieName, movieId)) {
@@ -75,68 +76,46 @@ public class MovieTicket extends IMovieTicketPOA {
                     }
                     if (!bookingCustomerID.isEmpty()) {
                         String nextAvailableBookingID = this.findNextAvailableSlot(bookingCustomerID,movieId,movieName);
+                        String nextAvailableMovieIDAtwater = "";
+                        String nextAvailableMovieIDVerdun = "";
+                        String nextAvailableMovieIDOutermont = "";
+                        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) {
+                            nextAvailableMovieIDAtwater = this.udpService.sendUDPMessage(ServerConstant.SERVER_ATWATER_PORT, "findNextAvailableSlot", bookingCustomerID, movieName, movieId, -1);
+                        }
+                        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) {
+                            nextAvailableMovieIDVerdun = this.udpService.sendUDPMessage(ServerConstant.SERVER_VERDUN_PORT, "findNextAvailableSlot", bookingCustomerID, movieName, movieId, -1);
+                        }
+                        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) {
+                            nextAvailableMovieIDOutermont = this.udpService.sendUDPMessage(ServerConstant.SERVER_OUTREMONT_PORT, "findNextAvailableSlot", bookingCustomerID, movieName, movieId, -1);
+                        }
+                        List<MovieState> movieInfo = new ArrayList<MovieState>();
                         if(!nextAvailableBookingID.isEmpty()) {
-                            int currentNumberOfTicketBookedByCustomer = this.customerBookingDb.getNoOfTicketsBookedByMovieID(bookingCustomerID, movieId, movieName);
-                            try {
-                                this.customerBookingDb.addMovieByCustomerID(bookingCustomerID, nextAvailableBookingID, movieName, currentNumberOfTicketBookedByCustomer);
-                            }
-                            catch (ParseException ex) {
-                                ex.getStackTrace();
-                            }
-                            this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId,movieName);
-                        } else {
-                            String nextAvailableMovieIDAtwater = "";
-                            String nextAvailableMovieIDVerdun = "";
-                            String nextAvailableMovieIDOutermont = "";
-                            if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) {
-                                nextAvailableMovieIDAtwater = this.udpService.sendUDPMessage(ServerConstant.SERVER_ATWATER_PORT, "findNextAvailableSlot", bookingCustomerID, movieName, movieId, -1);
-                            }
-                            if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) {
-                                nextAvailableMovieIDVerdun = this.udpService.sendUDPMessage(ServerConstant.SERVER_VERDUN_PORT, "findNextAvailableSlot", bookingCustomerID, movieName, movieId, -1);
-                            }
-                            if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) {
-                                nextAvailableMovieIDOutermont = this.udpService.sendUDPMessage(ServerConstant.SERVER_OUTREMONT_PORT, "findNextAvailableSlot", bookingCustomerID, movieName, movieId, -1);
-                            }
-                            List<MovieState> movieInfo = new ArrayList<MovieState>();
-                            if(!nextAvailableMovieIDAtwater.isEmpty())
-                                try {
-                                    movieInfo.add(new MovieState(movieName, nextAvailableMovieIDAtwater.trim(), 0));
-                                } catch (ParseException ex) {
-                                    ex.getStackTrace();
-                                }
-                            if(!nextAvailableMovieIDVerdun.isEmpty())
-                                try {
-                                    movieInfo.add(new MovieState(movieName, nextAvailableMovieIDVerdun.trim(), 0));
-                                } catch (ParseException ex) {
-                                    ex.getStackTrace();
-                                }
-                            if(!nextAvailableMovieIDOutermont.isEmpty())
-                                try {
-                                    movieInfo.add(new MovieState(movieName, nextAvailableMovieIDOutermont.trim(), 0));
-                                } catch (ParseException ex) {
-                                    ex.getStackTrace();
-                                }
-                            List<MovieState> sortedList;
-                            StringBuilder sb = new StringBuilder();
-                            if(movieInfo.size()>=1) {
-                                sortedList = Util.sortMovieByDates(movieInfo);
-                                if(sortedList.size()>0) {
-                                    int currentNumberOfTicketBookedByCustomer = this.customerBookingDb.getNoOfTicketsBookedByMovieID(bookingCustomerID, movieId, movieName);
-                                    //this.customerBookingDb.addMovieByCustomerID(bookingCustomerID, sortedList.get(0).getMovieID(), movieName, currentNumberOfTicketBookedByCustomer);
+                            movieInfo.add(new MovieState(movieName, nextAvailableBookingID.trim(), 0));
+                        }
+                        if(!nextAvailableMovieIDAtwater.isEmpty())
+                            movieInfo.add(new MovieState(movieName, nextAvailableMovieIDAtwater.trim(), 0));
+                        if(!nextAvailableMovieIDVerdun.isEmpty())
+                            movieInfo.add(new MovieState(movieName, nextAvailableMovieIDVerdun.trim(), 0));
+                        if(!nextAvailableMovieIDOutermont.isEmpty())
+                            movieInfo.add(new MovieState(movieName, nextAvailableMovieIDOutermont.trim(), 0));
+                        List<MovieState> sortedList;
+                        StringBuilder sb = new StringBuilder();
+                        if(movieInfo.size()>=1) {
+                            sortedList = Util.sortMovieByDates(movieInfo);
+                            if(sortedList.size()>0) {
+                                int currentNumberOfTicketBookedByCustomer = this.customerBookingDb.getNoOfTicketsBookedByMovieID(bookingCustomerID, movieId, movieName);
 
-                                    sb.append(this.bookMovieTickets(bookingCustomerID, sortedList.get(0).getMovieID(), movieName, currentNumberOfTicketBookedByCustomer)).append("\n");
-                                    this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId,movieName);
-                                    //this.moviesDb.decrementBookingCapacity(movieName,movieId,currentNumberOfTicketBookedByCustomer);
-                                    sb.append(this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId)).append("\n");
-                                    sb.append("Next Slot Booked and Slot deleted from theater");
-                                    logger.severe(Util.createLogMsg(null, movieId, movieName, -1, sb.toString()));
-                                    return sb.toString();
-                                }
-                            } else {
-                                response = this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId) + "No next slot available for booking...";;
-                                logger.severe(Util.createLogMsg(null, movieId, movieName, -1, response));
-                                return response;
+                                this.bookMovieTickets(bookingCustomerID, sortedList.get(0).getMovieID(), movieName, currentNumberOfTicketBookedByCustomer);
+                                this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId,movieName);
+                                this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId);
+                                sb.append("Next Slot: "+ sortedList.get(0).getMovieID() +" at " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(sortedList.get(0).getMovieID())) + " theater booked for Customer: " +bookingCustomerID + "\nSlot: " + movieId +  " deleted from " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(movieId)) + " theater");
+                                logger.severe(Util.createLogMsg(null, movieId, movieName, -1, sb.toString()));
+                                return sb.toString();
                             }
+                        } else {
+                            response = this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId) + "No next slot available for booking...";;
+                            logger.severe(Util.createLogMsg(null, movieId, movieName, -1, response));
+                            return response;
                         }
                     }
                     response = this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId);
@@ -207,8 +186,8 @@ public class MovieTicket extends IMovieTicketPOA {
 
     public String getBookingSchedule(String customerID)  {
         StringBuilder sb = new StringBuilder();
-        sb.append(Util.getServerFullNameByCustomerID(customerID)).append("\n");
-        sb.append(this.getCustomerBookingList(customerID));
+        sb.append(Util.getServerNameByServerPrefix(this.serverInfo.getServerName())).append("\n");
+        sb.append(this.getCustomerBookingList(customerID)).append("\n");
         if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) {
             sb.append("ATWATER \n");
             sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_ATWATER_PREFIX),"getCustomerBookingList",customerID,null,null,-1));
@@ -246,7 +225,7 @@ public class MovieTicket extends IMovieTicketPOA {
                 builder.append("Movie Name: "+ movieName + " |" + " MovieID: "+slot.getKey() + " | Seats Available: "+ slot.getValue()+ "| Slot: " + Util.getSlotByMovieID(slot.getKey()) + " | Movie Date: " + new SimpleDateFormat("dd/MM/yyyy").format(Util.getSlotDateByMovieID(slot.getKey())) + ", \n");
             }
             logger.severe(Util.createLogMsg(null, null, movieName, -1, builder.toString()));
-            return builder.toString();
+            return builder.append("\n").toString();
         }
         logger.severe(Util.createLogMsg(null, null, movieName, -1, movieName+" not found"));
         return "";
@@ -306,7 +285,7 @@ public class MovieTicket extends IMovieTicketPOA {
 
     public String getCustomerBookingList(String customerID)  {
         Map<String,MovieState> customerObj = this.customerBookingDb.getTicketsBookedByCustomerID(customerID);
-        if(customerObj!=null) {
+        if(customerObj!=null && !customerObj.isEmpty()) {
             StringBuilder builder = new StringBuilder();
             for (MovieState bookingSchedule : customerObj.values()) {
                 bookingSchedule.getMovieTicketInfo().forEach((key, value) -> builder.append("Movie Name: ").append(key).append(" | Slot: ").append(Util.getSlotByMovieID(bookingSchedule.getMovieID())).append(" | MovieID: ").append(bookingSchedule.getMovieID()).append(" | Seats Booked: ").append(value).append(" | Movie Date: " + new SimpleDateFormat("dd/MM/yyyy").format(Util.getSlotDateByMovieID(bookingSchedule.getMovieID())) ).append(", \n"));
@@ -381,33 +360,33 @@ public class MovieTicket extends IMovieTicketPOA {
     }
 
     public String findNextAvailableSlot(String customerID,String movieID, String movieName) {
-        try {
-            List<String> availableMovieSlots = this.moviesDb.getMovieSlotsAtSpecificArea(movieName, this.serverInfo.getServerName());
-            if (availableMovieSlots!=null && !availableMovieSlots.isEmpty() && availableMovieSlots.size()>1) {
-                List<MovieState> movieInfo = new ArrayList<MovieState>();
-                for (String availableMovieSlot : availableMovieSlots) {
-                    movieInfo.add(new MovieState(movieName, availableMovieSlot, 0));
-                }
+        List<String> availableMovieSlots = this.moviesDb.getMovieSlotsAtSpecificArea(movieName, this.serverInfo.getServerName());
+        if (availableMovieSlots!=null && !availableMovieSlots.isEmpty() && availableMovieSlots.size()>1) {
+            List<MovieState> movieInfo = new ArrayList<MovieState>();
+            for (String availableMovieSlot : availableMovieSlots) {
+                movieInfo.add(new MovieState(movieName, availableMovieSlot, 0));
+            }
 
-                movieInfo = Util.sortMovieBySlots(movieInfo);
-                System.out.println("MovieInfo = "+movieInfo);
-                String nextAvailableBookingID = "";
+            movieInfo = Util.sortMovieBySlots(movieInfo);
+            String nextAvailableBookingID = "";
+            if(!movieInfo.isEmpty()) {
                 for (int j = 0; j < movieInfo.size(); j++) {
                     if(movieInfo.get(j).getMovieID().equals(movieID)) {
                         if(j+1<movieInfo.size()) nextAvailableBookingID = movieInfo.get(j+1).getMovieID().trim();
                     }
                 }
-                logger.severe(Util.createLogMsg(customerID, movieID, movieName, -1, "nextAvailableBookingID: "+nextAvailableBookingID));
-                return nextAvailableBookingID;
+                if(nextAvailableBookingID.isEmpty()) {
+                    nextAvailableBookingID = movieInfo.get(0).getMovieID().trim();
+                }
             }
-            if(availableMovieSlots != null && availableMovieSlots.size()==1) {
-                logger.severe(Util.createLogMsg(customerID, movieID, movieName, -1, "nextAvailableBookingID: "+availableMovieSlots.get(0)));
-                return availableMovieSlots.get(0);
-            }
-            logger.severe(Util.createLogMsg(customerID, movieID, movieName, -1, "nextAvailableBookingID: "+"No Slot availabe"));
-        } catch (ParseException ex) {
-           ex.getStackTrace();
+            logger.severe(Util.createLogMsg(customerID, movieID, movieName, -1, "nextAvailableBookingID: "+nextAvailableBookingID + " at Theater: "+Util.getServerNameByServerPrefix(this.serverInfo.getServerName())));
+            return nextAvailableBookingID;
         }
+        if(availableMovieSlots != null && availableMovieSlots.size()==1) {
+            logger.severe(Util.createLogMsg(customerID, movieID, movieName, -1, "nextAvailableBookingID: "+availableMovieSlots.get(0)+ " at Theater: "+Util.getServerNameByServerPrefix(this.serverInfo.getServerName())));
+            return availableMovieSlots.get(0);
+        }
+        logger.severe(Util.createLogMsg(customerID, movieID, movieName, -1, "nextAvailableBookingID: "+"No Slot availabe"));
         return "";
     }
 
