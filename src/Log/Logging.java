@@ -2,6 +2,8 @@ package Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +20,8 @@ public class Logging implements ILogging{
     private File createFile(String fileName, boolean client, boolean server) {
         final String dir = System.getProperty("user.dir");
         if(client) {
-           this.file = new File(dir+"/src/Log/Client/"+fileName+".log");
+            createDirectoryIfNotExist(dir,"Client");
+            this.file = new File(dir+"/src/Log/Client/"+fileName+".log");
             if(!this.file.exists()) {
                 try {
                     this.file.createNewFile();
@@ -28,6 +31,7 @@ public class Logging implements ILogging{
             }
             return file;
         } else if(server) {
+            createDirectoryIfNotExist(dir,"Server");
             this.file = new File(dir+"/src/Log/Server/"+fileName+".log");
             if(!this.file.exists()) {
                 try {
@@ -41,9 +45,18 @@ public class Logging implements ILogging{
         return null;
     }
 
+    private void createDirectoryIfNotExist(String dir, String directoryName) {
+        try {
+            Files.createDirectories(Paths.get(dir+"/src/Log/"+directoryName));
+        }catch (IOException ex) {
+            ex.getStackTrace();
+        }
+    }
+
     private FileHandler setFileHandler() {
         try {
-            this.fileHandler = new FileHandler(getFile().getAbsolutePath(),1024*10000,1,true);
+            this.fileHandler = new FileHandler(this.file.getAbsolutePath(),1024*10000,1,true);
+            this.fileHandler.setLevel(Level.ALL);
             this.fileHandler.setFormatter(new CustomFormatter());
             return this.fileHandler;
         }catch (IOException ex) {
@@ -61,10 +74,6 @@ public class Logging implements ILogging{
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);
         return logger;
-    }
-
-    private File getFile(){
-        return this.file;
     }
 
 }
