@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="1745ca5b-c36b-4f89-8a8b-068dab06ee3d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/FrontEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/FrontEnd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Log/Logging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Log/Logging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/ServerInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ServerInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/data/IMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/IMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/data/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shared/data/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +72,7 @@
       <recent name="Server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerInstance">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client.Client" />
       <module name="MovieTicketBookingSystem" />
@@ -106,8 +114,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerInstance" />
         <item itemvalue="Application.Client" />
+        <item itemvalue="Application.ServerInstance" />
         <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
@@ -130,6 +138,7 @@
       <workItem from="1675206869483" duration="2000" />
       <workItem from="1675220330335" duration="649000" />
       <workItem from="1675370644710" duration="24063000" />
+      <workItem from="1676058641624" duration="9150000" />
     </task>
     <servers />
   </component>
