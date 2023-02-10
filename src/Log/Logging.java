@@ -43,7 +43,6 @@ public class Logging implements ILogging{
     private FileHandler setFileHandler() {
         try {
             this.fileHandler = new FileHandler(getFile().getAbsolutePath(),1024*10000,1,true);
-            System.out.println("Getting file path in set file handler"+getFile().getAbsolutePath());
             this.fileHandler.setFormatter(new CustomFormatter());
             return this.fileHandler;
         }catch (IOException ex) {

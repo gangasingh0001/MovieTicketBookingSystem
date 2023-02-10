@@ -61,7 +61,6 @@ public class Server extends Thread{
         try {
             logger.severe("Creating registry with port: " + serverPort);
             Registry registry = LocateRegistry.createRegistry(serverPort);
-
             registry.rebind(ServiceConstant.MovieTicketService,movieTicketService);
         } catch (RemoteException e) {
             throw new RuntimeException(e);

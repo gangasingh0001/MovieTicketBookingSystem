@@ -104,22 +104,38 @@ public class Movie implements IMovie{
         System.out.println(heading);
     }
 
-    public String validateMovieID(String movieID) {
-        String serverPrefix = movieID.substring(0, 3);
-        String slot = movieID.substring(3,4);
-        String date = movieID.substring(4,10);
+    public boolean validateMovieID(String movieID) {
         if (movieID.length() == 10) {
+            String serverPrefix = movieID.substring(0, 3);
+            String slot = movieID.substring(3,4);
+            String date = movieID.substring(4,10);
             if (serverPrefix.equals(ServerConstant.SERVER_OUTREMONT_PREFIX) ||
                     serverPrefix.equals(ServerConstant.SERVER_ATWATER_PREFIX) ||
                     serverPrefix.equals(ServerConstant.SERVER_VERDUN_PREFIX)) {
                 if (slot.equals("M") ||
                         slot.equals("A")||
                         slot.equals("E")) {
-                    return movieID;
+                    return true;
                 }
             }
         }
-        return null;
+        return false;
+    }
+
+    public boolean validateUserID(String userID) {
+        if (userID.length() == 8) {
+            String serverPrefix = userID.substring(0, 3);
+            String slot = userID.substring(3,4);
+            String number = userID.substring(4,8);
+            if (serverPrefix.equals(ServerConstant.SERVER_OUTREMONT_PREFIX) ||
+                    serverPrefix.equals(ServerConstant.SERVER_ATWATER_PREFIX) ||
+                    serverPrefix.equals(ServerConstant.SERVER_VERDUN_PREFIX)) {
+                if (slot.equals("M") || slot.equals("A")) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public String getMovieName(int movieIndex) {

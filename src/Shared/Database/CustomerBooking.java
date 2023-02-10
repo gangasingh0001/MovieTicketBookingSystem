@@ -21,7 +21,11 @@ public class CustomerBooking implements ICustomerBooking{
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
             if(bookingMap.get(movieID)!=null) {
-                bookingMap.get(movieID).addMovieToExistingSlot(movieName,numberOfTicketsBooked);
+                if(bookingMap.get(movieID).getMovieTicketInfo().containsKey(movieName)) {
+                    this.customerBooking.get(customerID).get(movieID).getMovieTicketInfo().put(movieName,bookingMap.get(movieID).getMovieTicketInfo().get(movieName)+numberOfTicketsBooked);
+                } else {
+                    bookingMap.get(movieID).addMovieToExistingSlot(movieName, numberOfTicketsBooked);
+                }
             } else {
                 MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
                 this.customerBooking.get(customerID).put(movieID,movieObj);
@@ -85,11 +89,13 @@ public class CustomerBooking implements ICustomerBooking{
         int monthOfBooking = Util.getMonth(Util.getSlotDateByMovieID(movieID));
         int noOfMoviesBooked = 0;
         ConcurrentHashMap<String, MovieState> map = (ConcurrentHashMap<String, MovieState>) this.getTicketsBookedByCustomerID(customerID);
-        for (Map.Entry<String, MovieState> entry : map.entrySet()) {
-            String key = entry.getKey();
-            MovieState movieInfo = entry.getValue();
-            if(Util.getWeekOfMonth(Util.getSlotDateByMovieID(key))==weekOfBooking && Util.getMonth(Util.getSlotDateByMovieID(key))==monthOfBooking)
-                noOfMoviesBooked = noOfMoviesBooked + movieInfo.getMovieTicketInfo().size();
+        if(map!=null && !map.isEmpty()) {
+            for (Map.Entry<String, MovieState> entry : map.entrySet()) {
+                String key = entry.getKey();
+                MovieState movieInfo = entry.getValue();
+                if (Util.getWeekOfMonth(Util.getSlotDateByMovieID(key)) == weekOfBooking && Util.getMonth(Util.getSlotDateByMovieID(key)) == monthOfBooking)
+                    noOfMoviesBooked = noOfMoviesBooked + movieInfo.getMovieTicketInfo().size();
+            }
         }
         return noOfMoviesBooked;
     }
