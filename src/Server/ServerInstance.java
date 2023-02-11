@@ -43,8 +43,8 @@ public class ServerInstance {
             logging = new Logging(Util.getServerNameByServerPrefix(serverInfo.getServerName()),false,true);
             logger = logging.attachFileHandlerToLogger(logger);
             Server Atwater = new Server(logger,ServerConstant.SERVER_ATWATER_PREFIX,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
-            Atwater.getServerInfo();
-            Atwater.runServer();
+            Atwater.setPriority(1);
+            Atwater.start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -75,8 +75,8 @@ public class ServerInstance {
             logging = new Logging(Util.getServerNameByServerPrefix(serverInfo.getServerName()),false,true);
             logger = logging.attachFileHandlerToLogger(logger);
             Server Verdun = new Server(logger,ServerConstant.SERVER_VERDUN_PREFIX,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
-            Verdun.getServerInfo();
-            Verdun.runServer();
+            Verdun.setPriority(2);
+            Verdun.start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -96,8 +96,8 @@ public class ServerInstance {
             logging = new Logging(Util.getServerNameByServerPrefix(serverInfo.getServerName()),false,true);
             logger = logging.attachFileHandlerToLogger(logger);
             Server Outremont = new Server(logger,ServerConstant.SERVER_OUTREMONT_PREFIX,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
-            Outremont.getServerInfo();
-            Outremont.runServer();
+            Outremont.setPriority(3);
+            Outremont.start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

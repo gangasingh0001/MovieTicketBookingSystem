@@ -47,19 +47,16 @@ public class Server extends Thread{
         this.customerBookingDb = customerBookingDb;
         this.moviesDb = moviesDb;
         this.logger = logger;
+        getServerInfo();
+        movieTicketService = new MovieTicket(logger,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
+        startThread();
     }
 
     public static void main(String[] args) {}
 
-    public void runServer() throws RemoteException {
-        movieTicketService = new MovieTicket(logger,serverInfo,udpService,movieService,customerBookingDb,moviesDb);
-        startRegistry();
-        startThread();
-    }
-
-    private void startRegistry() {
+    private void startRegistry(int serverPort, MovieTicket movieTicketService) {
         try {
-            logger.severe("Creating registry with port: " + serverPort);
+            logger.severe("Creating registry at port: " + serverPort);
             Registry registry = LocateRegistry.createRegistry(serverPort);
             registry.rebind(ServiceConstant.MovieTicketService,movieTicketService);
         } catch (RemoteException e) {
@@ -68,15 +65,29 @@ public class Server extends Thread{
     }
 
     private void startThread() {
-        Runnable task = this::requestlistener;
+        Runnable listenerTask = () -> {
+            requestlistener(movieTicketService, serverPort, serverName);
+        };
+        Runnable rmiRegistryTask = () -> {
+            startRegistry(serverPort, movieTicketService);
+        };
 
-        Thread thread = new Thread(task);
-        thread.start();
-        Thread.currentThread().setName(serverName);
+        Thread listenerThread = new Thread(listenerTask);
+        Thread rmiRegistryThread = new Thread(rmiRegistryTask);
+        listenerThread.setPriority(1);
+        rmiRegistryThread.setPriority(2);
+        rmiRegistryThread.start();
+        listenerThread.start();
+        listenerThread.setName(serverName);
+        rmiRegistryThread.setName(serverName);
 
         System.out.println("Server is up and Running: " + Util.getServerNameByServerPrefix(serverID));
-        logger.severe("Thread name: "+ Thread.currentThread().getName());
-        logger.severe("State of thread: " + Thread.currentThread().getState());
+
+        logger.severe("Listener thread name: "+ listenerThread.getName());
+        logger.severe("Listener thread state: " + listenerThread.getState());
+
+        logger.severe("RMI Registry thread name: "+ rmiRegistryThread.getName());
+        logger.severe("RMI Registry thread state: " + rmiRegistryThread.getState());
     }
 
     public void getServerInfo() {
@@ -99,7 +110,7 @@ public class Server extends Thread{
         }
     }
 
-    private void requestlistener() {
+    private void requestlistener(MovieTicket movieTicketService,int serverPort,String serverName) {
         String response = "";
         try (DatagramSocket socket = new DatagramSocket(serverPort)) {
             byte[] buffer = new byte[1000];
@@ -108,7 +119,7 @@ public class Server extends Thread{
                 socket.receive(request);
                 String requestParams = new String(request.getData(), 0, request.getLength());
                 String[] requestParamsArray = requestParams.split(";");
-                response = methodInvocation(requestParamsArray, response);
+                response = methodInvocation(movieTicketService, requestParamsArray, response);
                 byte[] sendData = response.getBytes();
                 DatagramPacket reply = new DatagramPacket(sendData, response.length(), request.getAddress(),
                         request.getPort());
@@ -121,7 +132,7 @@ public class Server extends Thread{
         }
     }
 
-    private String methodInvocation(String[] requestParamsArray, String response) throws RemoteException, ParseException {
+    private String methodInvocation(MovieTicket movieTicketService, String[] requestParamsArray, String response) throws RemoteException, ParseException {
         String invokedMethod = requestParamsArray[0];
         String customerID = requestParamsArray[1];
         String movieName = requestParamsArray[2];

@@ -128,9 +128,9 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
     public String listMovieShowsAvailability(String movieName) throws RemoteException {
         StringBuilder sb = new StringBuilder();
         sb.append(this.getMoviesListInTheatre(movieName));
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_ATWATER_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_OUTREMONT_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_ATWATER_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1)).append("\n");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1)).append("\n");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_OUTREMONT_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1)).append("\n");
         logger.severe(Util.createLogMsg(null, null, movieName, -1, sb.toString()));
         return sb.toString();
     }
@@ -216,9 +216,9 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
         if(movieSlots!=null) {
             StringBuilder builder = new StringBuilder();
             builder.append("\n");
-            builder.append(Util.getServerNameByServerPrefix(this.serverInfo.getServerName())).append(" \n");
+            builder.append(Util.getServerNameByServerPrefix(this.serverInfo.getServerName())).append("\n");
             for (Map.Entry<String,Integer> slot : movieSlots.entrySet()) {
-                builder.append("Movie Name: "+ movieName + " |" + " MovieID: "+slot.getKey() + " | Seats Available: "+ slot.getValue()+ "| Slot: " + Util.getSlotByMovieID(slot.getKey()) + " | Movie Date: " + new SimpleDateFormat("dd/MM/yyyy").format(Util.getSlotDateByMovieID(slot.getKey())) + ", \n");
+                builder.append("Movie Name: "+ movieName + " |" + " MovieID: "+slot.getKey() + " | Seats Available: "+ slot.getValue()+ "| Slot: " + Util.getSlotByMovieID(slot.getKey()) + " | Movie Date: " + new SimpleDateFormat("dd/MM/yyyy").format(Util.getSlotDateByMovieID(slot.getKey()))).append("\n");
             }
             logger.severe(Util.createLogMsg(null, null, movieName, -1, builder.toString()));
             return builder.toString();
