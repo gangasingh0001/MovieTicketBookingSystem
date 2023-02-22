@@ -4,19 +4,14 @@ import Constant.ClientConstant;
 import Constant.ServerConstant;
 import Log.ILogging;
 import Log.Logging;
-import MovieTicketApp.IMovieTicket;
-import MovieTicketApp.IMovieTicketHelper;
+import Server.IMovieTicket;
 import Shared.data.IMovie;
 import Shared.data.IUser;
 import Shared.data.Util;
-import org.omg.CORBA.ORB;
-import org.omg.CORBA.ORBPackage.InvalidName;
-import org.omg.CosNaming.NamingContextExt;
-import org.omg.CosNaming.NamingContextExtHelper;
-import org.omg.CosNaming.NamingContextPackage.CannotProceed;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import java.rmi.registry.Registry;
+import javax.xml.ws.WebServiceRef;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -28,12 +23,13 @@ public class FrontEnd {
     Logger logger;
     private IMovie movieService = null;
     private IUser userService = null;
-    IMovieTicket movieTicketServantObj = null;
+    IMovieTicket movieTicketServiceObj = null;
     int menuSelection = -1;
     String response = null;
     Scanner scanner = null;
     boolean logout = false;
     private String[] args;
+    URL url;
     public FrontEnd(
             IUser userService,
             IMovie movieService,
@@ -43,6 +39,15 @@ public class FrontEnd {
         scanner = new Scanner(System.in);
         logger = Logger.getLogger(Client.class.getName());
         this.args = args;
+        getUrlRef();
+    }
+
+    public void getUrlRef() {
+        try {
+            url = new URL("http://localhost:8080/movieTicket");
+        } catch (MalformedURLException ex) {
+            ex.getStackTrace();
+        }
     }
 
     public void attachLogging(String userID) {
@@ -55,8 +60,7 @@ public class FrontEnd {
             System.out.println("Listing movie shows for ATWM5678");
             attachLogging("ATWM1234");
             this.userService.setUserID("ATWM1234");
-            getServantRef(this.args);
-            response = movieTicketServantObj.listMovieShowsAvailability("AVATAR");
+            response = movieTicketServiceObj.listMovieShowsAvailability("AVATAR");
             System.out.println(response);
             logger.severe(response);
             System.out.println("********** END Task 1 ***********");
@@ -65,8 +69,7 @@ public class FrontEnd {
             System.out.println("Listing movie shows for ATWM5678");
             attachLogging("ATWM5678");
             this.userService.setUserID("ATWM5678");
-            getServantRef(this.args);
-            response = movieTicketServantObj.listMovieShowsAvailability("AVATAR");
+            response = movieTicketServiceObj.listMovieShowsAvailability("AVATAR");
             System.out.println(response);
             logger.severe(response);
             System.out.println("********** END Task 2 ***********");
@@ -74,16 +77,14 @@ public class FrontEnd {
         Runnable client3 = () -> {
             attachLogging("ATWM1234");
             this.userService.setUserID("ATWM1234");
-            getServantRef(this.args);
-            String response = movieTicketServantObj.addMovieSlots("ATWE070223", "AVATAR", 10);
+            String response = movieTicketServiceObj.addMovieSlots("ATWE070223", "AVATAR", 10);
             System.out.println(response);
             System.out.println("********** END Task 3 ***********");
         };
         Runnable client4 = () -> {
             attachLogging("ATWM5678");
             this.userService.setUserID("ATWM5678");
-            getServantRef(this.args);
-            String response = movieTicketServantObj.addMovieSlots("ATWE070223", "AVATAR", 10);
+            String response = movieTicketServiceObj.addMovieSlots("ATWE070223", "AVATAR", 10);
             System.out.println(response);
             System.out.println("********** END Task 4 ***********");
         };
@@ -114,32 +115,12 @@ public class FrontEnd {
 
         this.userService.setUserID(userID.toUpperCase());
 
-        getServantRef(this.args);
-
         logger.severe("CustomerID: "+ this.userService.getUserID());
         logger.severe("Server Name: "+ Util.getServerFullNameByCustomerID(this.userService.getUserID()));
         logger.severe("Server PORT: "+ Util.getServerPortByCustomerID(this.userService.getUserID()));
 
         while (!logout)
             menu();
-    }
-
-    public void getServantRef(String[] args) {
-        try {
-            // create and initialize the ORB
-            ORB orb = ORB.init(args, null);
-            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-            movieTicketServantObj = IMovieTicketHelper.narrow(ncRef.resolve_str(this.userService.getUserRegisteredServerPrefix()));
-        } catch (InvalidName invalidName) {
-            invalidName.printStackTrace();
-        } catch (CannotProceed cannotProceed) {
-            cannotProceed.printStackTrace();
-        } catch (org.omg.CosNaming.NamingContextPackage.InvalidName invalidName) {
-            invalidName.printStackTrace();
-        } catch (NotFound notFound) {
-            notFound.printStackTrace();
-        };
     }
 
     public void menu() {
@@ -210,7 +191,7 @@ public class FrontEnd {
                     Date sevenDaysAfter = Date.from(afterSevenDays.atStartOfDay(defaultZoneId).toInstant());
                     if(Util.getSlotDateByMovieID(movieID).compareTo(new Date())>0 && Util.getSlotDateByMovieID(movieID).compareTo(sevenDaysAfter)<0) {
                         if(this.movieService.validateMovieID(movieID)) {
-                            String response = movieTicketServantObj.addMovieSlots(movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), bookingCapacity);
+                            String response = movieTicketServiceObj.addMovieSlots(movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), bookingCapacity);
                             logger.severe(Util.createLogMsg(this.userService.getUserID(), movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), bookingCapacity, response));
                             return response;
                         }else {
@@ -237,7 +218,7 @@ public class FrontEnd {
                         movieID = scanner.nextLine().trim().toUpperCase();
                     }
                     if(Util.getSlotDateByMovieID(movieID).compareTo(new Date())>0){
-                        res = movieTicketServantObj.removeMovieSlots(movieID,this.movieService.getMovieName(selectedMovie).toUpperCase());
+                        res = movieTicketServiceObj.removeMovieSlots(movieID,this.movieService.getMovieName(selectedMovie).toUpperCase());
                         logger.severe(Util.createLogMsg(this.userService.getUserID(), movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), -1, res));
                         return res;
                     }
@@ -250,7 +231,7 @@ public class FrontEnd {
                     this.movieService.moviesPrompt("Select Movie");
                     int selectedMovie = getMovieInput();
                     scanner.nextLine();
-                    res = movieTicketServantObj.listMovieShowsAvailability(this.movieService.getMovieName(selectedMovie).toUpperCase());
+                    res = movieTicketServiceObj.listMovieShowsAvailability(this.movieService.getMovieName(selectedMovie).toUpperCase());
                     logger.severe(Util.createLogMsg(this.userService.getUserID(), null, this.movieService.getMovieName(selectedMovie).toUpperCase(), -1, res));
                     return res;
                 }
@@ -275,7 +256,7 @@ public class FrontEnd {
                         System.out.println("Invalid Movie ID Please enter again:");
                         movieID = scanner.nextLine().trim().toUpperCase();
                     }
-                    res = movieTicketServantObj.bookMovieTickets(customerID,movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),bookingCapacity);
+                    res = movieTicketServiceObj.bookMovieTickets(customerID,movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),bookingCapacity);
                     logger.severe(Util.createLogMsg(customerID, movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), bookingCapacity, res));
                     return res;
                 }
@@ -288,7 +269,7 @@ public class FrontEnd {
                         System.out.println("Invalid User ID Please enter again:");
                         customerID = scanner.nextLine().trim().toUpperCase();
                     }
-                    res = movieTicketServantObj.getBookingSchedule(customerID);
+                    res = movieTicketServiceObj.getBookingSchedule(customerID);
                     logger.severe(Util.createLogMsg(customerID,null, null, -1, res));
                     return res;
                 }
@@ -310,7 +291,7 @@ public class FrontEnd {
                         System.out.println("Invalid Movie ID Please enter again:");
                         movieID = scanner.nextLine().trim().toUpperCase();
                     }
-                    res = movieTicketServantObj.cancelMovieTickets(customerID,movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),0);
+                    res = movieTicketServiceObj.cancelMovieTickets(customerID,movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),0);
                     logger.severe(Util.createLogMsg(customerID,movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), -1, res));
                     return res;
                 }
@@ -334,13 +315,13 @@ public class FrontEnd {
                         System.out.println("Invalid Movie ID Please enter again:");
                         movieID = scanner.nextLine().trim().toUpperCase();
                     }
-                    res = movieTicketServantObj.bookMovieTickets(this.userService.getUserID(),movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),bookingCapacity);
+                    res = movieTicketServiceObj.bookMovieTickets(this.userService.getUserID(),movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),bookingCapacity);
                     logger.severe(Util.createLogMsg(this.userService.getUserID(), movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), bookingCapacity, res));
                     return res;
                 }
                 case 2 : {
                     String res;
-                    res = movieTicketServantObj.getBookingSchedule(this.userService.getUserID());
+                    res = movieTicketServiceObj.getBookingSchedule(this.userService.getUserID());
                     logger.severe(Util.createLogMsg(this.userService.getUserID(), null, null, -1, res));
                     return res;
                 }
@@ -355,7 +336,7 @@ public class FrontEnd {
                         System.out.println("Invalid Movie ID Please enter again:");
                         movieID = scanner.nextLine().trim().toUpperCase();
                     }
-                    res = movieTicketServantObj.cancelMovieTickets(this.userService.getUserID(),movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),0);
+                    res = movieTicketServiceObj.cancelMovieTickets(this.userService.getUserID(),movieID,this.movieService.getMovieName(selectedMovie).toUpperCase(),0);
                     logger.severe(Util.createLogMsg(this.userService.getUserID(), movieID, this.movieService.getMovieName(selectedMovie).toUpperCase(), -1, res));
                     return res;
                 }

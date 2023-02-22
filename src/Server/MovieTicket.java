@@ -1,13 +1,13 @@
-package Server.Service;
+package Server;
 
 import Constant.ServerConstant;
-import MovieTicketApp.IMovieTicketPOA;
 import Shared.Database.ICustomerBooking;
 import Shared.Database.IMovies;
 import Shared.Entity.IResponse;
 import Shared.Entity.Response;
 import Shared.data.*;
 
+import javax.jws.WebService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class MovieTicket extends IMovieTicketPOA {
+@WebService(endpointInterface = "wsAdd.IMovieTicket")
+public class MovieTicket implements IMovieTicket {
     private final IServerInfo serverInfo;
     private final IUdp udpService;
     private final IMovie movieService;
@@ -310,7 +311,6 @@ public class MovieTicket extends IMovieTicketPOA {
         return sb.toString();
     }
 
-    @Override
     public String exchangeTicket(String customerID, String movieID, String movieName, String newMovieID, String newMovieName) {
         if(this.customerBookingDb.ifMovieBookingExist(customerID,movieID,movieName)) {
             response = this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(Util.getServerPrefixByMovieID(newMovieID)), "checkSlotAndBook", customerID, newMovieName, newMovieID, this.customerBookingDb.getNoOfTicketsBookedByMovieID(customerID,movieID,movieName));
