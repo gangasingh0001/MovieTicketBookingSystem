@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-@WebService(endpointInterface = "wsAdd.IMovieTicket")
+@WebService(endpointInterface = "Server.IMovieTicket")
 public class MovieTicket implements IMovieTicket {
     private final IServerInfo serverInfo;
     private final IUdp udpService;

@@ -9,7 +9,8 @@ import Shared.data.IMovie;
 import Shared.data.IUser;
 import Shared.data.Util;
 
-import javax.xml.ws.WebServiceRef;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ public class FrontEnd {
     Scanner scanner = null;
     boolean logout = false;
     private String[] args;
+    private Service serviceAPI;
     URL url;
     public FrontEnd(
             IUser userService,
@@ -39,12 +41,14 @@ public class FrontEnd {
         scanner = new Scanner(System.in);
         logger = Logger.getLogger(Client.class.getName());
         this.args = args;
-        getUrlRef();
     }
 
     public void getUrlRef() {
         try {
-            url = new URL("http://localhost:8080/movieTicket");
+            url = new URL("http://localhost:8080/"+Util.getServerFullNameByCustomerID(this.userService.getUserID())+"?wsdl");
+            QName qName = new QName("http://Server/", "MovieTicketService");
+            serviceAPI = Service.create(url, qName);
+            movieTicketServiceObj = serviceAPI.getPort(IMovieTicket.class); //Port of Interface at which Implementation is running
         } catch (MalformedURLException ex) {
             ex.getStackTrace();
         }
@@ -114,6 +118,7 @@ public class FrontEnd {
         attachLogging(userID);
 
         this.userService.setUserID(userID.toUpperCase());
+        getUrlRef();
 
         logger.severe("CustomerID: "+ this.userService.getUserID());
         logger.severe("Server Name: "+ Util.getServerFullNameByCustomerID(this.userService.getUserID()));
