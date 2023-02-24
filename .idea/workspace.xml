@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1745ca5b-c36b-4f89-8a8b-068dab06ee3d" name="Changes" comment="Stub and skeleton files genered by idlj">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/FrontEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/FrontEnd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/ServerInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ServerInstance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Service/MovieTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/Database/CustomerBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shared/data/IMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/IMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shared/data/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shared/data/MovieState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shared/data/MovieState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +34,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2Kq1Ql4f4rYYNGgL1E0CCLuzHgh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -63,10 +60,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -106,6 +103,8 @@
       </method>
     </configuration>
     <configuration name="ServerInstance" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Server.ServerInstance" />
       <module name="MovieTicketBookingSystem" />
       <extension name="coverage">
@@ -118,6 +117,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.ServerInstance" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ServerInstance" />
@@ -153,6 +157,9 @@
       <workItem from="1675742170274" duration="20917000" />
       <workItem from="1675808451684" duration="396000" />
       <workItem from="1675815409633" duration="78000" />
+      <workItem from="1677200176715" duration="289000" />
+      <workItem from="1677200599391" duration="2207000" />
+      <workItem from="1677202898198" duration="958000" />
     </task>
     <task id="LOCAL-00001" summary="Added exchangeTicket method">
       <created>1675807087418</created>
@@ -191,6 +198,11 @@
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="TerminalProjectNonSharedOptionsProvider">
+    <envs>
+      <env key="JAVA_HOME" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home" />
+    </envs>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />

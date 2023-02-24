@@ -315,6 +315,39 @@ public class FrontEnd {
                     return res;
                 }
                 case 7 : {
+                    String res;
+                    scanner.nextLine();
+                    System.out.println("Enter Customer ID:");
+                    String customerID = scanner.nextLine().trim().toUpperCase();
+
+                    while (!this.movieService.validateUserID(customerID)) {
+                        System.out.println("Invalid User ID Please enter again:");
+                        customerID = scanner.nextLine().trim().toUpperCase();
+                    }
+
+                    this.movieService.moviesPrompt("Select a Movie to exchange ticket");
+                    int oldSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter current MovieID to exchange ticket (e.g ATWM190120)");
+                    String movieID = getMovieIDInput();
+
+                    this.movieService.theaterPrompt("Select new Theater");
+                    int selectedTheater = getTheaterInput();
+                    scanner.nextLine();
+
+                    this.movieService.moviesPrompt("Select a new Movie");
+                    int newSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter MovieID (e.g ATWM190120) for movie: "+ this.movieService.getMovieName(newSelectedMovie).toUpperCase() + " at Theater: "+this.movieService.getTheaterName(selectedTheater).toUpperCase());
+                    String newMovieID = getMovieIDInput();
+
+                    res = movieTicketServantObj.exchangeTicket(customerID,movieID,this.movieService.getMovieName(oldSelectedMovie).toUpperCase(),newMovieID,this.movieService.getMovieName(newSelectedMovie).toUpperCase());
+                    logger.severe(Util.createLogMsg(customerID,movieID, this.movieService.getMovieName(oldSelectedMovie).toUpperCase(), -1, res));
+                    return res;
+                }
+                case 8 : {
                     logout = true;
                     return null;
                 }
@@ -360,6 +393,30 @@ public class FrontEnd {
                     return res;
                 }
                 case 4 : {
+                    String res;
+                    this.movieService.moviesPrompt("Select a Movie to exchange ticket");
+                    int oldSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter current MovieID to exchange ticket (e.g ATWM190120)");
+                    String movieID = getMovieIDInput();
+
+                    this.movieService.theaterPrompt("Select new Theater");
+                    int selectedTheater = getTheaterInput();
+                    scanner.nextLine();
+
+                    this.movieService.moviesPrompt("Select a new Movie");
+                    int newSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter MovieID (e.g ATWM190120) for movie: "+ this.movieService.getMovieName(newSelectedMovie).toUpperCase() + " at Theater: "+this.movieService.getTheaterName(selectedTheater).toUpperCase());
+                    String newMovieID = getMovieIDInput();
+
+                    res = movieTicketServantObj.exchangeTicket(this.userService.getUserID(),movieID,this.movieService.getMovieName(oldSelectedMovie).toUpperCase(),newMovieID,this.movieService.getMovieName(newSelectedMovie).toUpperCase());
+                    logger.severe(Util.createLogMsg(this.userService.getUserID(),movieID, this.movieService.getMovieName(oldSelectedMovie).toUpperCase(), -1, res));
+                    return res;
+                }
+                case 5 : {
                     logout = true;
                     return null;
                 }

@@ -24,6 +24,7 @@ public class MovieTicket extends IMovieTicketPOA {
     private Logger logger;
     private String response; // TODO: Remove this with responseObj
     private IResponse responseObj; //TODO: Make response as class with status and msg parameters
+    private boolean bookingSuccessful = false;
     public MovieTicket(Logger logger,
                        IServerInfo serverInfo,
                        IUdp udpService,
@@ -105,12 +106,16 @@ public class MovieTicket extends IMovieTicketPOA {
                             if(sortedList.size()>0) {
                                 int currentNumberOfTicketBookedByCustomer = this.customerBookingDb.getNoOfTicketsBookedByMovieID(bookingCustomerID, movieId, movieName);
 
-                                this.bookMovieTickets(bookingCustomerID, sortedList.get(0).getMovieID(), movieName, currentNumberOfTicketBookedByCustomer);
-                                this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId,movieName);
-                                this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId);
-                                sb.append("Next Slot: "+ sortedList.get(0).getMovieID() +" at " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(sortedList.get(0).getMovieID())) + " theater booked for Customer: " +bookingCustomerID + "\nSlot: " + movieId +  " deleted from " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(movieId)) + " theater");
-                                logger.severe(Util.createLogMsg(null, movieId, movieName, -1, sb.toString()));
-                                return sb.toString();
+                                response = this.bookMovieTickets(bookingCustomerID, sortedList.get(0).getMovieID(), movieName, currentNumberOfTicketBookedByCustomer);
+                                if(bookingSuccessful) {
+                                    this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId,movieName);
+                                    this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId);
+                                    sb.append("Next Slot: "+ sortedList.get(0).getMovieID() +" at " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(sortedList.get(0).getMovieID())) + " theater booked for Customer: " +bookingCustomerID + "\nSlot: " + movieId +  " deleted from " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(movieId)) + " theater");
+                                    logger.severe(Util.createLogMsg(bookingCustomerID, movieId, movieName, -1, sb.toString()));
+                                    return sb.toString();
+                                }else {
+                                    return response.trim().toString();
+                                }
                             }
                         } else {
                             response = this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId) + "No next slot available for booking...";;
@@ -131,15 +136,16 @@ public class MovieTicket extends IMovieTicketPOA {
 
     public String listMovieShowsAvailability(String movieName)  {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.getMoviesListInTheatre(movieName));
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_ATWATER_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
-        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_OUTREMONT_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1));
+        sb.append(this.getMoviesListInTheatre(movieName)).append("\n");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_ATWATER_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_ATWATER_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1)).append("\n");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1)).append("\n\n");
+        if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_OUTREMONT_PREFIX),"getMoviesListInTheatre",null,movieName,null,-1)).append("\n");
         logger.severe(Util.createLogMsg(null, null, movieName, -1, sb.toString()));
         return sb.toString();
     }
 
     public String bookMovieTickets(String customerID, String movieId, String movieName, int numberOfTickets) {
+        bookingSuccessful = false;
         StringBuilder sb = new StringBuilder();
         if (!Util.getServerPrefixByMovieID(movieId).equals(this.serverInfo.getServerName())) {
             if(!this.customerBookingDb.ifMovieBookingExist(customerID,movieId,movieName)) {
@@ -161,6 +167,7 @@ public class MovieTicket extends IMovieTicketPOA {
                 }
                 if(moviesBookedAtOtherTheaters<3) {
                     response = this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(Util.getServerPrefixByMovieID(movieId)), "bookTicket", customerID, movieName, movieId, numberOfTickets);
+                    if(response.equals("Movie Booked Successfully")) bookingSuccessful = true;
                     logger.severe(Util.createLogMsg(customerID, movieId, movieName, numberOfTickets, response));
                     return response;
                 }
@@ -194,7 +201,7 @@ public class MovieTicket extends IMovieTicketPOA {
         }
         if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_VERDUN_PREFIX)) {
             sb.append("VERDUN \n");
-            sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getCustomerBookingList",customerID,null,null,-1)).append("\n");
+            sb.append(this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(ServerConstant.SERVER_VERDUN_PREFIX),"getCustomerBookingList",customerID,null,null,-1)).append("\n\n");
         }
         if(!this.serverInfo.getServerName().equals(ServerConstant.SERVER_OUTREMONT_PREFIX)) {
             sb.append("OUTERMONT \n");
@@ -219,13 +226,12 @@ public class MovieTicket extends IMovieTicketPOA {
         Map<String, Integer> movieSlots = this.moviesDb.getMovieSlotsHashMapByMovieName(movieName);
         if(movieSlots!=null) {
             StringBuilder builder = new StringBuilder();
-            builder.append("\n");
             builder.append(Util.getServerNameByServerPrefix(this.serverInfo.getServerName())).append(" \n");
             for (Map.Entry<String,Integer> slot : movieSlots.entrySet()) {
                 builder.append("Movie Name: "+ movieName + " |" + " MovieID: "+slot.getKey() + " | Seats Available: "+ slot.getValue()+ "| Slot: " + Util.getSlotByMovieID(slot.getKey()) + " | Movie Date: " + new SimpleDateFormat("dd/MM/yyyy").format(Util.getSlotDateByMovieID(slot.getKey())) + ", \n");
             }
             logger.severe(Util.createLogMsg(null, null, movieName, -1, builder.toString()));
-            return builder.append("\n").toString();
+            return builder.toString();
         }
         logger.severe(Util.createLogMsg(null, null, movieName, -1, movieName+" not found"));
         return "";
@@ -238,8 +244,9 @@ public class MovieTicket extends IMovieTicketPOA {
             if(this.moviesDb.ifMovieIDExist(movieName,movieId)) {
                 if(isUserRegisteredToServer) {
                     try {
-                        if(this.customerBookingDb.addMovieByCustomerID(customerID,movieId,movieName,numberOfTickets))
+                        if(this.customerBookingDb.addMovieByCustomerID(customerID,movieId,movieName,numberOfTickets)) {
                             builder.append("Movie Booked Successfully \n");
+                        }
                         else
                             builder.append("Movie Booking Failed \n");
                     } catch (ParseException ex) {
@@ -250,8 +257,9 @@ public class MovieTicket extends IMovieTicketPOA {
                     if(numberOfTickets<=this.moviesDb.getSlotBookingCapacity(movieName,movieId)) {
                         if(this.customerBookingDb.noOfMoviesBookedInAWeek(customerID,movieId)<3) {
                             try {
-                                if(this.customerBookingDb.addMovieByCustomerID(customerID,movieId,movieName,numberOfTickets))
+                                if(this.customerBookingDb.addMovieByCustomerID(customerID,movieId,movieName,numberOfTickets)) {
                                     builder.append("Movie Booked Successfully \n");
+                                }
                                 else
                                     builder.append("Movie Booking Failed \n");
                             } catch (ParseException ex) {
@@ -329,7 +337,8 @@ public class MovieTicket extends IMovieTicketPOA {
 
     public String checkSlotAndBook(String customerID, String newMovieID, String newMovieName, int noOfTickets) {
         if(this.moviesDb.ifMovieIDExist(newMovieName,newMovieID)) {
-            if(noOfTickets<=this.moviesDb.getSlotBookingCapacity(newMovieName,newMovieID)) {
+            int noTicket = this.moviesDb.getSlotBookingCapacity(newMovieName,newMovieID);
+            if(noOfTickets<=noTicket && noTicket!=-1) {
                 try {
                     if(this.customerBookingDb.ifMovieBookingExist(customerID,newMovieID,newMovieName)) {
                         //TODO: Update number of tickets if movie booking already exists.
@@ -347,6 +356,10 @@ public class MovieTicket extends IMovieTicketPOA {
                 } catch (ParseException ex) {
                     return ex.getStackTrace().toString();
                 }
+            } else if(noTicket==-1){
+                response = "Bookings less than 0: not allowed";
+                logger.severe(Util.createLogMsg(customerID, newMovieID, newMovieName, noOfTickets, response));
+                return response;
             } else {
                 response = "No of tickets exceeding limit";
                 logger.severe(Util.createLogMsg(customerID, newMovieID, newMovieName, noOfTickets, response));
