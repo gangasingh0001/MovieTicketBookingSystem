@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1745ca5b-c36b-4f89-8a8b-068dab06ee3d" name="Changes" comment="Added Maven Dependency">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Log/Client/ATWA1212.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Log/Client/ATWA1212.log.1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Log/Client/ATWM1212.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Log/Server/ATWATER.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Log/Server/OUTREMONT.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Log/Server/VERDUN.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MovieTicketBookingSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MovieTicketBookingSystem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +141,7 @@
       <workItem from="1676075432639" duration="2349000" />
       <workItem from="1677270860580" duration="23000" />
       <workItem from="1677273237914" duration="4000" />
-      <workItem from="1677276425285" duration="2693000" />
+      <workItem from="1677276425285" duration="3065000" />
     </task>
     <task id="LOCAL-00001" summary="Hot fixes.">
       <created>1676068674913</created>
