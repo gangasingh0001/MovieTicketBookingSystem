@@ -1,6 +1,6 @@
 # MovieTicketBookingSystem
 
-#Assignment 2 (Web Services)
+#Assignment 3 (Web Services)
   
 2. Compile all java classes (Go to src/)
   ```javac Client/*.java Server/*.java Constant/*.java Log/*.java Shared/data/*.java Shared/Database/*.java```
