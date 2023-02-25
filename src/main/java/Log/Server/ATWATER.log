@@ -1,0 +1,459 @@
+23/02/2023 08:23:40: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:23:40: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:23:40: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:23:40: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:23:41: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@6a913dee
+23/02/2023 08:23:41: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:24:20: 23::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:24:20: 23::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+23/02/2023 08:27:39: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:27:39: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:27:39: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:27:39: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:27:40: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@4225d0e3
+23/02/2023 08:27:40: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:28:03: 24::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:28:03: 24::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:28:25: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:28:25: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:28:25: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:28:25: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:28:25: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@79414e82
+23/02/2023 08:28:25: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:28:42: 23::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:28:42: 23::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+
+23/02/2023 08:29:51: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:29:51: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:29:51: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:29:51: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:29:52: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@1b3611d4
+23/02/2023 08:29:52: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:30:01: 25::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:30:01: 25::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+
+23/02/2023 08:30:42: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:30:42: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:30:42: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:30:42: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:30:43: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@75d7690d
+23/02/2023 08:30:43: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:30:50: 25::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:30:50: 25::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:31:46: 25::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+23/02/2023 08:31:46: 25::Server.Service.MovieTicket::getBookingSchedule::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:32:23: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:32:23: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:32:23: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:32:23: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:32:24: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@611d8bae
+23/02/2023 08:32:24: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:32:56: 23::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+23/02/2023 08:32:56: 23::Server.Service.MovieTicket::getBookingSchedule::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:33:11: 23::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:33:11: 23::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:35:25: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:35:25: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:35:25: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:35:25: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:35:25: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@7767653a
+23/02/2023 08:35:25: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:35:49: 23::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:35:49: 23::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:43:14: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:43:14: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:43:14: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:43:14: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:43:14: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@2e8dbadd
+23/02/2023 08:43:14: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:43:37: 23::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+23/02/2023 08:43:37: 23::Server.Service.MovieTicket::getBookingSchedule::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:45:01: 23::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+23/02/2023 08:45:01: 23::Server.Service.MovieTicket::getBookingSchedule::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:45:18: 23::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:45:18: 23::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:45:39: 23::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+23/02/2023 08:45:39: 23::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 40| Slot: Morning | Movie Date: 11/02/2023,
+
+
+
+23/02/2023 08:48:42: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:48:42: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:48:42: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:48:42: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:48:42: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@489c4eb7
+23/02/2023 08:48:42: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:49:00: 24::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+23/02/2023 08:49:00: 24::Server.Service.MovieTicket::getBookingSchedule::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:49:49: 24::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+23/02/2023 08:49:49: 24::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 40| Slot: Morning | Movie Date: 11/02/2023,
+
+
+
+23/02/2023 08:50:50: 24::Server.Service.MovieTicket::exchangeTicket::CustomerID: ATWM1212 | MovieID: VERM110223 | MovieName: AVENGERS | ServerResponse: Movie exchanged successfully
+23/02/2023 08:51:01: 24::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+23/02/2023 08:51:01: 24::Server.Service.MovieTicket::getBookingSchedule::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Morning | MovieID: VERM110223 | Seats Booked: 3 | Movie Date: 11/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:52:15: 24::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+23/02/2023 08:52:15: 24::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 37| Slot: Morning | Movie Date: 11/02/2023,
+
+
+
+23/02/2023 08:52:20: 24::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 53| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+23/02/2023 08:52:20: 24::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 53| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:53:05: 24::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+23/02/2023 08:53:05: 24::Server.Service.MovieTicket::listMovieShowsAvailability:: MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 37| Slot: Morning | Movie Date: 11/02/2023,
+
+
+
+23/02/2023 08:57:50: 1::Server.Server::startListenerAndORBCore::Thread name: ATWATER
+23/02/2023 08:57:50: 11::Server.Server::requestlistener::Listener Datagram port : 2501
+23/02/2023 08:57:50: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:57:50: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+23/02/2023 08:57:50: 12::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@fa89e65
+23/02/2023 08:57:50: 12::Server.Server::createORB:: orb running at server ATWATER
+23/02/2023 08:59:29: 11::Server.Service.MovieTicket::checkSlotAndBook::RequestParameters: 
+CustomerID: ATWM1212 | MovieID: ATWA140223 | MovieName: AVENGERS | Number Of Tickets: 3 | ServerResponse: No slot available for movie
+23/02/2023 08:59:29: 11::Server.Server::requestlistener::Request Listener initiated for server ATWATER
+24/02/2023 04:13:18: 29::Server.Server::startRegistry::Creating registry at port: 2501
+24/02/2023 04:13:18: 1::Server.Server::startThread::Listener thread name: ATWATER
+24/02/2023 04:13:18: 1::Server.Server::startThread::Listener thread state: RUNNABLE
+24/02/2023 04:13:18: 1::Server.Server::startThread::RMI Registry thread name: ATWATER
+24/02/2023 04:13:18: 1::Server.Server::startThread::RMI Registry thread state: TERMINATED

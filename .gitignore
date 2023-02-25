@@ -32,9 +32,7 @@ bin/
 .DS_Store
 
 ### IntelliJ
-.idea/
-../idea
 
 ### Log files
-/src/Log/Client
-/src/Log/Server
+/src/Log/Client/
+/src/Log/Server/

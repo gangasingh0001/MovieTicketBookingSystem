@@ -1,0 +1,4 @@
+23/02/2023 08:59:07: 1::Client.FrontEnd::login::CustomerID: ATWM1212
+23/02/2023 08:59:07: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:59:07: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:59:29: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | MovieID: ATWA140223 | MovieName: AVATAR | ServerResponse: No slot available for movie

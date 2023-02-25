@@ -1,0 +1,139 @@
+23/02/2023 08:23:40: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:23:40: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:23:40: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:23:40: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:23:41: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@6abc6295
+23/02/2023 08:23:41: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:24:20: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:24:20: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:27:39: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:27:39: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:27:39: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:27:39: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:27:40: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@7b5efbcc
+23/02/2023 08:27:40: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:28:03: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:28:03: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:28:25: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:28:25: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:28:25: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:28:25: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:28:25: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@29e36c28
+23/02/2023 08:28:25: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:28:42: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:28:42: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:29:51: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:29:51: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:29:51: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:29:51: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:29:52: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@46832afd
+23/02/2023 08:29:52: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:30:01: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:30:01: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:30:42: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:30:42: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:30:42: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:30:42: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:30:43: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@5d9f122c
+23/02/2023 08:30:43: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:30:50: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:30:50: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:31:46: 17::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023, 
+
+23/02/2023 08:31:46: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:32:23: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:32:23: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:32:23: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:32:23: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:32:24: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@6ad1e707
+23/02/2023 08:32:24: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:32:56: 17::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023, 
+
+23/02/2023 08:32:56: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:33:11: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:33:11: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:35:25: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:35:25: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:35:25: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:35:25: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:35:25: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@c605a18
+23/02/2023 08:35:25: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:35:49: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:35:49: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:43:14: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:43:14: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:43:14: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:43:14: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:43:14: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@4caa1a84
+23/02/2023 08:43:14: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:43:37: 17::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023, 
+
+23/02/2023 08:43:37: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:45:01: 17::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023, 
+
+23/02/2023 08:45:01: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:45:18: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:45:18: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:45:39: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: AVENGERS not found
+23/02/2023 08:45:39: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:48:42: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:48:42: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:48:42: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:48:42: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:48:42: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@15f21237
+23/02/2023 08:48:42: 18::Server.Server::createORB:: orb running at server OUTREMONT
+23/02/2023 08:49:00: 17::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023, 
+
+23/02/2023 08:49:00: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:49:49: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: AVENGERS not found
+23/02/2023 08:49:49: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:51:01: 17::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023, 
+
+23/02/2023 08:51:01: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:52:15: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: AVENGERS not found
+23/02/2023 08:52:15: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:52:20: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023, 
+
+23/02/2023 08:52:20: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:53:05: 17::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: AVENGERS not found
+23/02/2023 08:53:05: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:57:50: 17::Server.Server::requestlistener::Listener Datagram port : 2503
+23/02/2023 08:57:50: 1::Server.Server::startListenerAndORBCore::Thread name: OUTREMONT
+23/02/2023 08:57:50: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:57:50: 17::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+23/02/2023 08:57:50: 18::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@1808c02f
+23/02/2023 08:57:50: 18::Server.Server::createORB:: orb running at server OUTREMONT
+24/02/2023 04:13:18: 37::Server.Server::startRegistry::Creating registry at port: 2503
+24/02/2023 04:13:18: 1::Server.Server::startThread::Listener thread name: OUTREMONT
+24/02/2023 04:13:18: 1::Server.Server::startThread::Listener thread state: RUNNABLE
+24/02/2023 04:13:18: 1::Server.Server::startThread::RMI Registry thread name: OUTREMONT
+24/02/2023 04:13:18: 1::Server.Server::startThread::RMI Registry thread state: TERMINATED

@@ -1,0 +1,194 @@
+23/02/2023 08:23:40: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:23:40: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:23:40: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:23:40: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:23:41: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@25052678
+23/02/2023 08:23:41: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:24:20: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:24:20: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:27:39: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:27:39: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:27:39: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:27:39: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:27:40: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@7faa9764
+23/02/2023 08:27:40: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:28:03: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:28:03: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:28:25: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:28:25: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:28:25: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:28:25: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:28:25: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@448e3837
+23/02/2023 08:28:25: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:28:42: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: 
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:28:42: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:29:51: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:29:51: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:29:51: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:29:51: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:29:52: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@43df1bb5
+23/02/2023 08:29:52: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:30:01: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:30:01: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:30:42: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:30:42: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:30:42: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:30:42: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:30:43: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@2120d96f
+23/02/2023 08:30:43: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:30:50: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:30:50: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:31:46: 14::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+
+23/02/2023 08:31:46: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:32:23: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:32:23: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:32:23: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:32:23: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:32:24: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@512bbf87
+23/02/2023 08:32:24: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:32:56: 14::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+
+23/02/2023 08:32:56: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:33:11: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:33:11: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:35:25: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:35:25: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:35:25: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:35:25: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:35:25: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@64c01726
+23/02/2023 08:35:25: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:35:49: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:35:49: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:43:14: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:43:14: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:43:14: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:43:14: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:43:14: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@7bbb482c
+23/02/2023 08:43:14: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:43:37: 14::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+
+23/02/2023 08:43:37: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:45:01: 14::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+
+23/02/2023 08:45:01: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:45:18: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:45:18: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:45:39: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 40| Slot: Morning | Movie Date: 11/02/2023, 
+
+23/02/2023 08:45:39: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:48:42: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:48:42: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:48:42: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:48:42: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:48:42: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@7e6e298
+23/02/2023 08:48:42: 15::Server.Server::createORB:: orb running at server VERDUN
+23/02/2023 08:49:00: 14::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+
+23/02/2023 08:49:00: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:49:49: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 40| Slot: Morning | Movie Date: 11/02/2023, 
+
+23/02/2023 08:49:49: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:50:08: 14::Server.Service.MovieTicket::checkSlotAndBook::RequestParameters: 
+CustomerID: ATWM1212 | MovieID: VERE160223 | MovieName: AVENGERS | Number Of Tickets: 3 | ServerResponse: Cannot swap with the existing movie booking
+23/02/2023 08:50:08: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:50:50: 14::Server.Service.MovieTicket::checkSlotAndBook::RequestParameters: 
+CustomerID: ATWM1212 | MovieID: VERM110223 | MovieName: AVENGERS | Number Of Tickets: 3 | ServerResponse: Movie exchanged successfully
+23/02/2023 08:50:50: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:51:01: 14::Server.Service.MovieTicket::getCustomerBookingList::CustomerID: ATWM1212 | ServerResponse: Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Morning | MovieID: VERM110223 | Seats Booked: 3 | Movie Date: 11/02/2023, 
+
+23/02/2023 08:51:01: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:52:15: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 37| Slot: Morning | Movie Date: 11/02/2023, 
+
+23/02/2023 08:52:15: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:52:20: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023, 
+
+23/02/2023 08:52:20: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:53:05: 14::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVENGERS | ServerResponse: VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 37| Slot: Morning | Movie Date: 11/02/2023, 
+
+23/02/2023 08:53:05: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:57:50: 14::Server.Server::requestlistener::Listener Datagram port : 2502
+23/02/2023 08:57:50: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
+23/02/2023 08:57:50: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
+23/02/2023 08:57:50: 14::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+23/02/2023 08:57:50: 15::Server.Server::createORB::Path [Lorg.omg.CosNaming.NameComponent;@11b9c3ad
+23/02/2023 08:57:50: 15::Server.Server::createORB:: orb running at server VERDUN
+24/02/2023 04:13:18: 33::Server.Server::startRegistry::Creating registry at port: 2502
+24/02/2023 04:13:18: 1::Server.Server::startThread::Listener thread name: VERDUN
+24/02/2023 04:13:18: 1::Server.Server::startThread::Listener thread state: RUNNABLE
+24/02/2023 04:13:18: 1::Server.Server::startThread::RMI Registry thread name: VERDUN
+24/02/2023 04:13:18: 1::Server.Server::startThread::RMI Registry thread state: TERMINATED

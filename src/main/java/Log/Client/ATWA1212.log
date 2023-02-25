@@ -1,0 +1,269 @@
+23/02/2023 08:24:07: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:24:07: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:24:07: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:24:17: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:24:17: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:24:17: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:24:20: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+23/02/2023 08:27:25: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:27:25: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:27:25: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:27:50: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:27:50: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:27:50: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:28:03: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:28:40: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:28:40: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:28:40: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:28:42: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: 
+ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+
+23/02/2023 08:29:58: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:29:58: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:29:58: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:30:01: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+
+23/02/2023 08:30:48: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:30:48: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:30:48: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:30:50: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:31:46: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:32:50: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:32:50: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:32:50: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:32:56: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:33:11: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:35:44: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:35:44: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:35:44: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:35:49: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:36:28: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:36:28: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:36:28: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:43:23: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:43:23: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:43:23: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:43:37: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:48:50: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:48:50: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:48:50: 1::Client.FrontEnd::login::Server PORT: 2501
+23/02/2023 08:49:00: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA140223 | Seats Booked: 3 | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:50:08: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | MovieID: ATWA140223 | MovieName: AVATAR | ServerResponse: Cannot swap with the existing movie booking
+23/02/2023 08:50:50: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | MovieID: ATWA140223 | MovieName: AVATAR | ServerResponse: Movie exchanged successfully
+23/02/2023 08:51:01: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWM1212 | ServerResponse: ATWATER
+Movie Name: AVATAR | Slot: Afternoon | MovieID: ATWA070223 | Seats Booked: 3 | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVENGERS | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: TITANIC | Slot: Evening | MovieID: VERE160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Afternoon | MovieID: VERA160223 | Seats Booked: 12 | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | Slot: Morning | MovieID: VERM110223 | Seats Booked: 3 | Movie Date: 11/02/2023,
+
+OUTERMONT 
+Movie Name: TITANIC | Slot: Morning | MovieID: OUTM190223 | Seats Booked: 4 | Movie Date: 19/02/2023,
+23/02/2023 08:52:15: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 37| Slot: Morning | Movie Date: 11/02/2023,
+
+
+
+23/02/2023 08:52:20: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM080223 | Seats Available: 10| Slot: Morning | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA080223 | Seats Available: 20| Slot: Afternoon | Movie Date: 08/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA190223 | Seats Available: 50| Slot: Afternoon | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: ATWM070223 | Seats Available: 50| Slot: Morning | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA140223 | Seats Available: 53| Slot: Afternoon | Movie Date: 14/02/2023, 
+Movie Name: AVATAR | MovieID: ATWA070223 | Seats Available: 40| Slot: Afternoon | Movie Date: 07/02/2023, 
+Movie Name: AVATAR | MovieID: ATWE070223 | Seats Available: 40| Slot: Evening | Movie Date: 07/02/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA160223 | Seats Available: 30| Slot: Afternoon | Movie Date: 16/02/2023, 
+Movie Name: AVATAR | MovieID: VERA170223 | Seats Available: 30| Slot: Afternoon | Movie Date: 17/02/2023, 
+Movie Name: AVATAR | MovieID: VERM150223 | Seats Available: 30| Slot: Morning | Movie Date: 15/02/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE190223 | Seats Available: 30| Slot: Evening | Movie Date: 19/02/2023, 
+Movie Name: AVATAR | MovieID: OUTE140223 | Seats Available: 30| Slot: Evening | Movie Date: 14/02/2023,
+
+23/02/2023 08:53:05: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVENGERS | ServerResponse: ATWATER 
+Movie Name: AVENGERS | MovieID: ATWE190822 | Seats Available: 100| Slot: Evening | Movie Date: 19/08/2022, 
+
+VERDUN 
+Movie Name: AVENGERS | MovieID: VERE160223 | Seats Available: 30| Slot: Evening | Movie Date: 16/02/2023, 
+Movie Name: AVENGERS | MovieID: VERM110223 | Seats Available: 37| Slot: Morning | Movie Date: 11/02/2023,
+
+
+
+23/02/2023 08:58:02: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+23/02/2023 08:58:02: 1::Client.FrontEnd::login::Server Name: ATWATER
+23/02/2023 08:58:02: 1::Client.FrontEnd::login::Server PORT: 2501
