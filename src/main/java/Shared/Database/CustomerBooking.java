@@ -36,6 +36,7 @@ public class CustomerBooking implements ICustomerBooking{
         movieInfo.put(movieID,movieObj);
         this.customerBooking.put(customerID,movieInfo);
         return true;
+
     }
 
     public Map<String,MovieState> getTicketsBookedByCustomerID(String customerID) {
