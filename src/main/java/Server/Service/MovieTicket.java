@@ -51,7 +51,7 @@ public class MovieTicket extends UnicastRemoteObject implements IMovieTicket{
         logger.severe(Util.createLogMsg(null, movieId, movieName, bookingCapacity, response));
         return response;
     }
-
+//Hello automation
     public String removeMovieSlots(String movieId, String movieName) throws RemoteException, ParseException {
         if (!Util.getServerPrefixByMovieID(movieId).equals(this.serverInfo.getServerName())) {
             logger.severe(Util.createLogMsg(null, movieId, movieName, -1, "Unauthorised: Cannot delete slots on other theaters"));
