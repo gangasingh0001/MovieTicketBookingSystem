@@ -197,6 +197,18 @@ public class Server extends Thread{
             response = movieTicketServant.getNoOfBookingsInWeek(customerID,movieID);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.checkSlotAndBook)) {
             response = movieTicketServant.checkSlotAndBook(customerID,movieID,movieName,numberOfTickets);
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.ifMovieBookingExist)) {
+            response = String.valueOf(movieTicketServant.ifMovieBookingExist(customerID,movieID));
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getNoOfBookings)) {
+            response = String.valueOf(movieTicketServant.getNoOfBookings(customerID,movieID, movieName));
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getNoOfBookingSlotAvailable)) {
+            response = String.valueOf(movieTicketServant.getNoOfBookingSlotAvailable(movieID, movieName));
+        }
+//        else if (invokedMethod.equalsIgnoreCase(ServiceConstant.cancelBooking)) {
+//            response = String.valueOf(movieTicketServant.cancelBooking(customerID, movieID, movieName));
+//        }
+        else if (invokedMethod.equalsIgnoreCase(ServiceConstant.decrementBookingSlot)) {
+            response = String.valueOf(movieTicketServant.decrementBookingSlot(movieID, movieName, numberOfTickets));
         }
         return response;
     }

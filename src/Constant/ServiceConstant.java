@@ -20,4 +20,9 @@ public class ServiceConstant {
     public static final String findNextAvailableSlot = "findNextAvailableSlot";
     public static final String getNoOfBookingsInWeek = "getNoOfBookingsInWeek";
     public static final String checkSlotAndBook = "checkSlotAndBook";
+    public static final String ifMovieBookingExist = "ifMovieBookingExist";
+    public static final String getNoOfBookings = "getNoOfBookings";
+    public static final String getNoOfBookingSlotAvailable = "getNoOfBookingSlotAvailable";
+    public static final String cancelBooking = "cancelBooking";
+    public static final String decrementBookingSlot = "decrementBookingSlot";
 }

@@ -54,8 +54,11 @@ public class CustomerBooking implements ICustomerBooking{
     public int getNoOfTicketsBookedByMovieID(String customerID, String movieID, String movieName) {
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
         if(bookingMap!=null){
-            if(bookingMap.get(movieID)!=null)
+            System.out.println("Booking map is not null" + bookingMap);
+            if(bookingMap.get(movieID)!=null){
+                System.out.println("Booking map get movie id not null "+bookingMap.get(movieID));
                 return bookingMap.get(movieID).getMovieTicketInfo().get(movieName);
+            }
             return -1;
         }
         return -1;
