@@ -11,6 +11,7 @@ import Shared.data.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -103,19 +104,35 @@ public class MovieTicket extends IMovieTicketPOA {
                         StringBuilder sb = new StringBuilder();
                         if(movieInfo.size()>=1) {
                             sortedList = Util.sortMovieByDates(movieInfo);
-                            if(sortedList.size()>0) {
+                            int i=0;
+                            System.out.println("Sorted list size "+sortedList.size());
+                            for(i=0;i<sortedList.size();i++) {
+                                System.out.println(sortedList.get(i).getMovieID());
+                                if(Util.getSlotDateByMovieID(sortedList.get(i).getMovieID()).compareTo(new Date())>=0) break;
+                            }
+                            System.out.println("i = "+i);
+                            if(i<sortedList.size() && sortedList.size()>0 && Util.getSlotDateByMovieID(sortedList.get(i).getMovieID()).compareTo(new Date())>=0) {
+                                System.out.println("date "+Util.getSlotDateByMovieID(sortedList.get(i).getMovieID()));
+                                System.out.println("date "+new Date());
+                                System.out.println("Slot dae compare "+ Util.getSlotDateByMovieID(sortedList.get(i).getMovieID()).compareTo(new Date()));
                                 int currentNumberOfTicketBookedByCustomer = this.customerBookingDb.getNoOfTicketsBookedByMovieID(bookingCustomerID, movieId, movieName);
-
-                                response = this.bookMovieTickets(bookingCustomerID, sortedList.get(0).getMovieID(), movieName, currentNumberOfTicketBookedByCustomer);
-                                if(bookingSuccessful) {
-                                    this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId,movieName);
+                                if (Util.getServerPrefixByMovieID(sortedList.get(i).getMovieID()).equals(this.serverInfo.getServerName())) {
+                                    response = this.bookMovieTickets(bookingCustomerID, sortedList.get(i).getMovieID(), movieName, currentNumberOfTicketBookedByCustomer);
+                                }else {
+                                    response = this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(Util.getServerPrefixByMovieID(sortedList.get(i).getMovieID())), "bookTicket", bookingCustomerID, movieName, sortedList.get(i).getMovieID(), currentNumberOfTicketBookedByCustomer);
+                                }
+                                if (bookingSuccessful|| response.equals("Movie Booked Successfully")) {
+                                    this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId, movieName);
                                     this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId);
-                                    sb.append("Next Slot: "+ sortedList.get(0).getMovieID() +" at " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(sortedList.get(0).getMovieID())) + " theater booked for Customer: " +bookingCustomerID + "\nSlot: " + movieId +  " deleted from " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(movieId)) + " theater");
+                                    sb.append("Next Slot: " + sortedList.get(i).getMovieID() + " at " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(sortedList.get(i).getMovieID())) + " theater booked for Customer: " + bookingCustomerID + "\nSlot: " + movieId + " deleted from " + Util.getServerNameByServerPrefix(Util.getServerPrefixByMovieID(movieId)) + " theater");
                                     logger.severe(Util.createLogMsg(bookingCustomerID, movieId, movieName, -1, sb.toString()));
                                     return sb.toString();
-                                }else {
+                                } else {
                                     return response.trim().toString();
                                 }
+
+                            } else {
+                                this.customerBookingDb.cancelMovieByMovieID(bookingCustomerID, movieId,movieName);
                             }
                         } else {
                             response = this.moviesDb.deleteMovieSlotByMovieNameAndMovieID(movieName, movieId) + "No next slot available for booking...";;
@@ -361,6 +378,7 @@ public class MovieTicket extends IMovieTicketPOA {
                         //this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(Util.getServerPrefixByMovieID(newMovieID)), "decrementBookingSlot", customerID, newMovieName, newMovieID, oldMovieBookings);
                         response = this.cancelMovieTickets(customerID, movieID, movieName,oldMovieBookings);
                         logger.severe(Util.createLogMsg(customerID, movieID, movieName, oldMovieBookings, "Movie Exchanged Successfully"));
+                        response = "Movie Exchanged Successfully";
                         return response;
                     } else {
                         return "Booking cannot be done. Number of booking exceeded limit";
@@ -372,6 +390,7 @@ public class MovieTicket extends IMovieTicketPOA {
                         response = this.udpService.sendUDPMessage(this.serverInfo.getServerPortNumber(Util.getServerPrefixByMovieID(newMovieID)), "bookTicket", customerID, newMovieName, newMovieID, oldMovieBookings);
                         this.cancelMovieTickets(customerID, movieID, movieName,oldMovieBookings);
                         logger.severe(Util.createLogMsg(customerID, movieID, movieName, oldMovieBookings, "Movie Exchanged Successfully"));
+                        response = "Movie Exchanged Successfully";
                         return response;
                     } else if(moviesBookedAtOtherTheaters>=3){
                         return "Cannot book more than 3 movies in week";
@@ -401,6 +420,7 @@ public class MovieTicket extends IMovieTicketPOA {
                         response = this.bookMovieTickets(customerID,newMovieID,newMovieName,oldMovieBookings+newMovieBookingAlreadyBooked);
                         response = cancelMovieTickets(customerID, movieID, movieName,oldMovieBookings);
                         logger.severe(Util.createLogMsg(customerID, movieID, movieName, oldMovieBookings, "Movie Exchanged Successfully"));
+                        response = "Movie Exchanged Successfully";
                         return response;
                     } else {
                         return "Booking cannot be done. Number of booking exceeded limit";
@@ -409,6 +429,7 @@ public class MovieTicket extends IMovieTicketPOA {
                     if (oldMovieBookings<=newMovieSlotAvailable) {
                         response = this.bookMovieTickets(customerID,newMovieID,newMovieName,oldMovieBookings);
                         response = cancelMovieTickets(customerID, movieID, movieName,oldMovieBookings);
+                        response = "Movie Exchanged Successfully";
                         logger.severe(Util.createLogMsg(customerID, movieID, movieName, oldMovieBookings, "Movie Exchanged Successfully"));
                         return response;
                     } else {
