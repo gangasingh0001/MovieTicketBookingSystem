@@ -1,4 +1,0 @@
-05/03/2023 10:08:13: 17::Server.Server::requestlistener::Listener Datagram port : 2502
-05/03/2023 10:08:13: 17::Server.Server::requestlistener::Request Listener initiated for server VERDUN
-05/03/2023 10:08:13: 1::Server.Server::startListenerAndORBCore::Thread name: VERDUN
-05/03/2023 10:08:13: 1::Server.Server::startListenerAndORBCore::State of thread: RUNNABLE
