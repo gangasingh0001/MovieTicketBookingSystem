@@ -1,13 +1,13 @@
 package Server.Service;
 
 import Constant.ServerConstant;
-import MovieTicketApp.IMovieTicketPOA;
 import Shared.Database.ICustomerBooking;
 import Shared.Database.IMovies;
 import Shared.Entity.IResponse;
 import Shared.Entity.Response;
 import Shared.data.*;
 
+import javax.jws.WebService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class MovieTicket extends IMovieTicketPOA {
+@WebService(endpointInterface = "Server.Server.IMovieTicket")
+public class MovieTicket implements IMovieTicket {
     private final IServerInfo serverInfo;
     private final IUdp udpService;
     private final IMovie movieService;
