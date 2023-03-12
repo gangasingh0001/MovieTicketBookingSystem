@@ -4,15 +4,22 @@ import Constant.ClientConstant;
 import Constant.ServerConstant;
 import Log.ILogging;
 import Log.Logging;
-import Server.IMovieTicket;
+import Server.Service.IMovieTicket;
 import Shared.data.IMovie;
 import Shared.data.IUser;
 import Shared.data.Util;
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.rmi.registry.Registry;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -43,64 +50,57 @@ public class FrontEnd {
         this.args = args;
     }
 
-    public void getUrlRef() {
-        try {
-            url = new URL("http://localhost:8080/"+Util.getServerFullNameByCustomerID(this.userService.getUserID())+"?wsdl");
-            QName qName = new QName("http://Server/", "MovieTicketService");
-            serviceAPI = Service.create(url, qName);
-            movieTicketServiceObj = serviceAPI.getPort(IMovieTicket.class); //Port of Interface at which Implementation is running
-        } catch (MalformedURLException ex) {
-            ex.getStackTrace();
-        }
-    }
-
     public void attachLogging(String userID) {
         logging = new Logging(userID, true, false);
         logger = logging.attachFileHandlerToLogger(logger);
     }
 
-    public void test() {
-        Runnable client1 = () -> {
-            System.out.println("Listing movie shows for ATWM5678");
-            attachLogging("ATWM1234");
-            this.userService.setUserID("ATWM1234");
-            response = movieTicketServiceObj.listMovieShowsAvailability("AVATAR");
-            System.out.println(response);
-            logger.severe(response);
-            System.out.println("********** END Task 1 ***********");
-        };
-        Runnable client2 = () -> {
-            System.out.println("Listing movie shows for ATWM5678");
-            attachLogging("ATWM5678");
-            this.userService.setUserID("ATWM5678");
-            response = movieTicketServiceObj.listMovieShowsAvailability("AVATAR");
-            System.out.println(response);
-            logger.severe(response);
-            System.out.println("********** END Task 2 ***********");
-        };
-        Runnable client3 = () -> {
-            attachLogging("ATWM1234");
-            this.userService.setUserID("ATWM1234");
-            String response = movieTicketServiceObj.addMovieSlots("ATWE070223", "AVATAR", 10);
-            System.out.println(response);
-            System.out.println("********** END Task 3 ***********");
-        };
-        Runnable client4 = () -> {
-            attachLogging("ATWM5678");
-            this.userService.setUserID("ATWM5678");
-            String response = movieTicketServiceObj.addMovieSlots("ATWE070223", "AVATAR", 10);
-            System.out.println(response);
-            System.out.println("********** END Task 4 ***********");
-        };
-        Thread thread1 = new Thread(client1);
-        Thread thread2 = new Thread(client2);
-        Thread thread3 = new Thread(client3);
-        Thread thread4 = new Thread(client4);
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        thread4.start();
-    }
+//    public void test() {
+//        Runnable client1 = () -> {
+//            System.out.println("Listing movie shows for ATWM5678");
+//            attachLogging("ATWM1234");
+//            this.userService.setUserID("ATWM1234");
+//            getServantRef(this.args);
+//            response = movieTicketServantObj.listMovieShowsAvailability("AVATAR");
+//            System.out.println(response);
+//            logger.severe(response);
+//            System.out.println("********** END Task 1 ***********");
+//        };
+//        Runnable client2 = () -> {
+//            System.out.println("Listing movie shows for ATWM5678");
+//            attachLogging("ATWM5678");
+//            this.userService.setUserID("ATWM5678");
+//            getServantRef(this.args);
+//            response = movieTicketServantObj.listMovieShowsAvailability("AVATAR");
+//            System.out.println(response);
+//            logger.severe(response);
+//            System.out.println("********** END Task 2 ***********");
+//        };
+//        Runnable client3 = () -> {
+//            attachLogging("ATWM1234");
+//            this.userService.setUserID("ATWM1234");
+//            getServantRef(this.args);
+//            String response = movieTicketServantObj.addMovieSlots("ATWE070223", "AVATAR", 10);
+//            System.out.println(response);
+//            System.out.println("********** END Task 3 ***********");
+//        };
+//        Runnable client4 = () -> {
+//            attachLogging("ATWM5678");
+//            this.userService.setUserID("ATWM5678");
+//            getServantRef(this.args);
+//            String response = movieTicketServantObj.addMovieSlots("ATWE070223", "AVATAR", 10);
+//            System.out.println(response);
+//            System.out.println("********** END Task 4 ***********");
+//        };
+//        Thread thread1 = new Thread(client1);
+//        Thread thread2 = new Thread(client2);
+//        Thread thread3 = new Thread(client3);
+//        Thread thread4 = new Thread(client4);
+//        thread1.start();
+//        thread2.start();
+//        thread3.start();
+//        thread4.start();
+//    }
 
     public void login() {
         Scanner scanner = new Scanner(System.in);
@@ -126,6 +126,17 @@ public class FrontEnd {
 
         while (!logout)
             menu();
+    }
+
+    public void getUrlRef() {
+        try {
+            url = new URL("http://localhost:8080/"+Util.getServerFullNameByCustomerID(this.userService.getUserID())+"?wsdl");
+            QName qName = new QName("http://Server/", "MovieTicketService");
+            serviceAPI = Service.create(url, qName);
+            movieTicketServiceObj = serviceAPI.getPort(IMovieTicket.class); //Port of Interface at which Implementation is running
+        } catch (MalformedURLException ex) {
+            ex.getStackTrace();
+        }
     }
 
     public void menu() {
@@ -301,6 +312,39 @@ public class FrontEnd {
                     return res;
                 }
                 case 7 : {
+                    String res;
+                    scanner.nextLine();
+                    System.out.println("Enter Customer ID:");
+                    String customerID = scanner.nextLine().trim().toUpperCase();
+
+                    while (!this.movieService.validateUserID(customerID)) {
+                        System.out.println("Invalid User ID Please enter again:");
+                        customerID = scanner.nextLine().trim().toUpperCase();
+                    }
+
+                    this.movieService.moviesPrompt("Select a Movie to exchange ticket");
+                    int oldSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter current MovieID to exchange ticket (e.g ATWM190120)");
+                    String movieID = getMovieIDInput();
+
+                    this.movieService.theaterPrompt("Select new Theater");
+                    int selectedTheater = getTheaterInput();
+                    scanner.nextLine();
+
+                    this.movieService.moviesPrompt("Select a new Movie");
+                    int newSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter MovieID (e.g ATWM190120) for movie: "+ this.movieService.getMovieName(newSelectedMovie).toUpperCase() + " at Theater: "+this.movieService.getTheaterName(selectedTheater).toUpperCase());
+                    String newMovieID = getMovieIDInput();
+
+                    res = movieTicketServiceObj.exchangeTicket(customerID,movieID,this.movieService.getMovieName(oldSelectedMovie).toUpperCase(),newMovieID,this.movieService.getMovieName(newSelectedMovie).toUpperCase());
+                    logger.severe(Util.createLogMsg(customerID,movieID, this.movieService.getMovieName(oldSelectedMovie).toUpperCase(), -1, res));
+                    return res;
+                }
+                case 8 : {
                     logout = true;
                     return null;
                 }
@@ -346,6 +390,30 @@ public class FrontEnd {
                     return res;
                 }
                 case 4 : {
+                    String res;
+                    this.movieService.moviesPrompt("Select a Movie to exchange ticket");
+                    int oldSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter current MovieID to exchange ticket (e.g ATWM190120)");
+                    String movieID = getMovieIDInput();
+
+                    this.movieService.theaterPrompt("Select new Theater");
+                    int selectedTheater = getTheaterInput();
+                    scanner.nextLine();
+
+                    this.movieService.moviesPrompt("Select a new Movie");
+                    int newSelectedMovie = getMovieInput();
+                    scanner.nextLine();
+
+                    System.out.println("Please enter MovieID (e.g ATWM190120) for movie: "+ this.movieService.getMovieName(newSelectedMovie).toUpperCase() + " at Theater: "+this.movieService.getTheaterName(selectedTheater).toUpperCase());
+                    String newMovieID = getMovieIDInput();
+
+                    res = movieTicketServiceObj.exchangeTicket(this.userService.getUserID(),movieID,this.movieService.getMovieName(oldSelectedMovie).toUpperCase(),newMovieID,this.movieService.getMovieName(newSelectedMovie).toUpperCase());
+                    logger.severe(Util.createLogMsg(this.userService.getUserID(),movieID, this.movieService.getMovieName(oldSelectedMovie).toUpperCase(), -1, res));
+                    return res;
+                }
+                case 5 : {
                     logout = true;
                     return null;
                 }

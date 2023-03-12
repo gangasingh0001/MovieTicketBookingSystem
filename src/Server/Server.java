@@ -2,12 +2,12 @@ package Server;
 
 import Constant.ServerConstant;
 import Constant.ServiceConstant;
+import Server.Service.MovieTicket;
 import Shared.Database.ICustomerBooking;
 import Shared.Database.IMovies;
 import Shared.data.IMovie;
 import Shared.data.IServerInfo;
 import Shared.data.IUdp;
-import Shared.data.Util;
 
 import javax.xml.ws.Endpoint;
 import java.io.IOException;
@@ -114,7 +114,7 @@ public class Server extends Thread{
         }
     }
 
-     private String methodInvocation(MovieTicket movieTicketObj, String[] requestParamsArray, String response) {
+     private String methodInvocation(MovieTicket movieTicketServant, String[] requestParamsArray, String response) {
         String invokedMethod = requestParamsArray[0];
         String customerID = requestParamsArray[1];
         String movieName = requestParamsArray[2];
@@ -123,19 +123,31 @@ public class Server extends Thread{
         boolean isRegisteredToServer = Boolean.parseBoolean(requestParamsArray[4]);
         int numberOfTickets = Integer.parseInt(requestParamsArray[4]);
         if (invokedMethod.equalsIgnoreCase(ServiceConstant.getMoviesListInTheatre)) {
-            response = movieTicketObj.getMoviesListInTheatre(movieName);
+            response = movieTicketServant.getMoviesListInTheatre(movieName);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.bookTicket)) {
-            response = movieTicketObj.bookTicket(customerID,movieID,movieName,numberOfTickets,isRegisteredToServer);
+            response = movieTicketServant.bookTicket(customerID,movieID,movieName,numberOfTickets,isRegisteredToServer);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getCustomerBookingList)) {
-            response = movieTicketObj.getCustomerBookingList(customerID);
+            response = movieTicketServant.getCustomerBookingList(customerID);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.cancelTicket)) {
-            response = movieTicketObj.cancelTicket(customerID,movieID,movieName,numberOfTickets);
+            response = movieTicketServant.cancelTicket(customerID,movieID,movieName,numberOfTickets);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.findNextAvailableSlot)) {
-            response = movieTicketObj.findNextAvailableSlot(customerID,movieID,movieName);
+            response = movieTicketServant.findNextAvailableSlot(customerID,movieID,movieName);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getNoOfBookingsInWeek)) {
-            response = movieTicketObj.getNoOfBookingsInWeek(customerID,movieID);
+            response = movieTicketServant.getNoOfBookingsInWeek(customerID,movieID);
         } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.checkSlotAndBook)) {
-            response = movieTicketObj.checkSlotAndBook(customerID,movieID,movieName,numberOfTickets);
+            response = movieTicketServant.checkSlotAndBook(customerID,movieID,movieName,numberOfTickets);
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.ifMovieBookingExist)) {
+            response = String.valueOf(movieTicketServant.ifMovieBookingExist(customerID,movieID));
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getNoOfBookings)) {
+            response = String.valueOf(movieTicketServant.getNoOfBookings(customerID,movieID, movieName));
+        } else if (invokedMethod.equalsIgnoreCase(ServiceConstant.getNoOfBookingSlotAvailable)) {
+            response = String.valueOf(movieTicketServant.getNoOfBookingSlotAvailable(movieID, movieName));
+        }
+//        else if (invokedMethod.equalsIgnoreCase(ServiceConstant.cancelBooking)) {
+//            response = String.valueOf(movieTicketServant.cancelBooking(customerID, movieID, movieName));
+//        }
+        else if (invokedMethod.equalsIgnoreCase(ServiceConstant.decrementBookingSlot)) {
+            response = String.valueOf(movieTicketServant.decrementBookingSlot(movieID, movieName, numberOfTickets));
         }
         return response;
     }
