@@ -131,7 +131,7 @@ public class FrontEnd {
     public void getUrlRef() {
         try {
             url = new URL("http://localhost:8080/"+Util.getServerFullNameByCustomerID(this.userService.getUserID())+"?wsdl");
-            QName qName = new QName("http://Server/", "MovieTicketService");
+            QName qName = new QName("http://Service.Server/", "MovieTicketService");
             serviceAPI = Service.create(url, qName);
             movieTicketServiceObj = serviceAPI.getPort(IMovieTicket.class); //Port of Interface at which Implementation is running
         } catch (MalformedURLException ex) {
