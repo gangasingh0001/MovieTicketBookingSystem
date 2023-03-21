@@ -1,0 +1,17 @@
+21/03/2023 03:00:27: 1::Client.FrontEnd::login::CustomerID: ATWA1212
+21/03/2023 03:00:27: 1::Client.FrontEnd::login::Server Name: ATWATER
+21/03/2023 03:00:27: 1::Client.FrontEnd::login::Server PORT: 2501
+21/03/2023 03:00:31: 1::Client.FrontEnd::referToSelectedMenuObj::CustomerID: ATWA1212 | MovieName: AVATAR | ServerResponse: ATWATER 
+Movie Name: AVATAR | MovieID: ATWM070323 | Seats Available: 50| Slot: Morning | Movie Date: 07/03/2023, 
+Movie Name: AVATAR | MovieID: ATWA140323 | Seats Available: 50| Slot: Afternoon | Movie Date: 14/03/2023, 
+Movie Name: AVATAR | MovieID: ATWA040323 | Seats Available: 50| Slot: Afternoon | Movie Date: 04/03/2023, 
+Movie Name: AVATAR | MovieID: ATWA110323 | Seats Available: 50| Slot: Afternoon | Movie Date: 11/03/2023, 
+
+VERDUN 
+Movie Name: AVATAR | MovieID: VERM150323 | Seats Available: 30| Slot: Morning | Movie Date: 15/03/2023,
+
+OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE140323 | Seats Available: 30| Slot: Evening | Movie Date: 14/03/2023,
+
+21/03/2023 03:02:59: 1::Client.FrontEnd::referToSelectedMenuObj::RequestParameters: 
+CustomerID: ATWA1212 | MovieID: ATWM070323 | MovieName: AVATAR | Number Of Tickets: 12 | ServerResponse: Cannot add slot for already finished movie shows

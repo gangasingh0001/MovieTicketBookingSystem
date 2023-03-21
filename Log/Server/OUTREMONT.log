@@ -1,0 +1,9 @@
+21/03/2023 03:00:12: 1::Server.Server::startListenerAndRegisterEndPoint::Endpoint: com.sun.xml.internal.ws.transport.http.server.EndpointImpl@78123e82
+21/03/2023 03:00:12: 1::Server.Server::startListenerAndRegisterEndPoint::Thread name: OUTREMONT
+21/03/2023 03:00:12: 1::Server.Server::startListenerAndRegisterEndPoint::State of thread: RUNNABLE
+21/03/2023 03:00:12: 20::Server.Server::requestlistener::Listener Datagram port : 2503
+21/03/2023 03:00:12: 20::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT
+21/03/2023 03:00:31: 20::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: OUTREMONT 
+Movie Name: AVATAR | MovieID: OUTE140323 | Seats Available: 30| Slot: Evening | Movie Date: 14/03/2023, 
+
+21/03/2023 03:00:31: 20::Server.Server::requestlistener::Request Listener initiated for server OUTREMONT

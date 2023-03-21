@@ -1,0 +1,9 @@
+21/03/2023 03:00:12: 1::Server.Server::startListenerAndRegisterEndPoint::Endpoint: com.sun.xml.internal.ws.transport.http.server.EndpointImpl@ba54932
+21/03/2023 03:00:12: 1::Server.Server::startListenerAndRegisterEndPoint::Thread name: VERDUN
+21/03/2023 03:00:12: 18::Server.Server::requestlistener::Listener Datagram port : 2502
+21/03/2023 03:00:12: 1::Server.Server::startListenerAndRegisterEndPoint::State of thread: RUNNABLE
+21/03/2023 03:00:12: 18::Server.Server::requestlistener::Request Listener initiated for server VERDUN
+21/03/2023 03:00:31: 18::Server.Service.MovieTicket::getMoviesListInTheatre:: MovieName: AVATAR | ServerResponse: VERDUN 
+Movie Name: AVATAR | MovieID: VERM150323 | Seats Available: 30| Slot: Morning | Movie Date: 15/03/2023, 
+
+21/03/2023 03:00:31: 18::Server.Server::requestlistener::Request Listener initiated for server VERDUN
