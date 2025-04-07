@@ -19,19 +19,18 @@ public class CustomerBooking implements ICustomerBooking{
 
     public boolean addMovieByCustomerID(String customerID, String movieID, String movieName, int numberOfTicketsBooked) throws ParseException {
         Map<String, MovieState> bookingMap = this.customerBooking.get(customerID);
-        if(bookingMap!=null){
-            if(bookingMap.get(movieID)!=null) {
-                if(bookingMap.get(movieID).getMovieTicketInfo().containsKey(movieName)) {
-                    this.customerBooking.get(customerID).get(movieID).getMovieTicketInfo().put(movieName,bookingMap.get(movieID).getMovieTicketInfo().get(movieName)+numberOfTicketsBooked);
+        return this.customerBooking.computeIfPresent(customerID, (custId, bookingMap) -> {
+            bookingMap.compute(movieID, (mid, movieState) -> {
+                if (movieState != null) {
+                    Map<String, Integer> ticketInfo = movieState.getMovieTicketInfo();
+                    ticketInfo.merge(movieName, numberOfTicketsBooked, Integer::sum);
+                    return movieState;
                 } else {
-                    bookingMap.get(movieID).addMovieToExistingSlot(movieName, numberOfTicketsBooked);
+                    return new MovieState(movieName, movieID, numberOfTicketsBooked);
                 }
-            } else {
-                MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
-                this.customerBooking.get(customerID).put(movieID,movieObj);
-            }
-            return true;
-        }
+            });
+            return bookingMap;
+        }) != null;
         Map<String,MovieState> movieInfo = new ConcurrentHashMap<>();
         MovieState movieObj = new MovieState(movieName,movieID,numberOfTicketsBooked);
         movieInfo.put(movieID,movieObj);
